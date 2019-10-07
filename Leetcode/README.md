@@ -10,3 +10,4 @@
 |3|[Longest Substring Without Repeating Characters](/Leetcode/longest_substring_without_repeating_characters.md)| [leetcode](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|
 |5|[**Longest Palindromic Substring**](/Leetcode/longest_palindromic_substring.md)| [leetcode](https://leetcode.com/problems/longest-palindromic-substring/)|
 |11|[Container With Most Water](/Leetcode/container_with_most_water.md)| [leetcode](https://leetcode.com/problems/container-with-most-water/)|
+|15|[3Sum](/Leetcode/3sum.md)| [leetcode](https://leetcode.com/problems/3sum/)|
