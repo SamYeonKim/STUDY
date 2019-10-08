@@ -13,3 +13,5 @@
 |15|[3Sum](/Leetcode/3sum.md)| [leetcode](https://leetcode.com/problems/3sum/)|
 |??|[Pascal's Triangle](/Leetcode/pascals_triangle.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/251/scenario-i-recurrence-relation/1659/)|
 |??|[Pascal's Triangle II](/Leetcode/pascals_triangle_ii.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/251/scenario-i-recurrence-relation/1660/)|
+|??|[Reverse Linked List Recursively](/Leetcode/reverse_linked_list_recursively.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/251/scenario-i-recurrence-relation/2378/)|
+|??|[Reverse Linked List Iteratively](/Leetcode/reverse_linked_list_iteratively.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/251/scenario-i-recurrence-relation/2378/)|
