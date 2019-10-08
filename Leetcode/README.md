@@ -18,3 +18,5 @@
 |??|[Reverse Linked List Iteratively](/Leetcode/reverse_linked_list_iteratively.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/251/scenario-i-recurrence-relation/2378/)|
 |??|[Fibonacci Number](/Leetcode/fibonacci_number.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/255/recursion-memoization/1661/)|
 |??|[Climbing Stairs](/Leetcode/climbing_stairs.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/255/recursion-memoization/1662/)|
+|??|[Maximum Depth of Binary Tree](/Leetcode/maximum_depth_of_binary_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/256/complexity-analysis/2375/)|
+|??|[Pow(x,n)](/Leetcode/pow.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/256/complexity-analysis/2380/)|
