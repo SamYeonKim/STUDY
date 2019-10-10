@@ -1,0 +1,74 @@
+# LINEGames proguard rules
+-keepattributes SourceFile,LineNumberTable
+
+-keep class com.linegames.** { *; }
+-keep class com.NextFloor.** { *; }
+
+# nadagames proguard rules
+-keep class com.nadagames.** { *; }
+
+-keep class com.google.android.gms.** { *; }
+-keep class com.google.games.bridge.** { *; }
+-keep class com.android.vending.billing.**
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# Adjust proguard rules
+-keep public class com.adjust.sdk.** { *; }
+-keep class com.google.android.gms.common.ConnectionResult {
+    int SUCCESS;
+}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {
+    com.google.android.gms.ads.identifier.AdvertisingIdClient$Info getAdvertisingIdInfo(android.content.Context);
+}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {
+    java.lang.String getId();
+    boolean isLimitAdTrackingEnabled();
+}
+-keep class dalvik.system.VMRuntime {
+    java.lang.String getRuntime();
+}
+-keep class android.os.Build {
+    java.lang.String[] SUPPORTED_ABIS;
+    java.lang.String CPU_ABI;
+}
+-keep class android.content.res.Configuration {
+    android.os.LocaleList getLocales();
+    java.util.Locale locale;
+}
+-keep class android.os.LocaledList {
+    java.util.Locale get(int);
+}
+-keep public class com.android.installreferrer.** { *; }
+
+# Fabric proguard rules
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**
+-keep class io.fabric.** { *; }
+
+# Facebook proguard rules
+-keepattributes Signature
+-keep class com.facebook.unity.* { *; }
+-keep class com.facebook.android.* { *; }
+-keep class android.webkit.WebViewClient
+-keep class * extends android.webkit.WebViewClient
+-keepclassmembers class * extends android.webkit.WebViewClient { 
+    <methods>; 
+}
+
+# Kakao proguard rules
+-keep class com.kakao.** { *; }
+-keep class com.kakaogame.idp.** { *; }
+-keep class com.kakaogame.broker.** { *; }
+-keep class com.kakaogame.KGFacebook { *; }
+-keep class com.kakaogame.KGGoogleGames { *; }
+-keep class com.kakaogame.KGKakaoProfile { *; }
+
+-keepattributes Signature
+-keepclassmembers class * {
+  public static <fields>;
+  public *;
+}
+-dontwarn android.support.v4.**,com.ning.http.client.**,org.jboss.netty.**, org.slf4j.**, com.fasterxml.jackson.databind.**, com.google.android.gms.**

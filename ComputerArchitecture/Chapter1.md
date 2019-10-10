@@ -1,4 +1,4 @@
-* CPU
+#### CPU
   * ALU
     * 실제 연산 수행
   * Register
@@ -9,9 +9,11 @@
     * CPU전체 총괄 신호 전달
     * ALU, Register, BusInterface 와 신호 전달 함.
     * 어떻게 CPU가 일을 할것인지를 결정
-* 프로그램 실행 과정
+#### 프로그램 실행 과정
   * 전처리기 -> 컴파일러 -> 어셈블러 -> 링커
-* Stored Program Concept
+#### Stored Program Concept
   * Fetch : CPU내부로 명령어 이동
   * Decode : 명령어 해석, Control Unit
   * Execution : 연산을 진행, ALU
+
+

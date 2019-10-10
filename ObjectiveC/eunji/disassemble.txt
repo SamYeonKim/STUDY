@@ -1,0 +1,139 @@
+Disassembly of section .text:
+
+00000000 <_main>:
+   0:   55                      push   %ebp
+   1:   89 e5                   mov    %esp,%ebp
+   3:   57                      push   %edi
+   4:   56                      push   %esi
+   5:   53                      push   %ebx
+   6:   83 e4 f0                and    $0xfffffff0,%esp
+   9:   81 ec a0 00 00 00       sub    $0xa0,%esp
+   f:   e8 00 00 00 00          call   14 <_main+0x14>
+  14:   c7 04 24 7b 00 00 00    movl   $0x7b,(%esp)
+  1b:   e8 00 00 00 00          call   20 <_main+0x20>
+  20:   89 c3                   mov    %eax,%ebx
+  22:   c7 44 24 04 40 00 00    movl   $0x40,0x4(%esp)
+  29:   00
+  2a:   89 1c 24                mov    %ebx,(%esp)
+  2d:   e8 00 00 00 00          call   32 <_main+0x32>
+  32:   c7 44 24 10 00 00 00    movl   $0x0,0x10(%esp)
+  39:   00
+  3a:   c7 44 24 0c 0c 00 00    movl   $0xc,0xc(%esp)
+  41:   00
+  42:   c7 44 24 08 00 00 00    movl   $0x0,0x8(%esp)
+  49:   00
+  4a:   c7 44 24 04 40 00 00    movl   $0x40,0x4(%esp)
+  51:   00
+  52:   89 1c 24                mov    %ebx,(%esp)
+  55:   ff d0                   call   *%eax
+-------
+  57:   89 84 24 9c 00 00 00    mov    %eax,0x9c(%esp)
+  5e:   8b 9c 24 9c 00 00 00    mov    0x9c(%esp),%ebx
+  65:   c7 44 24 04 48 00 00    movl   $0x48,0x4(%esp)
+  6c:   00
+  6d:   89 1c 24                mov    %ebx,(%esp)
+  70:   e8 00 00 00 00          call   75 <_main+0x75>
+  75:   c7 44 24 04 48 00 00    movl   $0x48,0x4(%esp)
+  7c:   00
+  7d:   89 1c 24                mov    %ebx,(%esp)
+-------
+  80:   ff d0                   call   *%eax
+  82:   89 84 24 98 00 00 00    mov    %eax,0x98(%esp)
+  89:   8b bc 24 98 00 00 00    mov    0x98(%esp),%edi
+  90:   c7 44 24 74 00 00 00    movl   $0x0,0x74(%esp)
+  97:   00
+  98:   c7 44 24 78 00 00 00    movl   $0x0,0x78(%esp)
+  9f:   00
+  a0:   c7 44 24 7c 00 00 00    movl   $0x0,0x7c(%esp)
+  a7:   00
+  a8:   c7 84 24 80 00 00 00    movl   $0x0,0x80(%esp)
+  af:   00 00 00 00
+  b3:   c7 84 24 84 00 00 00    movl   $0x0,0x84(%esp)
+  ba:   00 00 00 00
+  be:   c7 84 24 88 00 00 00    movl   $0x0,0x88(%esp)
+  c5:   00 00 00 00
+  c9:   c7 84 24 8c 00 00 00    movl   $0x0,0x8c(%esp)
+  d0:   00 00 00 00
+  d4:   c7 84 24 90 00 00 00    movl   $0x0,0x90(%esp)
+  db:   00 00 00 00
+  df:   89 fb                   mov    %edi,%ebx
+  e1:   c7 44 24 04 50 00 00    movl   $0x50,0x4(%esp)
+  e8:   00
+  e9:   89 1c 24                mov    %ebx,(%esp)
+  ec:   e8 00 00 00 00          call   f1 <_main+0xf1>
+  f1:   89 c2                   mov    %eax,%edx
+  f3:   c7 44 24 10 10 00 00    movl   $0x10,0x10(%esp)
+  fa:   00
+  fb:   8d 44 24 34             lea    0x34(%esp),%eax
+  ff:   89 44 24 0c             mov    %eax,0xc(%esp)
+ 103:   8d 44 24 74             lea    0x74(%esp),%eax
+ 107:   89 44 24 08             mov    %eax,0x8(%esp)
+ 10b:   c7 44 24 04 50 00 00    movl   $0x50,0x4(%esp)
+ 112:   00
+ 113:   89 1c 24                mov    %ebx,(%esp)
+ 116:   ff d2                   call   *%edx
+ 118:   89 c3                   mov    %eax,%ebx
+ 11a:   85 db                   test   %ebx,%ebx
+ 11c:   75 10                   jne    12e <_main+0x12e>
+ 11e:   c7 84 24 94 00 00 00    movl   $0x0,0x94(%esp)
+ 125:   00 00 00 00
+ 129:   e9 aa 00 00 00          jmp    1d8 <_main+0x1d8>
+ 12e:   8b 44 24 7c             mov    0x7c(%esp),%eax
+ 132:   8b 00                   mov    (%eax),%eax
+ 134:   89 44 24 2c             mov    %eax,0x2c(%esp)
+ 138:   be 00 00 00 00          mov    $0x0,%esi
+ 13d:   8b 44 24 7c             mov    0x7c(%esp),%eax
+ 141:   8b 00                   mov    (%eax),%eax
+ 143:   3b 44 24 2c             cmp    0x2c(%esp),%eax
+ 147:   74 0f                   je     158 <_main+0x158>
+ 149:   8b 84 24 98 00 00 00    mov    0x98(%esp),%eax
+ 150:   89 04 24                mov    %eax,(%esp)
+ 153:   e8 00 00 00 00          call   158 <_main+0x158>
+ 158:   8b 54 24 78             mov    0x78(%esp),%edx
+ 15c:   8d 04 b5 00 00 00 00    lea    0x0(,%esi,4),%eax
+ 163:   01 d0                   add    %edx,%eax
+ 165:   8b 00                   mov    (%eax),%eax
+ 167:   89 84 24 94 00 00 00    mov    %eax,0x94(%esp)
+ 16e:   8b 84 24 94 00 00 00    mov    0x94(%esp),%eax
+ 175:   89 44 24 04             mov    %eax,0x4(%esp)
+ 179:   c7 04 24 18 00 00 00    movl   $0x18,(%esp)
+ 180:   e8 00 00 00 00          call   185 <_main+0x185>
+ 185:   46                      inc    %esi
+ 186:   39 de                   cmp    %ebx,%esi
+ 188:   72 b3                   jb     13d <_main+0x13d>
+ 18a:   89 fb                   mov    %edi,%ebx
+ 18c:   c7 44 24 04 50 00 00    movl   $0x50,0x4(%esp)
+ 193:   00
+ 194:   89 1c 24                mov    %ebx,(%esp)
+ 197:   e8 00 00 00 00          call   19c <_main+0x19c>
+ 19c:   89 c2                   mov    %eax,%edx
+ 19e:   c7 44 24 10 10 00 00    movl   $0x10,0x10(%esp)
+ 1a5:   00
+ 1a6:   8d 44 24 34             lea    0x34(%esp),%eax
+ 1aa:   89 44 24 0c             mov    %eax,0xc(%esp)
+ 1ae:   8d 44 24 74             lea    0x74(%esp),%eax
+ 1b2:   89 44 24 08             mov    %eax,0x8(%esp)
+ 1b6:   c7 44 24 04 50 00 00    movl   $0x50,0x4(%esp)
+ 1bd:   00
+ 1be:   89 1c 24                mov    %ebx,(%esp)
+ 1c1:   ff d2                   call   *%edx
+ 1c3:   89 c3                   mov    %eax,%ebx
+ 1c5:   85 db                   test   %ebx,%ebx
+ 1c7:   0f 85 6b ff ff ff       jne    138 <_main+0x138>
+ 1cd:   c7 84 24 94 00 00 00    movl   $0x0,0x94(%esp)
+ 1d4:   00 00 00 00
+ 1d8:   8d 65 f4                lea    -0xc(%ebp),%esp
+ 1db:   5b                      pop    %ebx
+ 1dc:   5e                      pop    %esi
+ 1dd:   5f                      pop    %edi
+ 1de:   5d                      pop    %ebp
+ 1df:   c3                      ret
+
+000001e0 <___objc_gnu_init>:
+ 1e0:   55                      push   %ebp
+ 1e1:   89 e5                   mov    %esp,%ebp
+ 1e3:   83 ec 18                sub    $0x18,%esp
+ 1e6:   c7 04 24 70 00 00 00    movl   $0x70,(%esp)
+ 1ed:   e8 00 00 00 00          call   1f2 <___objc_gnu_init+0x12>
+ 1f2:   c9                      leave
+ 1f3:   c3                      ret
