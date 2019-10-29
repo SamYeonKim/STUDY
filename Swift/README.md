@@ -2,7 +2,7 @@
 
 ### swift 언어에 대해 알아 보자
 
-* [For C# Developer](/Swift/Swift_for_c\#_developer.md)
+* [For C# Developer](/Swift/Swift_for_c%23_developer.md)
 * [명명법 / 콘솔로그 / 문자열 보간법](/Swift/Basic.md)
 * [상수와 변수](/Swift/Variables.md)
 * [기본 데이터 타입](/Swift/Datatype.md)
