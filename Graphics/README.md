@@ -1,7 +1,4 @@
 # Graphics
 
-* [Pipeline](/Graphics/Kim/Pipeline.md)
-
-# TODO
-
-* 폴더 정리 및 링크
+* [Rendering Pipeline](/Graphics/Pipeline.md)
+* [Lighting Strategy](/Graphics/Lighting_Strategy.md)

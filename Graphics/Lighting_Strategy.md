@@ -20,11 +20,11 @@ GI(Global Illumination)란?
 
 `Specular Highlight`
 
-![](./Images/Specular.png)
+![](img/specular.png)
 
 `Indirect Light`
 
-![](./Images/Indirect.png)
+![](img/indirect.png)
 
 ## Basic Realtime lighting + Ambient (with no Realtime GI or Baked GI)
 
@@ -45,8 +45,8 @@ Hemisphere occlusion
 - 반구체의 면에서 모든 방향으로 방사되는 빛의 노출을 계산한 기술?
 ```
 
-![](./Images/shadow_1.png)
-![](./Images/shadow_2.png)
+![](img/shadow_1.png)
+![](img/shadow_2.png)
 
 ## All baked lighting + Light Probe
 

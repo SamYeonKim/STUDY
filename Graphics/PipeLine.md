@@ -1,13 +1,12 @@
-# 준비 단계
-+ Mesh 파일을 디스크에서 읽어 드리게 되면 Ram에 Mesh 정보가 올라간다
-+ 이때부터 CPU와 GPU가 할일을 시작하게 되는데, CPU는 GPU와 통신을 하기 위해서 큐형태의 CommanBuffer를 사용한다.
-+ CPU는 GPU에게 요청을 2가지의 단계로 하게 되는데, 첫번째가 RenderState 이고, 두번째가 Mesh를 그리는 단계이다.
+# Rendering Pipeline
 
->> RenderState는 Vertex Shader, Pixel Shader, Texture, Lighting Setting의 정보를 가지고 있다.
-
->> RenderState가 끝나게 되면 그리는 행위가 일어나는데, 이때 VRAM에 RenderState에서 넘긴 정보를 기반으로 Mesh와 텍스쳐를 그린다.
-
->>> RenderState를 설정하는것이 그리는 행위보다 비싸기 때문에, Batching이 일어난다. 동일한 쉐이더에 동일한 텍스쳐, 동일한 Mesh를 사용할때, 중복된 객체를 여러개 그릴때 매번 RenderState를 거치는 것이 아니라, RenderState는 한번만 이뤄지고 그리는 행위를 여러번 한다.
+## Load
+* 프로그램이 디스크에서 Mesh파일을 읽어서 Ram에 Mesh Information의 형태로 로드
+* CPU가 GPU에게 바로 명력하지 못하기 때문에, 큐 형태의 CommandBuffer를 사용해서 필요한 명령을 저장하고 GPU가 CommandBuffer에서 Command를 가져가서 수행한다
+* CPU는 GPU에게 요청을 2가지의 단계로 하게 되는데, 첫번째가 RenderState 설정이고, 두번째가 Draw 단계이다.
+* RenderState는 Vertex Shader, Pixel Shader, Texture, Lighting Setting의 정보를 가지고 있다.
+* Draw단계에서는 VRAM에 RenderState에서 넘긴 정보를 기반으로 Mesh와 텍스쳐를 그린다
+* RenderState를 설정하는것이 그리는 행위보다 비싸기 때문에, Batching이 일어난다. 동일한 쉐이더에 동일한 텍스쳐, 동일한 Mesh를 사용할때, 중복된 객체를 여러개 그릴때 매번 RenderState를 거치는 것이 아니라, RenderState는 한번만 이뤄지고 그리는 행위를 여러번 한다.
 
 # VertexShader
 + 여기서는 Vertex Position, Normal, Tangents등이 사용된다. 그리고, 물체를 화면에 배치 하기 위해서, 좌표 변환을 수행하는데, 
