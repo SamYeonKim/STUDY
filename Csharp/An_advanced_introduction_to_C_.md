@@ -2,20 +2,16 @@
 
 ## Basic concepts
 
-* 메모리를 Garbage Collector가 관리하므로 신경쓰지 않아도 된다.
-  * 가비지 콜렉터는 참조되지 않은 오브젝트를 감지하고 수집하여 해당 메모리를 확보함
-  * 가비지 콜렉터는 메모리 최적화를 수행하지만 메모리를 확보한 직후에 수행하지는 않음
-  * C#에서는 세그멘트 오류가 발생하지 않음
-* 가비지 콜렉터가 어떻게 작동하는가 
-  
-![](https://www.codeproject.com/KB/cs/1094079/gc.png)
-
+* 메모리가 할당된 객체를 Garbage Collector가 관리해 준다.
+  * 가비지 콜렉터는 더 이상 참조되지 않는 객체를  감지하고 수집하여 해당 메모리를 확보함
+  * 가비지 콜렉터가 어떻게 작동하는가   
+    ![](https://www.codeproject.com/KB/cs/1094079/gc.png)
 * 컴파일러는 assembly code가 아닌 MSIL(Microsoft Intermediate Language)를 만든다
 * C#의 경우 CLR(Common Language Runtime) 어셈블리를 얻는다.
   * 이 어셈블리는 런타임 중에 JIT으로 컴파일 된다.
 * 런타임 중에 최적화가 수행된다.
   * 메서드 호출은 인라인되며 필요없는 명령문은 자동으로 생략됨.
-* 객체 지향의 기능이 Java의 영향을 받았다.
+* 객체 지향의 기본 컨셉은 Java의 영향을 받았다.
   * Java의 키워드 집합과는 다르다. 
   * Java > `extends` -> C# > `:`
 ```cs
@@ -42,37 +38,19 @@ namespace HelloWorld
     }
 }
 ```
-```java
-[java]
-public class Main
-{
-	public static void main(String[] args) {
-		System.out.println("Hello Tech.Pro!");
-	}
-}
-```
-```objc
-[objective-c]
-int main (int argc, const char * argv[])
-{
-    NSLog (@"Hello Tech.Pro!");
-    return 0;
-}
-```
 * Main이 대문자라는 것을 제외하고 Java와 유사함
 * 주석은 //와 /* */ 사용 가능
 * 모든 메소드와 변수는 캡슐화해야함
 * C#은 콘솔 기반 상호작용을 위해 Console 클래스를 사용함
 * 클래스의 함수를 메소드라고 함
-* Main이라는 메인 시작 지점은 한번만 존재할 수 있기 때문에 정적이어야 한다.
+* Main이라는 메인 시작 지점은 하나만 존재할 수 있기 때문에 static 이어야 한다.
 * C의 기본 Main메서드는 2개의 매개변수(갯수, 배열)을 전달하지만 C#은 1개의 매개변수를 전달함(모든 배열 유형에 Length라는 필드가 있음)
 
 ## Namespaces
-* 타입을 구별하기 위해 컴파일러에서 사용할 문자열
 * 네임스페이스를 쓰는 이유
   * 동일한 이름과 매개변수를 갖는 메서드는 리턴형식이 다르더라도 구별할 수 없음
   * 두개의 내부 라이브러리를 사용하는 경우에도 동일한 이름을 가진 유형을 정의할 수는 있지만 하나의 유형만 사용할 수 있음
-* 사용된 여러 네임스페이스에 정의된 유형을 사용할 경우 명시적으로 지정해주어야함
+* `using` 키워드를 이용해서 특정 네임스페이스의 모든 요소들을 사용하는데, 다른 네임스페이스에 있는것과 동일한 이름의 클래스 혹은 함수를 사용하게 되면 컴파일 에러가 난다. 따라서, 명시적으로 어떤 네임스페이스의 것인지 표현해 줘야 한다.
 
 ## Data types and operators
 
@@ -100,127 +78,105 @@ int main (int argc, const char * argv[])
 * ternary operator : `condition ? consequent : alternative`
 * Brackets : `()`
 
-* inbuilt-methods : `typeof`, `sizeof`
+* inbuilt-methods : 
 
-|operator|description|
-|---|:---|
-|`()`|기본 캐스트 연산자|
-|`as`|참조 캐스트 연산자|
-|`is`|형식 준수 검사|
-|`??`|null 병합 연산자|
-|`:`|상속 연산자|
+    |operator|description|
+    |---|:---|
+    |`typeof`|형식에 대한 __System.Type__ 개체를 얻는 연산자|
+    |`sizeof`|형식의 변수에서 사용하는 바이트 수를 반환|
+    |`()`|기본 캐스트 연산자|
+    |`as`|참조 캐스트 연산자|
+    |`is`|형식 준수 검사|
+    |`??`|null 병합 연산자|
+    |`:`|상속 연산자|
 
 ## Reference and value types
 
 * reference와 value 타입은 다름
-  * class : reference
-  * struct : struct
- * value : 객체를 복사, 값을 변경해도 원래 값이 변경되지 않음
+  * class : reference type
+  * struct : value type
+* value : 객체를 복사, 값을 변경해도 원래 값이 변경되지 않음
 * reference : 객체의 주소를 복사, 다른 곳에서 객체의 값을 변경하면 원래 값이 변경됨
 
-* `ref`
+* `ref` 키워드
   * 구조체를 전달하면 원래 값에 접근 가능
   * 클래스를 전달하면 포인터를 재설정할 수 있음
 ```cs
-using System;
+static void Main() {
+    //A string is a class, which can be instantiated like this
+    string s = "Hi there";
+    Console.WriteLine(s);//Hi there
+    ChangeString(s);
+    Console.WriteLine(s);//Hi there
+    ChangeString(ref s);
+    Console.WriteLine(s);//s is now a null reference
+}
 
-class Program
-{
-    static void Main()
-    {
-        //A string is a class, which can be instantiated like this
-        string s = "Hi there";
-        Console.WriteLine(s);//Hi there
-        ChangeString(s);
-        Console.WriteLine(s);//Hi there
-        ChangeString(ref s);
-        Console.WriteLine(s);//s is now a null reference
-    }
+static void ChangeString(string str) {
+    str = null;
+}
 
-    static void ChangeString(string str)
-    {
-        str = null;
-    }
-
-    static void ChangeString(ref string str)
-    {
-        str = null;
-    }
+static void ChangeString(ref string str) {
+    str = null;
 }
 ```
 * `out`
-  * `ref` 키워드와 비슷하지만 다름
-  * `out` 변수가 매개변수로 있는 메소드에서 할당되어야함
-  * `out` 변수를 매개변수로 전달하는 메소드에서는 할당할 필요 없음
+  * `out` 키워드의 변수를 파라미터로 사용하는 함수 내에서 반드시 해당 변수에 값을 할당해 줘야 한다. 안 그러면 컴파일 에러
+  * `out` 키워드의 변수를 매개변수로 전달하는 메소드에서는 할당할 필요 없음
 ```cs
-using System;
+static void Main(string[] args) {
+    //일반적으로 c#은 값이 할당되어 있지 않은 상태에서 다른 함수의 매개변수로 사용하는걸 허용하지 않는다.
+    SampleClass sampleClass;
+    SampleStruct sampleStruct;
 
-class Program
+    //하지만 out 키워드로 전달되는 매개변수는 해당 함수에서 값 할당 할 것을 알기 때문에 예외적으로 허용해준다.
+    HaveALook(out sampleClass);
+    HaveALook(out sampleStruct);
+}
+
+static void HaveALook(out SampleClass c)
 {
-    static void Main(string[] args)
-    {
-        //Usually C# forbids us to leave variables uninitialized
-        SampleClass sampleClass;
-        SampleStruct sampleStruct;
+    //만약, out 키워드를 사용하는 파라미터 변수에 값을 할당 하지 않으면 컴파일 에러가 발생
+    c = new SampleClass();
+}
 
-        //However, C# thinks that an out-Function will do the initialization
-        HaveALook(out sampleClass);
-        HaveALook(out sampleStruct);
-    }
-
-    static void HaveALook(out SampleClass c)
-    {
-        //Insert a breakpoint here to see the
-        //value of c before the assignment:
-        //It will be null...
-        c = new SampleClass();
-    }
-
-    static void HaveALook(out SampleStruct s)
-    {
-        //Insert a breakpoint here to see the
-        //value of s before the assignment:
-        //It will NOT be null...
-        s = new SampleStruct();
-    }
-
-    //In C# you can created nested classes
-    class SampleClass
-    {
-    }
-
-    //A structure always inherits ONLY from object,
-    //we cannot specify other classes (more on that later)
-    //However, an arbitrary number of interfaces can
-    //be implemented (more on that later as well)
-    struct SampleStruct
-    {
-    }
+static void HaveALook(out SampleStruct s)
+{
+    //Insert a breakpoint here to see the
+    //value of s before the assignment:
+    //It will NOT be null...
+    s = new SampleStruct();
 }
 ```
 * `new`
   * 적절한 위치에 메모리 할당
     * reference type은 heap, value type은 stack
-  * 일치하는 constructor 호출
+  * 일반적으론 파라미터가 없는 생성자를 정의 하지 않아도 된다.
+  * 하지만 파라미터가 있는 생성자가 있는 상태에서 파라미터가 없는 생성자를 이용해서 `new` 키워드를 사용하면 컴파일 에러가 발생
+```cs
+class A {}
+class B {
+    public B ( int n) {}
+}
+static void Main(string[] args) {
+    A a = new A();  //컴파일 에러 안남
+    B b = new B();  //컴파일 에러 발생
+}
+```
   
 ## Control flow
 
-* C와 유사함
+|operator|description|
+|---|:---|
+|`if`, `switch`|조건문|
+|`for`, `while`, `do-while`, `foreach`|반복문|
+|`break`|반복문 탈출|
+|`continue`|다음 반복으로 스킵|
+|`goto`|특정 구문으로 점프|
 
-* `if`,`switch` : 조건문
-* `for`,`while`,`do-while` : 반복문
-* `break` : 반복문 탈출
-* `condition` : 다음 반복문으로 이동
-* `goto` : 점프문
-* `foreach` : iterator 반복문
-    * C에서는 사용할 수 없음
-    * 모든 배열은 iterator를 정의하고 있음
+* `foreach`문에서는 현재 요소를 변경할 수 없음
 ```cs
-[C#]
-//Creating an array is possible by just appending [] to any data type
 int[] myints = new int[4];
-//This is now a fixed array with 4 elements. Arrays in C# are 0-based
-//hence the first element has index 0.
 myints[0] = 2;
 myints[1] = 3;
 myints[2] = 17;
@@ -236,42 +192,13 @@ foreach(int myint in myints)
     myint = 1; // compile error
 }
 ```
-* `foreach`문에서는 현재 요소를 변경할 수 없음
 
-```java
-[java]
-int[] myints = new int[4];
-myints[0] = 2;
-myints[1] = 3;
-myints[2] = 17;
-myints[3] = 24;
-
-for(int myint : myints)
-{
-    myint = 1;          // 가능
-    System.out.println("The element is given by ");
-    System.out.println(myint);  
-}
-```
-```objc
-[objective-c]
-int main (int argc, const char * argv[])
-{
-    NSArray *myints = [NSArray arrayWithObjects:@"2", @"3", @"17", @"24", nil];
-    for (NSString *myint in myints) {
-        myint = 1;          // 불가능
-        NSLog(@"The element is given by %@", myint);
-    }
-
-    return 0;
-}
-```
 ## Object-oriented programming
 
 * 객체 지향 프로그래밍은 함수 대신 객체에 초점을 맞추는 방법
-* 인스턴스에 종속성이 없는 정적일지라도 클래스 안에 구현되어야 함
-  * sin(), cos(), sign() 대신 클래스 이름도 기입해야함 -> Math.Sin(), Math.Cos(), Math.Sign()  
-
+* 모든것은 클래스의 일부분으로서 존재 해야 함.
+    * 어떤 instance 와도 독립적인 static 인 것이라도.
+        * 예를 들어 static int Sin() 함수도 반드시 Math 라는 클래스의 부분으로서 존재 해야함 => Math.Sin()
 * 객체 지향 프로그래밍의 주요 측면
   * Data encapsulation
   * Inheritance
@@ -279,59 +206,37 @@ int main (int argc, const char * argv[])
   * Declaring dependencies
   * Maintainability
   * Readability
-* 인스턴스에 종속성이 없는 변수, 메소드를 원할 경우 정적 클래스로 작성
 
 ## Inheritance and Polymorphism
 
-* 상위 클래스의 모든 멤버가 복사됨
-
 ```cs
-[C#]
-class MySubClass : MyClass
-{
-    public void WriteMore()
-    {
+class MySubClass : MyClass {
+    public void WriteMore() {
         Console.WriteLine("Hi again!");
     }
 }
 ```
-```java
-[java]
-class MySubClass extends MyClass
-{
-    public void WriteMore()
-    {
-        System.out.println("Hi again!");
-    }
-}
-```
 
-```objc
-[objective-c]
-@interface MySubClass : MyClass
--(void)WriteMore;
-@end
+* `MySubClass` 클래스가 `MyClass`를 상속 받고 있다.
+* `MyClass`는 `System.Object`를 상속 받고 있다.
+* 명시적으로 다른 클래스를 상속 받지 않은 클래스는 `System.Object`를 상속 받고 있다.
+* 따라서 다음 4가지 메소드가 정의 되어 있다.
 
-@implementation MySubClass
--(void)WriteMore{
-    NSLog(@"Hi again!");
-}
-@end
-```
+    |name|description|
+    |---|:---|
+    |[Equals](https://docs.microsoft.com/ko-kr/dotnet/api/system.object.equals?view=netframework-4.8)|객체 간의 비교|
+    |[GetHashCode](https://docs.microsoft.com/ko-kr/dotnet/api/system.object.gethashcode?view=netframework-4.8)|현재 객체의 해시 코드 반환|
+    |[GetType](https://docs.microsoft.com/ko-kr/dotnet/api/system.object.gettype?view=netframework-4.8)|현재 객체의 __System.Type__ 객체를 반환|
+    |[ToString](https://docs.microsoft.com/ko-kr/dotnet/api/system.object.tostring?view=netframework-4.8)|현재 객체를 나타내는 문자열 반환|
 
-* 객체 자체는 4가지 메소드를 정의함
-  * ToString : 인스턴스를 문자열로 표시
-  * Equals : 임의의 두 객체를 비교
-  * GetHashCode : 두 객체가 같을 수 있는 경우 숫자 indicator를 가져옴
-  * GetType : 현재 인스턴스의 특정 유형에 대한 메타 정보 가져옴
+* 다형성(Polymorphism) : 하나의 객체가 다양한 타입으로 표현될 수 있는것
+* `virtual` : 상속관계에서 자식 클래스에서 함수를 재정의 할 수 있음을 표시
+* `override` : 상속관계에서 부모 클래스의 함수를 재정의 했다는것을 표시
 
 ```cs
-[C#]
-class MyClass
-{
+class MyClass {
     //This method is now marked as re-implementable
-    public virtual void Write(string name)
-    {
+    public virtual void Write(string name) {
         //Using a placeholder in a string.Format()-able method
         Console.WriteLine("Hi {0} from MyClass!", name);
     }
@@ -340,88 +245,31 @@ class MyClass
 class MySubClass : MyClass
 {
     //This method is now marked as re-implemented
-    public override void Write(string name)
-    {
+    public override void Write(string name) {
         Console.WriteLine("Hi {0} from MySubClass!", name);
     }
 }
 ```
 
-* `virtual` : 자식 클래스가 메소드를 다시 구현할 수 있음을 지정
-* `override` : 자식 클래스가 재정의하는 경우 명시적으로 `override` 표시
-
-```java
-[java]
-class MyClass
-{
-    public void Write(string name)
-    {
-       System.out.println("Hi " + name + "from MyClass!");
-    }
-}
-
-class MySubClass : MyClass
-{
-    @Override
-    public void Write(string name)
-    {
-        System.out.println("Hi " + name + "from MySubClass!");
-    }
-}
-```
-
-* Polymorphism : 기본적으로 클래스가 특정 메소드를 다시 구현할 수 있음
-```cs
-using System;
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        MyClassOne one = new MyClassOne();
-        MyClassTwo two = new MyClassTwo();
-
-        Console.WriteLine(one);//Displays a strange string that is basically the type's name
-        Console.WriteLine(two);//Displays "This is my own class output"
-    }
-}
-
-class MyClassOne
-{
-    /* Here we do not override anything */
-}
-
-class MyClassTwo
-{
-    public override string ToString()
-    {
-        return "This is my own class output";
-    }
-}
-```
- * WriteLine 메소드는 인스턴스를 인자로 받으면 인스턴스의 ToString함수를 호출함
-
 ## Access modifiers
 
 |keyword|description|
 |---|:---|
-|private|객체 외부에서 볼 수 없음, 상속X|
-|protected|객체 외부에서 볼 수 없음, 상속O|
-|internal|객체 외부에서 볼 수 있지만 현재 프로젝트 외부에서는 볼 수 없음|
-|public|어디에서나 볼 수 있음|
+|`private`|현재 객체에서만 유효, 상속 되지 않음|
+|`protected`|현재 객체에서만 유효, 상속 됨|
+|`internal`|다른 객체에서도 접근 가능, 하지만 같은 library에 있는것만 접근 가능|
+|`public`|어떤 객체에서도 접근 가능|
 
-* namespace에 직접 배치된 타입은 기본적으로 internal
-* 클래스나 구조체에 배치된 타입 및 멤버는 기본적으로 private
+* 명시적으로 접근 제한자를 선언 하지 않으면 기본적으로 `private`
+* namespace에 선언된 객체는 기본적으로 `internal`
 
 ```cs
 using System;
 
-//No modifier, i.e., the class Program is internal
-class Program
-{
-    //No modifier, i.e., the method Main() is private
-    static void Main()
-    {
+//No modifier, Prgram class는 internal
+class Program {
+    //No modifier, Main() 함수는 private
+    static void Main() {
         MyClass c = new MyClass();
         //Works
         int num = c.WhatNumber();
@@ -433,22 +281,16 @@ class Program
 //MyClass is visible from this library and other libraries
 public class MyClass
 {
-    //This one can only be accessed from MyClass
-    private int a;
-
-    //Classes inheriting from MyClass can access b like MyClass can
+    // a는 MyClass에서만 유효
+    private int a; 
+    // b는 MyClass와 MyClass를 상속받은 곳에서 유효
     protected int b;
-
-    //No modifier, i.e., the method RightNumber() is private
-    int RightNumber()
-    {
+    // 접근제한자를 명시적으로 선언하지 않았기 때문에, private
+    int RightNumber() {
         return a;
     }
 
-    //This will be seen from the outside
-    public int WhatNumber()
-    {
-        //Access inside the class is possible
+    public int WhatNumber() {
         return RightNumber();
     }
 }
@@ -460,19 +302,23 @@ internal class MySubClass : MyClass
     {
         //Works
         b = 8;
-        //Does not work - a cannot be accessed since it is private
+        //컴파일 에러 발생, a는 MyClass에서만 유효 했기 때문
         return a;
     }
 }
 ```
 
-* internal MyClass, public MySubclass는 설정X
-  * 컴파일러가 알 수 없음
 * 모든 비정적 메소드는 클래스의 인스턴스 포인터 변수 `this`에 접근 가능
-* `this`는 현재 클래스의 인스턴스를 가리킴
+* `this` : 현재 클래스의 인스턴스를 가리킴
 * `base` : 부모 클래스의 멤버에 접근 가능
 
 ## Properties
+
+* OOP 컨셉상, 모든 변수를 현재 클래스 모르게 변경 하지 못하도록 해야 한다.
+* Get[VariableName], Set[VariableName] 처럼 외부에서 특정 변수의 값을 참조 및 변경 할 수 있도록 하는 함수를 만들어야 한다.
+* 매번 같은 형식의 함수를 만드는건 불편하다.
+* `Property`는 위와 같은 불편함을 해소 시켜준다.
+* 내가 위와 같은 함수를 만들지 않고 컴파일러가 만든다.
 
 ```cs
 private int myVariable;
@@ -483,7 +329,6 @@ public int MyVariable
     set { myVariable = value; }
 }
 ```
-* 내부적으로, 컴파일러는 여전히 get/set메소드를 생성할 것이지만 신경쓰지 않음
 
 ## The constructor
 

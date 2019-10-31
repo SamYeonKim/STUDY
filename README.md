@@ -3,6 +3,7 @@ For my Study
 
 * [Ansible](/Ansible/README.md) 
 * [Encryption](/Common/Encryption.md) 
+* [Encoding](/Common/Encoding.md) 
 * [Computer Architecture](/ComputerArchitecture/README.md) 
 * [Design Pattern](/designpattern/README.md) 
 * [Docker](/Docker/README.md)
