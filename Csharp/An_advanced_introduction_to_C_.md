@@ -339,7 +339,6 @@ public int MyVariable
 * 새로운 인스턴스를 암시적으로 반환하므로 리턴형X, 생성자는 클래스의 이름과 같은 이름으로 정의
 
 ```cs
-[C#]
 class MyClass
 {
     public MyClass()
@@ -376,36 +375,10 @@ class MyClass
     }
 }
 ```
-* chaining constructor : 하나의 생성자를 실행할 때 다른 생성자도 호출
 
-```java
-public MyClass()
-{
-    this(1,1);
-}
-
-public MyClass(int a, int b)
-{
-}
-```
-```objc
-@interface MyClass
--(id)init;
--(id)init:(int)a b:(int)b;
-@end
-@implementation MyClass
--(id)init{
-    [self init:1 b:1];
-}
--(id)init:(int)a:b(int)b{
-
-}
-@end
-```
 ### Singleton pattern
 ```cs
-[Singleton pattern - C#]
-
+[Singleton pattern]
 class MyClass
 {
     private static MyClass instance;
@@ -424,42 +397,8 @@ class MyClass
     }
 }
 ```
-```java
-[Singleton pattern - java]
 
-class MyClass
-{
-    private static MyClass instance;
-
-    private MyClass() { }
-
-    public static MyClass Instance()
-    {
-        if(instance == null) {
-        	instance = new MyClass();
-        }
-        return instance;
-    }
-}
-```
-```objc
-[Singleton pattern - objective-c]
-@interface MyClass
-+(MyClass *)Instance;
-@end
-
-@implementation MyClass
-+(MyClass *)Instance{
-    static MyClass* instance = nil;
-    if(instance == nil){
-        instance = [[MyClass alloc] init];
-    }
-    return instance;
-}
-@end
-```
-* 클래스의 인스턴스를 만들 수 없지만 MyClass.Instance를 사용해 접근할 수 있음
-  * Instance 속성 메서드 내부에서 인스턴스가 만들어지기 때문에 원하지 않는 종속성을 초래할 수 있지만 추가 기능(하위 클래스 인스턴스화 등)을 수행할 수 있음
+* 클래스의 인스턴스를 만들 수 없지만 `MyClass.Instance`를 사용해 접근할 수 있음
   * 오브젝트가 인스턴스를 요구할 때까지 인스턴스화가 수행되지 않음
 
 ## Abstract classes and interfaces
@@ -467,45 +406,28 @@ class MyClass
 * `Abstract` : 클래스에 대한 템플릿을 만드는 키워드
   * 인스턴스화 될 수 없음
 * C#에서 상속은 한 클래스만 가능함
+* 멤버 변수를 선언할 수 있음
+
 ```cs
-[C#]
-abstract class MyClass
-{
+abstract class MyClass {
     public abstract void Write(string name);
 }
 
-class MySubClass : MyClass
-{
-    public override void Write(string name)
-    {
+class MySubClass : MyClass {
+    public override void Write(string name) {
         Console.WriteLine("Hi {0} from an implementation of Write!", name);
     }
 }
 ```
-```java
-[java]
-abstract class MyClass
-{
-    public abstract void Write(String name);
-}
 
-class MySubClass extends MyClass
-{
-	@Override
-	public void Write(String name) {
-		System.out.println("Hi " + name + "from an implementation of Write!");
-	}
-}
-```
-* `interface` : 인터페이스를 구현하는 클래스가 제공해야 하는 메소드를 정의
+* `interface` : 클래스의 동작 기능들에 대한 뼈대를 구성
   * 변수 없는 추상클래스라고 생각할 수 있음
 * 모든 메소드는 자동으로 `public`으로 지정
-```cs
-[C#]
-interface MyInterface
-{
-    void DoSomething();
+* `interface` 를 상속 받는 클래스는 반드시 `insterface`에 선언된 모든 메소드를 정의 해야 함
 
+```cs
+interface MyInterface {
+    void DoSomething();
     string GetSomething(int number);
 }
 
@@ -531,81 +453,29 @@ class MySubSubClass : MySubClass, MyInterface
     }       
 }
 ```
-```java
-interface MyInterface
-{
-    void DoSomething();
-
-    String GetSomething(int number);
-}
-
-class MyOtherClass implements MyInterface
-{
-    public void DoSomething()
-    { }
-
-    public String GetSomething(int number)
-    {
-        return Integer.toString(number);
-    }
-}
-
-class MySubSubClass extends MySubClass implements MyInterface
-{
-    public void DoSomething()
-    { }
-
-    public String GetSomething(int number)
-    {
-        return Integer.toString(number);
-    }       
-}
-```
-```objc
-@protocol MyInterface
--(void)DoSomething;
--(NSString*) GetSomething:(int)number;
-@end
-
-@interface MyOtherClass : NSObject<MyInterface>
-@end
-
-@implementation MyOtherClass
--(void)DoSomething{
-    NSLog(@"DoSomething");
-}
--(NSString*) GetSomething:(int)number{
-    return [NSString stringWithFormat:@"%d",number];
-}
-@end
-```
-* interface를 인스턴스화할수는 없지만 타입으로는 사용가능
-```cs
-MyInterface myif = new MySubSubClass();
-```
 
 * 여러 개의 인터페이스를 구현할 수 있기 때문에 동일한 이름과 매개변수를 가진 메소드가 포함될 수 있음
 * 명시적으로 구별
+    * 명시적으로 구별하게 되면, `public`으로 사용할 수 없다.
 * 인터페이스에 인스턴스를 캐스팅한 경우에만 인터페이스에서 정의한 메서드에 접근 가능
 ```cs
-class MySubSubClass : MySubClass, MyInterface
-{
-    //Explicit (no public and MyInterface in front)
-    void MyInterface.DoSomething()
-    { }
-
-    //Explicit (no public and MyInterface in front)
-    string MyInterface.GetSomething(int number)
-    {
-        return number.ToString();
-    }       
+interface C {
+    void Print();
+}
+interface D {
+    void Print();    
+}
+class B : C, D{
+    public void Print() {}
+    //or 
+    void C.Print() {}
+    void D.Print() {}
 }
 ```
 
 ## Exception handling
 
 * 모든 예외는 System네임스페이스에 배치된 Exception 클래스에서 파생되어야함
-* 예외 처리가 가능하면 처리해야함
 
 ```cs
 byte[] content = null;
