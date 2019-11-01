@@ -2,11 +2,9 @@
 
 ## Enumerations (열거형)
 
-+ 함수의 매개변수로 string이나 int형 대신 enum형을 추천.
-
 ### `[기본적인 열거형]`
 
-```csharp
+```cs
 enum MyEnumeration {
     None = 0,
     First = 1,
@@ -20,7 +18,7 @@ enum MyEnumeration {
 + 기본적으로 int를 제공.
 + 열거형으로 승인된 형식은 `byte, sbyte, short, ushort, int, uint, long 또는 ulong`입니다.
 
-```csharp
+```cs
 enum MyEnumeration : int {
 	None,
 	First,
@@ -36,7 +34,7 @@ enum Range : long {
 
 ### `[Flag]`
 
-+ [Flag]가 없다고 비트연산이 안되지는 않지만 표현방식이 달라진다.
++ `[Flags]`가 없다고 비트연산이 안되지는 않지만 표현방식이 달라진다.
 
 ```csharp
 [Flags]
@@ -62,54 +60,17 @@ void Start () {
 "5"
 ```
 
-### `[다른 언어의 enum]`
-
-+ java
-
-```java
-enum PersonType {
-	MAN,
-	WOMAN,
-}
-```
-
-+ objc
-
-```objectivec
-enum PersonType {
-    MAN,
-    WOMAN,
-};
-```
-
-+ python
-
-```python
-class PersonType(enum):
-	MAN = 0,
-	WOMAN = 1,
-```
-
-+ c++
-
-```cpp
-enum PersonType {
-	MAN,
-	WOMAN,
-};
-```
+* 참조 : [C# Flag 연산 총정리](https://andromedarabbit.net/csharp_flag_operations)
 
 ## Delegates
+
+* `Method`를 참조 해서 사용할 수 있다.
 
 ### `[선언 방법]`
 
 `delegate [return type] [name] (parameter)`
 
-### `[사용 예시]`
-
-[C#]
-
-```csharp
+```cs
 delegate void delegateTest (int d);
 
 void AAA (int d) {
@@ -132,41 +93,9 @@ void Start () {
 "In BBB : 3"
 ```
 
-[JAVA]
-
-```java
-import java.util.ArrayList;
-import java.util.List;
-
-@FunctionalInterface
-interface Runnable {
-    void run();
-}
-
-public class MainClass{
-    static void AAA () {
-	    System.out.println("In AAA");
-    }
-
-    static void BBB () {
-	    System.out.println("In BBB");
-    }
-    
-     public static void main(String []args){
-        List<Runnable> queue = new ArrayList<>();
-        queue.add(() -> AAA());
-        queue.add(() -> BBB());
-     }
-}
-```
-
 ## Auto-generated properties
 
-### `[일반적인 사용 예시]`
-
-[C#]
-
-```csharp
+```cs
 private int myVariable;
 public int MyVariable {
 	get { return myVariable; }
@@ -174,61 +103,10 @@ public int MyVariable {
 }
 ```
 
-[JAVA]
+* 일반적인 사용은 위와 같은 형식이 될 것인데, `return ~`과 ` ~ = value` 구문이 반복되는 문제가 있기 위와 같은 반복 구문을 축약해서 쓸 수 있도록 컴파일러가 기능 제공 한다,
+* get, set 내부에 조건처리가 없을 경우 사용하기 좋음.
 
-```java
-public class MyVariable {
-    private int myVariable;
-
-    public int getVariable() { return this.myVariable; }
-    public void setVariable(int variable) { this.myVariable = variable; }
-}
-```
-
-[Obj-c]
-
-```objc
-[.h]
-
-@interface PropertyTest : NSObject {
-    int myVariable;
-}
-
-@property int myVariable;
-@end
-```
-
-```objc
-[.m]
-
-@implementation PropertyTest
-@synthesize myVariable;
-@end
-```
-
-[Python]
-
-```python
-class MyVariable(object):
-    myVariable = 0;
-    
-    def __init__(self):
-        self.myVariable = 0
-
-    @property
-    def x(self):
-        return self.myVariable
-
-    @x.setter
-    def x(self, value):
-        self.myVariable = value
-```
-
-### `[Auto-generated 예시]`
-
-+ get, set 내부에 조건처리가 없을 경우 사용하기 좋음.
-
-```csharp
+```cs
 public int MyVariable { get; set; }
 
 // 접근자 사용
@@ -237,7 +115,7 @@ public int MyVariable { get; private set; }
 
 ## Generic types
 
-+ 같은 함수를 여러타입으로 재사용하고 싶을때 유용.
+* 타입이 다른데 동일한 로직을 사용하고 싶을때 좋다.
 
 ### `[선언 방법]`
 
@@ -245,9 +123,7 @@ public int MyVariable { get; private set; }
 
 `delegate T [name]<T>()`
 
-### `[사용 예시]`
-
-```csharp
+```cs
 public class GenericTest<T> {
     T m_a;
 
@@ -299,52 +175,7 @@ void Start () {
 "In B : 3"
 ```
 
-[Java]
-
-```java
-class GenericTest<T> {
-    T m_a;
-
-    public void SetTest(T a) {
-        m_a = a;
-    }
-
-    public void ShowTypeAndValue(){
-        System.out.println ("Value : " + m_a); 
-    }
-}
-
-public class MainClass{
-     public static void main(String []args){
-         GenericTest<String> a = new GenericTest();
-         a.SetTest("aa");
-         a.ShowTypeAndValue ();
-     }
-}
-```
-
-[C++]
-
-```cpp
-template<typename T>
-class GenericTest {
-    T *m_Items;
-    
-    void SetTest(const T &item){
-        m_Items = item;
-        
-    }
-    
-    void ShowTypeAndValue(){
-        cout << m_Items;
-        
-    }
-};
-```
-
 ## Generic methods
-
-### `[사용 예시]`
 
 ```csharp
 class MyClass {
@@ -368,7 +199,7 @@ void Start () {
 
 ## Constraints
 
-+ 제약조건을 이용하여 사용을 원치않는 타입을 필터링 할 수 있다.
+* `Generic type T`를 원하는 조건에 해당 하는것만 사용할 수 있도록 하자.
 
 ### `[사용 방법]`
 
@@ -380,11 +211,7 @@ void Start () {
 
 `T [name]<T>() where T : [조건] {}`
 
-### `[사용 예시]`
-
-[C#]
-
-```csharp
+```cs
 class MyClass{
     public T CreateClass<T>() where T : new() {
         return new T ();
@@ -428,44 +255,34 @@ void Start () {
 "The type `A.NewTest' must have a public parameterless constructor in order to use it as parameter `T' in the generic type or method `A.MyClass.CreateClass<T>()'"
 ```
 
-[JAVA]
-
-```java
-class AA {
-}
-
-class BB extends AA{
-}
-
-class Foo<T extends AA> {
-}
-
-public class MainClass{
-     public static void main(String []args){
-        Foo<BB> b = new Foo<BB>();
-     }
-}
-
-// C#의 new, class 제약조건은 java에서 지원하지 않는다.
-```
-
-### `[제약 조건 참조]`
-
-[제약 조건 종류](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)
+* 참조 : [제약 조건 종류](https://docs.microsoft.com/ko-kr/dotnet/csharp/programming-guide/generics/constraints-on-type-parameters)
 
 ## Lambda expressions
 
-+ 반환 타입 사용 여부에 따라 두가지 delegate를 사용가능하다.
+* 하나의 매개변수를 사용할 경우엔 소괄호를 쓰지 않아도 된다.
+* 하나 이상의 매개변수를 사용하거나, 아예 안쓰는 경우엔 소괄호를 써야 한다.
+* 우측항을 한줄로 표현하는 경우, 자동으로 해당 값이 반환 값이 된다. 만약 `void` 타입이라면 반환값은 없다.
+* 우측항을 여러줄로 표현시에는 `return` 키워드를 이용해야만 반환 값을 사용 할 수 있다.
 
-### `[사용 방법]`
+```cs
+x => x * x;
+(x, y) => x * x + y;
+() => 42;
+x => { 
+    return x > 0 ? -1 : (x < 0 ? 1 : 0); 
+};
+() => {
+    Console.WriteLine("Current time: " + DateTime.Now.ToShortTimeString());
+    Console.WriteLine("Current date: " + DateTime.Now.ToShortDateString());
+};
+```
+
+* 반환 타입 사용 여부에 따라 두가지 delegate를 사용가능하다.
 
 `delegate Func<[매개변수 타입], [반환 타입]>`
+`delegate Action<[매개변수 타입]>`
 
-### `[사용 예시]`
-
-[C#]
-
-```csharp
+```cs
 Func<int> zero_parameter = () => 1;
 Debug.Log (zero_parameter ());
 
@@ -481,36 +298,7 @@ Debug.Log (two_parameter (3, 7));
 "10"
 ```
 
-[Java]
-
-```java
-@FunctionalInterface
-interface Func {
-	public int calc(int a, int b);
-}
-
-public class MainClass{
-     public static void main(String []args){
-         
-        Func TwoParameter = (int a, int b) -> a +b;
-        System.out.println(TwoParameter.calc(3, 7));
-     }
-}
-```
-
-[Python]
-
-```python
-(lambda x,y: x + y)(3, 7)
-```
-
-### `[사용 방법]`
-
-`delegate void Action()`
-
-### `[사용 예시]`
-
-```csharp
+```cs
 void ShowOneParamter(int param) {
     Debug.Log("ShowOneParamter : " + param);
 }
@@ -537,21 +325,12 @@ void Start () {
 
 ## Anonymous objects & inferring types
 
-+ 암시적으로 형식을 결정하는 Anonymous 타입의 변수를 제공한다.
+* `var` 키워드를 이용해서, 런타임에 형식을 결정하는 Anonymous 타입의 변수를 제공한다.
 
-### `[사용 방법]`
-
-`var`
-
-### `[사용 예시]`
-
-+ _var의 Name, Age로 접근 할 수 있는 `프로퍼티를 제공`한다.
-
-```csharp
-object anonymous = new { Name = "Florian", Age = 28 };
-
-var _var = new { Name = "Florian", Age = 28 };
-Debug.Log (_var.Name);
+```cs
+var anonymous = new { Name = "Florian", Age = 28 }; //Name, Age를 갖는 익명 클래스를 만든다.
+var a_int = 3;  //a_int는 int 타입으로 인식된다.
+Debug.Log (anonymous.Name);
 
 // Output
 Florian
@@ -559,18 +338,12 @@ Florian
 
 ## Extension methods
 
-+ 기존 형식에 메소드를 추가 할 수 있는 기능을 제공한다.
++ 기존 클래스 파일을 수정 하지 않고 메소드를 추가 할 수 있는 기능을 제공한다.
 + 확장 메소드는 반드시 `static`을 사용해야 한다.
-
-### `[사용 방법]`
 
 `public static [리턴 타입] [함수 이름] (this [확장 타입] [매개변수]) {}`
 
-### `[사용 예시]`
-
-[C#]
-
-```csharp
+```cs
 static class MyExtensions {
 	public static string AddString(this String str) {
 		return str + ", Hi";
@@ -596,56 +369,10 @@ public class A : MonoBehaviour {
 "5"
 ```
 
-[obj-c]
-
-```objc
-@interface NSString (extention)
-- (void) ShowInfo;
-@end
-
-@implementation NSString (extention)
-- (void) ShowInfo{
-    NSLog(@"%@, Hi", self);
-}
-@end
-
-
-int main(int argc, char * argv[]) {
-    NSString *a = @"abc";
-    [a ShowInfo];
-}
-```
-
-[C++]
-
-```cpp
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-class ContainsExtension final {
-public:
-    static void ExtensionMethod(const std::string &myParam) {
-        cout << myParam << ", Hi";
-    }
-};
-
-int main() {
-    std::string s = "abc";
-    ContainsExtension::ExtensionMethod(s);
-
-    return 0;
-}
-```
-
 ## LINQ
 
 + Language Integrated Quary
 + 데이터에서 원하는 정보를 검색하는 기능을 제공.
-
-### `[사용 방법]`
-
 + `from` - 추출을 원하는 데이터 배열 지정.
 + `where` - 필터링 조건 지정.
 + `orderby` - 순서 지정.
