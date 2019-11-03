@@ -2,8 +2,11 @@
 
 ## Flyweight
 
+* Structural
 * 동일하거나 유사한 객체들 사이에 데이터를 서로 공유하여 사용하도록 하는 디자인 패턴
+
 ![](img/flyweight.jpg)
+
 ### Java
 ```java
 public abstract class Flower {

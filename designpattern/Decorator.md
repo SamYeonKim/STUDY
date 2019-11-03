@@ -1,6 +1,8 @@
 # Decorator
 
+* Structural design pattern
 * 객체에 기능을 추가하고 싶을 때 서브클래스 구현 대신 시블링으로 데코레이터 객체를 생성하여 구현하는 패턴
+* 데코레이터가 원래 클래스의 `Wrapper` 로서 동작 한다.
 
 ## Class Diagram
 

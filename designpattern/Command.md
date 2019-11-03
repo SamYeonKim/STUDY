@@ -1,6 +1,10 @@
 # Command
 
-기능의 수행을 객체화 한 패턴
+* Behavioral
+* 요청사항을 요청사항에 대한 모든 정보를 담는 객체화 하는 것
+* Undoable, delay, queue 등등의 행위를 할 수 있도록 한다.
+* 기능의 수행을 객체화 한 패턴
+* [참조](https://refactoring.guru/design-patterns/command)
 
 ## Class Diagram
 

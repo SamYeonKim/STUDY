@@ -1,5 +1,6 @@
 # Facade
 
+* Structural 
 * 복잡한 라이브러리 접근 시 간단한 인터페이스를 제공하는 패턴
 
 ## Class Diagram

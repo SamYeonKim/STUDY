@@ -54,18 +54,18 @@ namespace HelloWorld
 
 ## Data types and operators
 
-|type|size(bytes)|description|
-|---|:---|:---|
-|bool|1|true/false|
-|char|2|single character|
-|short|2|integers|
-|int|4|integers|
-|long|8|integers|
-|float|4|floating point numbers|
-|double|8|floating point numbers|
-|decimal|16|floating point numbers|
-|unit|4|부호 없는 정수|
-|ulong|8|부호 없는 long|
+|type|size(bytes)|description|range|
+|---|:---|:---|:---|
+|bool|1|true/false||
+|char|2|single character||
+|short|2|integers|-32,768 ~ 32,767|
+|int|4|integers|-2,147,483,648 ~ 2,147,483,647|
+|long|8|integers|-9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807|
+|float|4|floating point numbers||
+|double|8|floating point numbers||
+|decimal|16|floating point numbers||
+|unit|4|부호 없는 정수|0 ~ 4,294,967,295|
+|ulong|8|부호 없는 long|0 ~ 18,446,744,073,709,551,615|
 
 * string : 문자열을 사용하기 위해 정의된 클래스
 

@@ -1,6 +1,9 @@
 # Bridge Pattern
 
-클래스의 세부 구현을 독립적으로 작동시키기 위해 구현을 추상화한 패턴
+* Structural desing pattern
+* 클래스의 세부 구현을 독립적으로 작동시키기 위해 구현을 추상화한 패턴
+* `Container` 성격의 것이 필요 하다.
+* 아래 예제에서는 `App`이 `Container`이다.
 
 ![](img/bridge.png)
 

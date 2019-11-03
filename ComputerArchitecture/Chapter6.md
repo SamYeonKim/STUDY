@@ -14,6 +14,11 @@
   * Code상 함수 기준이 아닌 명령어에 따라 흐름이 달라진다.
     * ex) A proc이 println ("Hello World") 이고, B proc이 A보다 우선순위가 높고, println은 30개의 명령어로 구성됬다면, 다음과같은 흐름이 될수 있다.
       * B cmd 0 -> B cmd 1 -> B cmd 2 -> A cmd -> 0 ( print ( "H" ) ) -> B cmd 3 -> B cmd 4 -> A cmd -> 1 (print("e"))
+* Program은 하나 이상의 Process로 구성 될 수 있다.
+* Process 간 통신 : 메모리 공유
+* 각 Process는 안정성을 위해 할당 받은 메모리를 제외한 다른 메모리에 접근을 하지 못하도록 OS에 의해 통제된다.
+
+
       
      
 

@@ -1,12 +1,14 @@
 # Iterator
 
+* Behavioral
 * 객체 집합에 순차적으로 접근하는 방법을 제공하는 패턴
+* 
 
 ## Class Diagram
 
 * 증가량을 조절할 수 있는 `Iterator`를 만들고 싶다.
 
-![](Images/iterator.png)
+![](img/iterator.png)
 
 ## Code
 

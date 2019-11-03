@@ -1,0 +1,76 @@
+
+@startuml SSL Communication
+autonumber
+hide footbox
+
+activate Client
+group handshake process
+    Client -> Server : Client Hello \n 랜덤 데이터, 클라이언트의 암호화 방식들, 세션 아이디
+    activate Server
+    |||
+    Client <-- Server : Server Hello \n 랜덤 데이터, 선택한 암호화 방식, 인증서
+    deactivate Server
+    |||
+    Client -> Client : CA 공개키로 인증서 복호화(신뢰도 확인)
+    |||
+    Client -> Client : 랜덤 데이터 2개로 대칭키 생성(pre master secret)
+    |||
+    Client -> Client : 인증서 안에 들어있던 서버의 공개키로 대칭키 암호화
+    |||
+    Client -> Server : 암호화된 대칭키
+    |||
+    activate Server
+    Server -> Server : 서버의 개인키로 대칭키 복호화
+    |||
+    Client <-- Server : HandShake 완료
+    |||
+    deactivate Server
+end
+|||
+group Session process
+    loop Connecting
+        Client <-> Server : 대칭키로 암호화한 데이터
+        activate Server
+        deactivate Client
+        deactivate Server
+    end
+end
+|||
+group Session end process
+    Client -> Client : 대칭키 폐기
+    activate Client
+    deactivate Client
+    Server -> Server : 대칭키 폐기
+    activate Server
+    deactivate Server
+end
+@enduml
+
+
+@startuml SSL_Download
+autonumber
+hide footbox
+
+activate Client
+Client -> ShadowDownloadAdapter : ShadowDownloadAdapter.Download(l_download, path, cert, l_hostname)
+activate ShadowDownloadAdapter
+ShadowDownloadAdapter -> Plugin : Download(l_download, path, cert, l_hostname)
+deactivate ShadowDownloadAdapter
+activate Plugin
+... Downloading ...
+loop Downloading
+    |||
+    Client <-- Plugin : OnActProgress(filename, f_progress, index)
+    |||
+end
+... Downloading ...
+alt Download Error occur
+    |||
+    Client <-- Plugin : OnActError(error_code, error_msg)
+    |||
+end
+|||
+Client <-- Plugin : OnActComplete()
+deactivate Plugin
+deactivate Client
+@enduml

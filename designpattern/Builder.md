@@ -1,6 +1,7 @@
 # Builder
 
-+ 생성과정을 추상화(Builder)하여 여러 형태(withColor, withAccessory)의 객체를 생성 할 수 있는 패턴
+* Creational
+* 생성과정을 추상화(Builder)하여 여러 형태(withColor, withAccessory)의 객체를 생성 할 수 있는 패턴
 
 ## Class Diagram
 

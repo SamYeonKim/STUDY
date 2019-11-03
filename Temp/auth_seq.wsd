@@ -1,0 +1,136 @@
+
+@startuml first_login
+autonumber
+hide footbox
+
+activate Client
+loop Exist Linked Platform?
+    |||
+    Client -> AuthAdapter : AuthAdapter.Login(Platform)
+    activate AuthAdapter
+    AuthAdapter -> AuthAdapter : IPlatformService.LoginProcess(b_link = false)
+    AuthAdapter -> PlatformS : IPlatformService.Login()
+    deactivate AuthAdapter
+    activate PlatformS
+    Client <-- PlatformS : IAuthListener.OnAuthLogin(AuthResult, Platform)
+    deactivate PlatformS
+    alt AuthResult.ResultCode == SUCCESS
+        |||
+        Client -> AuthAdapter : AuthAdapter.GetIdToken(Platform)
+        activate AuthAdapter
+        return "idToken"
+        Client -> Client : "GameServer Login"
+        |||
+    end
+    Client -> Client : "Check Linked Platform"
+    |||
+end
+deactivate Client
+@enduml
+
+@startuml non-first_login
+autonumber
+hide footbox
+
+activate Client
+Client -> Client : "Check Previous Login"
+
+alt AuthAdapter.IsSignin(Platform) == true
+    |||
+    Client <-- AuthAdapter : IAuthListener.OnAuthLogin(AuthResult, Platform)
+    |||
+else AuthAdapter.IsSignin(Platform) == false
+    |||
+    loop Exist Linked Platform?
+        |||
+        Client -> AuthAdapter : AuthAdapter.Login(Platform)
+        activate AuthAdapter
+        AuthAdapter -> AuthAdapter : IPlatformService.LoginProcess(b_link = false)
+        AuthAdapter -> PlatformS : IPlatformService.Login()
+        deactivate AuthAdapter
+        activate PlatformS
+        Client <-- PlatformS : IAuthListener.OnAuthLogin(AuthResult, Platform)
+        deactivate PlatformS
+        alt AuthResult.ResultCode == SUCCESS
+            |||
+            Client -> AuthAdapter : AuthAdapter.GetIdToken(Platform)
+            activate AuthAdapter
+            return "idToken"
+            Client -> Client : "GameServer Login"
+            |||
+        end
+        Client -> Client : "Check Linked Platform"
+        |||
+    end
+end
+deactivate Client
+@enduml
+
+@startuml login_activity
+start
+:Check Previous Login;
+if(AuthAdapter.IsSignin(Platform)) then (yes)
+end
+else (no)
+repeat
+    :AuthAdapter.Login(Platform);
+    :IPlatformService.LoginProcess(false);
+    :IPlatformService.Login();
+    :IAuthListener.OnAuthLogin(AuthResult, Platform);
+    if(AuthResult.ResultCode == SUCCESS) then (yes)
+        :AuthAdapter.GetIdToken(Platform);
+        :GameServer Login;
+    else(no)
+        end
+    endif
+repeat while (Exist Linked Platform?)
+endif
+end
+@enduml
+
+
+@startuml link
+autonumber
+hide footbox
+
+activate Client
+Client -> AuthAdapter : AuthAdapter.LinkAccount(Platform)
+activate AuthAdapter
+alt AuthAdapter.IsSignin(Platform) == true
+|||
+Client <-- AuthAdapter : IAuthListener.OnAuthLinkAccount(AuthResult, Platform)
+|||
+else AuthAdapter.IsSignin(Platform) == false
+AuthAdapter -> AuthAdapter : IPlatformService.LoginProcess(b_link = true)
+AuthAdapter -> PlatformS : IPlatformService.Login()
+deactivate AuthAdapter
+activate PlatformS
+Client <-- PlatformS : IAuthListener.OnAuthLinkAccount(AuthResult, Platform)
+deactivate PlatformS
+alt AuthResult.ResultCode == SUCCESS
+    |||
+    Client -> AuthAdapter : AuthAdapter.GetIdToken(Platform)
+    activate AuthAdapter
+    return "idToken"
+    Client -> Client : "GameServer Link"
+    |||
+end
+end
+deactivate Client
+@enduml
+
+
+@startuml link_activity
+start
+:AuthAdapter.LinkAccount(Platform);
+:IPlatformService.LoginProcess(true);
+:IPlatformService.Login();
+:IAuthListener.OnAuthLogin(AuthResult, Platform);
+if(AuthResult.ResultCode != SUCCESS) then (yes)
+    end
+else(no)
+    :AuthAdapter.GetIdToken(Platform);
+    :GameServer Link;
+endif
+end
+@enduml

@@ -1,0 +1,143 @@
+@startuml get_product
+autonumber
+hide footbox
+
+activate Client
+Client -> IAPAdapter : "GetProducts(Product list)"
+activate IAPAdapter
+IAPAdapter -> IAPAdapter : "builder.AddProduct"
+IAPAdapter -> UnityIAP : "UnityPurchasing.Initialize(this, builder)"
+activate UnityIAP
+UnityIAP -> StoreServer : "Get Available Products"
+activate StoreServer
+|||
+UnityIAP <<-- StoreServer : "Products"
+deactivate StoreServer
+IAPAdapter <<-- UnityIAP : "OnInitialized(controller, extensions)"
+deactivate UnityIAP
+Client <<-- IAPAdapter : "OnIAPGetProducts(Result, Product list)"
+deactivate IAPAdapter
+deactivate Client
+@enduml
+
+@startuml purchase
+autonumber
+hide footbox
+
+participant GameServer
+activate Client
+GameServer <- Client : "Send ProductID"
+activate GameServer
+|||
+GameServer -->> Client : "Custom Payload"
+deactivate GameServer
+Client -> IAPAdapter : Purchase(ProductID, accountID, payload)
+activate IAPAdapter
+IAPAdapter -> IAPAdapter : BuyProductID(ProductID, accountID, payload)
+alt Not Initialized?
+    |||
+    Client <<-- IAPAdapter : OnIAPConsume(Result)
+    |||
+else Initialized Complete
+    IAPAdapter -> IAPAdapter : GetProductById(ProductID)
+    alt Product is not Available?
+        |||
+        Client <<-- IAPAdapter : OnIAPConsume(Result)
+        |||
+    else Product Available
+        IAPAdapter -> UnityIAP : Controller.InitiatePurchase(product)
+        activate UnityIAP
+        UnityIAP -> StoreServer : "Purchase"
+        activate StoreServer
+        |||
+        UnityIAP <<-- StoreServer : "Return"
+        deactivate StoreServer
+        IAPAdapter <<-- UnityIAP : ProcessPurchase(PurchaseEventArgs)
+        |||
+        IAPAdapter -> UnityIAP : "PurchaseProcessingResult.Pending"
+        deactivate UnityIAP
+        |||
+        Client <<-- IAPAdapter : OnIAPPurchase(Result, product)
+        deactivate IAPAdapter
+        |||
+        GameServer <- Client : "Send Purchase Receipt"
+        activate GameServer
+        |||
+        GameServer -->> Client : "Receipt Validation"
+        deactivate GameServer
+        |||
+        Client -> IAPAdapter : Consume(validateSuccess?, product)
+        activate IAPAdapter
+        alt Receipt Validation Success?
+            |||
+            IAPAdapter -> UnityIAP : Controller.ConfirmPendingPurchase(product)
+            activate UnityIAP
+            UnityIAP -> StoreServer : "Finish Transaction"
+            deactivate UnityIAP
+            |||
+        end
+        Client <<-- IAPAdapter : OnIAPConsume(Result)
+        deactivate IAPAdapter
+        |||
+    end
+end
+deactivate Client
+@enduml
+
+@startuml restore
+autonumber
+hide footbox
+
+participant GameServer
+activate Client
+Client -> IAPAdapter : Restore()
+activate IAPAdapter
+IAPAdapter -> IAPAdapter : BuyProductID(ProductID)
+alt Not Initialized?
+    |||
+    Client <<-- IAPAdapter : OnIAPRestore(Result)
+    |||
+else Initialized Complete
+    IAPAdapter -> IAPAdapter : GetProductById(ProductID)
+    alt Product is not Available?
+        |||
+        Client <<-- IAPAdapter : OnIAPRestore(Result)
+        |||
+    else Product Available
+        IAPAdapter -> UnityIAP : Extensions.RestoreTransactions()
+        activate UnityIAP
+        loop Exist Not Processed PendingProduct
+            |||
+            IAPAdapter <<-- UnityIAP : ProcessPurchase(PurchaseEventArgs)
+            |||
+            IAPAdapter -> UnityIAP : "PurchaseProcessingResult.Pending"
+            deactivate UnityIAP
+            |||
+            Client <<-- IAPAdapter : OnIAPPurchase(Result, product)
+            deactivate IAPAdapter
+            |||
+            GameServer <- Client : "Send Purchase Receipt"
+            activate GameServer
+            |||
+            GameServer -->> Client : "Receipt Validation"
+            deactivate GameServer
+            |||
+            Client -> IAPAdapter : Consume(validateSuccess?, product)
+            activate IAPAdapter
+            alt Receipt Validation Success?
+                |||
+                IAPAdapter -> UnityIAP : Controller.ConfirmPendingPurchase(product)
+                activate UnityIAP
+                UnityIAP -> StoreServer : "Finish Transaction"
+                deactivate UnityIAP
+                |||
+            end
+        end
+        |||
+        Client <<-- IAPAdapter : OnIAPRestore(Result, PendingProductNumber, SuccessNumber)
+        deactivate IAPAdapter
+        |||
+    end
+end
+deactivate Client
+@enduml

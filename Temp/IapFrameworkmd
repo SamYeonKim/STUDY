@@ -1,0 +1,370 @@
+﻿- [라이브러리 설명](#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%84%A4%EB%AA%85)
+- [배경지식](#%EB%B0%B0%EA%B2%BD%EC%A7%80%EC%8B%9D)
+- [외부라이브러리 이름 및 버전 등등](#%EC%99%B8%EB%B6%80%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%9D%B4%EB%A6%84-%EB%B0%8F-%EB%B2%84%EC%A0%84-%EB%93%B1%EB%93%B1)
+- [시나리오](#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4)
+  - [상품목록 초기화](#%EC%83%81%ED%92%88%EB%AA%A9%EB%A1%9D-%EC%B4%88%EA%B8%B0%ED%99%94)
+  - [상품 구매](#%EC%83%81%ED%92%88-%EA%B5%AC%EB%A7%A4)
+  - [상품 복구](#%EC%83%81%ED%92%88-%EB%B3%B5%EA%B5%AC)
+  - [Sequence Diagram](#Sequence-Diagram)
+    - [상품목록 초기화](#%EC%83%81%ED%92%88%EB%AA%A9%EB%A1%9D-%EC%B4%88%EA%B8%B0%ED%99%94-1)
+    - [상품 구매](#%EC%83%81%ED%92%88-%EA%B5%AC%EB%A7%A4-1)
+    - [상품 복구](#%EC%83%81%ED%92%88-%EB%B3%B5%EA%B5%AC-1)
+  - [테스트 유스케이스](#%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4)
+    - [상품 목록 초기화](#%EC%83%81%ED%92%88-%EB%AA%A9%EB%A1%9D-%EC%B4%88%EA%B8%B0%ED%99%94)
+    - [상품 구매](#%EC%83%81%ED%92%88-%EA%B5%AC%EB%A7%A4-2)
+    - [상품 복구](#%EC%83%81%ED%92%88-%EB%B3%B5%EA%B5%AC-2)
+  - [예외처리 확인](#%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC-%ED%99%95%EC%9D%B8)
+    - [상품 목록 초기화](#%EC%83%81%ED%92%88-%EB%AA%A9%EB%A1%9D-%EC%B4%88%EA%B8%B0%ED%99%94-1)
+    - [상품 구매](#%EC%83%81%ED%92%88-%EA%B5%AC%EB%A7%A4-3)
+    - [상품 복구](#%EC%83%81%ED%92%88-%EB%B3%B5%EA%B5%AC-3)
+- [설치방법](#%EC%84%A4%EC%B9%98%EB%B0%A9%EB%B2%95)
+- [사용방법](#%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95)
+  - [IAPAdapter](#IAPAdapter)
+  - [IAPBehaviour](#IAPBehaviour)
+  - [IIAPListener](#IIAPListener)
+- [주의사항](#%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD)
+  - [Q&A](#QA)
+
+-----
+
+# 라이브러리 설명
+
+* 인앱 구매와 관련된 여러 기능들을 제공한다.
+  * 현재 스토어 종류 확인하기
+  * 상품 목록 초기화하기
+  * 상품 구매하기
+  * 소비하지 못한 상품 복구하기
+  * 복구할 수 있는 상품이 있는지 확인하기
+
+
+# 배경지식
+
+* 아래의 문서들을 참조
+  * [IAPGooglePlayStore.md](IAPGooglePlayStore.md)
+  * [IAPIosAppStore.md](IAPIosAppStore.md)
+
+# 외부라이브러리 이름 및 버전 등등
+
+* [Unity IAP](https://docs.unity3d.com/kr/2018.2/Manual/UnityIAPSettingUp.html)
+  * Version : `1.22.0`
+
+
+# 시나리오
+
+* 스토어 작업, 내부 코드 설명은 아래의 문서를 참조
+  
+  * [Google Store](IAPGooglePlayStore.md)
+  * [IOS App Store](IAPIosAppStore.md)
+
+## 상품목록 초기화
+  
+* (IAPAdapter) `GetProducts()` 함수 호출
+  
+* (IAPBehavior) `builder.AddProduct()` 함수로 상품 목록 생성
+* (IAPBehavior) `UnityPurchasing.Initialize()` 함수 호출
+* (UnityIAP) `IStoreListener`를 구현한 `IAPBehaviour` 내부의 `OnInitialized()` 함수 호출
+* (IAPBehavior) `OnIAPGetProducts()` 함수 호출
+* (IIAPListener) 게임 데이터의 상품 목록과 비교하여 이용가능한 상품을 판단
+
+## 상품 구매
+
+* (IAPAdapter) `Purchase(ProductID)` 함수 호출
+  
+* (IAPBehavior) `BuyProductID(ProductID)` 함수 호출
+  * `Initialize`가 안되어 있으면 `OnIAPConsume()` 함수 호출
+* (IAPBehavior) `GetProductById(ProductID)` 함수 호출
+  * 상품이 없거나 이용이 불가능하다면 `OnIAPConsume()` 함수 호출
+* 추가 : 게임서버로부터 orderID를 받아와야 한다!
+* (IAPBehavior) `InitiatePurchase(product)` 함수 호출
+* (UnityIAP) 해당 스토어 UI를 통해 구매 진행
+* (UnityIAP) `ProcessPurchase(PurchaseEventArgs)` 함수 호출
+* (IAPBehavior) `ProcessPurchase(PurchaseEventArgs)` 함수의 리턴값으로 `PurchaseProcessingResult.Pending`을 반환, IAP에 전달됨
+* (IIAPListener) `OnIAPPurchase()` 함수 호출
+* (Client) 영수증 체크를 위한 함수 호출. 체크가 필요없다면 바로 다음 순서 진행
+  * 영수증 체크에 실패했다면 `OnIAPConsume()` 함수 호출
+* (IAPAdapter) `Consume(product)` 함수 호출
+* (IAPBehavior) `ConfirmPendingPurchase(product)` 함수 호출
+* (UnityIAP) 상품 소모를 진행 (Trnasaction, Consume)
+* (IAPBehavior) `OnIAPConsume()` 함수 호출
+* (IIAPListener) 구매 처리 완료 진행
+
+## 상품 복구
+
+* (IAPAdapter) `Restore()` 함수 호출
+  
+* (IAPBehavior) `BuyProductID(ProductID)` 함수 호출
+  * `Initialize`가 안되어 있으면 `OnIAPRestore()` 함수 호출
+* (IAPBehavior) `GetProductById(ProductID)` 함수 호출
+  * 상품이 없거나 이용이 불가능하다면 `OnIAPRestore()` 함수 호출
+* (IAPBehavior) `RestoreTransaction()` 함수 호출
+* 복구가 필요한 상품의 개수만큼 아래의 루틴을 반복
+  * (UnityIAP) `ProcessPurchase(PurchaseEventArgs)` 함수 호출
+  
+  * (IAPBehavior) `ProcessPurchase(PurchaseEventArgs)` 함수의 리턴값으로 `PurchaseProcessingResult.Pending`을 반환, IAP에 전달됨
+  * (IIAPListener) `OnIAPPurchase()` 함수 호출
+  * (Client) 영수증 체크를 위한 함수 호출. 체크가 필요없다면 바로 다음 순서 진행
+    * 영수증 체크에 실패했다면 `OnIAPRestore()` 함수 호출
+  * (IAPAdapter) `Consume(product)` 함수 호출
+  * (IAPBehavior) `ConfirmPendingPurchase(product)` 함수 호출
+  * (UnityIAP) 상품 소모를 진행 (Trnasaction, Consume)
+* (IAPBehavior) `OnIAPRestore()` 함수 호출
+* (IIAPListener) 복구 처리 완료 진행
+
+## Sequence Diagram
+
+### 상품목록 초기화
+
+![](img/IAP/get_product.png)
+
+```plantuml
+@startuml get_product
+autonumber
+hide footbox
+
+activate Client
+Client -> IAPAdapter : "GetProducts(Product list)"
+activate IAPAdapter
+IAPAdapter -> IAPAdapter : "builder.AddProduct"
+IAPAdapter -> UnityIAP : "UnityPurchasing.Initialize(this, builder)"
+activate UnityIAP
+UnityIAP -> StoreD : "Get Available Products"
+activate StoreD
+|||
+UnityIAP <<-- StoreD : "Products"
+deactivate StoreD
+IAPAdapter <<-- UnityIAP : "OnInitialized(controller, extensions)"
+deactivate UnityIAP
+Client <<-- IAPAdapter : "OnIAPGetProducts(Result, Product list)"
+deactivate IAPAdapter
+deactivate Client
+@enduml
+```
+
+### 상품 구매
+
+![](img/IAP/purchase.png)
+
+```plantuml
+@startuml purchase
+autonumber
+hide footbox
+
+participant GameServer
+activate Client
+GameServer <- Client : "Send ProductID"
+activate GameServer
+|||
+GameServer -->> Client : "Custom Payload"
+deactivate GameServer
+Client -> IAPAdapter : Purchase(ProductID, accountID, payload)
+activate IAPAdapter
+IAPAdapter -> IAPAdapter : BuyProductID(ProductID, accountID, payload)
+alt Not Initialized?
+    |||
+    Client <<-- IAPAdapter : OnIAPConsume(Result)
+    |||
+else Initialized Complete
+    IAPAdapter -> IAPAdapter : GetProductById(ProductID)
+    alt Product is not Available?
+        |||
+        Client <<-- IAPAdapter : OnIAPConsume(Result)
+        |||
+    else Product Available
+        IAPAdapter -> UnityIAP : Controller.InitiatePurchase(product)
+        activate UnityIAP
+        UnityIAP -> StoreServer : "Purchase"
+        activate StoreServer
+        |||
+        UnityIAP <<-- StoreServer : "Return"
+        deactivate StoreServer
+        IAPAdapter <<-- UnityIAP : ProcessPurchase(PurchaseEventArgs)
+        |||
+        IAPAdapter -> UnityIAP : "PurchaseProcessingResult.Pending"
+        deactivate UnityIAP
+        |||
+        Client <<-- IAPAdapter : OnIAPPurchase(Result, product)
+        deactivate IAPAdapter
+        |||
+        GameServer <- Client : "Send Purchase Receipt"
+        activate GameServer
+        |||
+        GameServer -->> Client : "Receipt Validation"
+        deactivate GameServer
+        |||
+        Client -> IAPAdapter : Consume(validateSuccess?, product)
+        activate IAPAdapter
+        alt Receipt Validation Success?
+            |||
+            IAPAdapter -> UnityIAP : Controller.ConfirmPendingPurchase(product)
+            activate UnityIAP
+            UnityIAP -> StoreServer : "Finish Transaction"
+            deactivate UnityIAP
+            |||
+        end
+        Client <<-- IAPAdapter : OnIAPConsume(Result)
+        deactivate IAPAdapter
+        |||
+    end
+end
+deactivate Client
+@enduml
+```
+
+
+### 상품 복구
+
+![](img/IAP/restore.png)
+
+```plantuml
+@startuml restore
+autonumber
+hide footbox
+
+participant GameServer
+activate Client
+Client -> IAPAdapter : Restore()
+activate IAPAdapter
+IAPAdapter -> IAPAdapter : BuyProductID(ProductID)
+alt Not Initialized?
+    |||
+    Client <<-- IAPAdapter : OnIAPRestore(Result)
+    |||
+else Initialized Complete
+    IAPAdapter -> IAPAdapter : GetProductById(ProductID)
+    alt Product is not Available?
+        |||
+        Client <<-- IAPAdapter : OnIAPRestore(Result)
+        |||
+    else Product Available
+        IAPAdapter -> UnityIAP : Extensions.RestoreTransactions()
+        activate UnityIAP
+        loop Exist Not Processed PendingProduct
+            |||
+            IAPAdapter <<-- UnityIAP : ProcessPurchase(PurchaseEventArgs)
+            |||
+            IAPAdapter -> UnityIAP : "PurchaseProcessingResult.Pending"
+            deactivate UnityIAP
+            |||
+            Client <<-- IAPAdapter : OnIAPPurchase(Result, product)
+            deactivate IAPAdapter
+            |||
+            GameServer <- Client : "Send Purchase Receipt"
+            activate GameServer
+            |||
+            GameServer -->> Client : "Receipt Validation"
+            deactivate GameServer
+            |||
+            Client -> IAPAdapter : Consume(validateSuccess?, product)
+            activate IAPAdapter
+            alt Receipt Validation Success?
+                |||
+                IAPAdapter -> UnityIAP : Controller.ConfirmPendingPurchase(product)
+                activate UnityIAP
+                UnityIAP -> StoreServer : "Finish Transaction"
+                deactivate UnityIAP
+                |||
+            end
+        end
+        |||
+        Client <<-- IAPAdapter : OnIAPRestore(Result, PendingProductNumber, SuccessNumber)
+        deactivate IAPAdapter
+        |||
+    end
+end
+deactivate Client
+@enduml
+```
+
+## 테스트 유스케이스
+
+### 상품 목록 초기화
+
+* 스토어에 등록되어 있는 상품id들만 파라미터로 넘긴다.
+* 스토어에 등록되어 있는 상품id들 + `alpha`를 파라미터로 넘긴다.
+* 스토어에 등록되어 있지 않은 상품id들을 파라미터로 넘긴다.
+* 파라미터로 아무것도 넘기지 않는다.
+
+### 상품 구매
+
+* 정상 구매를 진행한다.
+* 등록되지 않은 id를 파라미터로 하여 진행한다.
+* 스토어에 등록되어 있으나 초기화하지 않은 id를 파라미터로 하여 진행한다.
+* 지갑 결제 시 네트워크를 끊고 진행한다.
+* 구매 성공 후 소비를 하지 않고 다시 구매를 진행한다.
+
+### 상품 복구
+
+* 한개의 상품 복구를 진행한다.
+* 여러 개의 상품 복구를 진행한다.
+* 여러 개의 상품 중 일부만 복구를 진행하고 나머지를 실패로 처리한다.
+
+## 예외처리 확인
+
+### 상품 목록 초기화
+
+* 상품 목록을 가져오는 데 실패한다.
+
+### 상품 구매
+
+* 구매 진행 중 네트워크 에러 발생
+* 구매 상품을 이미 가지고 있는 상황
+* 다른 계정에서 산 상품을 소비하려는 경우
+* 잘못된 영수증을 가지고 구매하려는 경우
+
+### 상품 복구
+
+* 복구 진행 중 네트워크 에러 발생
+* 복구 대상 상품이 다른 계정에서 산 상품일 경우
+* 여러 상품 중 몇 개만 복구 성공한 경우
+
+# 설치방법
+
+* `IAP.unitypackage` 패키지를 임포트 한다.
+  * `AndroidManifest.xml`에 다음의 권한을 추가한다.
+```xml
+  <uses-permission android:name="com.android.vending.BILLING"/>
+```
+
+
+# 사용방법
+
+* [IAPAdapter.cs](../Lib/IAP/Assets/.IAP/Script/IAPAdapter.cs) 에 구현된 `static` 함수를 필요에 맞게 호출한다.
+  * 자세한 설명은 스크립트를 참조
+
+* `IIAPListener` 를 상속받은 클래스를 구현한다.
+  * 주의 : 구매 과정에서 필요한 리스너 함수가 2개이다.
+    * `OnIAPPurchase()`
+    * `OnIAPConsume()`
+
+## IAPAdapter
+
+* 외부에 노출되어 접근을 허용하는 어댑터 클래스
+
+## IAPBehaviour
+
+* 실제 작업을 처리하는 클래스
+  
+* [IAPBehaviour.cs](../Lib/IAP/Assets/.IAP/Script/IAPBehaviour.cs) 참조
+
+## IIAPListener
+
+* 상품 목록 초기화 이후 호출되는 이벤트 핸들러
+* 상품 구매 이후 호출되는 이벤트 핸들러
+* 상품 소비 이후 호출되는 이벤트 핸들러
+* 상품 복구 이후 호출되는 이벤트 핸들러
+  
+* [IIAPListener.cs](../Lib/IAP/Assets/.IAP/Script/IIAPListener.cs) 참조
+
+
+# 주의사항
+
+* `Google Store`의 경우 상품목록 초기화 시, 컨슘이 되지 않은 상품이 있으면 자동으로 복구 프로세스를 진행한다.
+
+## Q&A
+
+* 여러 상품이 동시에 복구되는데 매번 영수증을 게임서버에서 검증받아야 하는가?
+* 지갑 결제 전에 게임서버와의 통신을 통해 `OrderID`를 받아야 한다!!
+  * 해당 데이터도 메타데이터 클래스에 넣을 수 있는지 확인
+* 복구 시 메타데이터를 `Product` 클래스에 넣을 수 있는지 확인.
+* 같은 구글 계정을 공유하는 두 계정이 있을 때, `A`계정이 구매 실패하고, `B` 계정이 해당 제품을 다시 구매하려고 할 때 어떻게 처리할것인가?
+  * `consume`이 되지 않았기 때문에 살 수 없다. 유저한테 팝업을 띄워주는 것으로 합의됨.

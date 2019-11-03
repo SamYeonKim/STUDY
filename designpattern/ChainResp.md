@@ -1,7 +1,9 @@
 # Chain of Responsibility
 
-요청이 완료 될 때까지 여러개의 객체에게 요청이 이어지는 패턴
-
+* Behavioral
+* 요청이 완료 될 때까지 여러개의 객체에게 요청이 이어지는 패턴
+* [참조](https://refactoring.guru/design-patterns/chain-of-responsibility)
+  
 ## Class Diagram
 
 ![](img/chain_resp.png)
