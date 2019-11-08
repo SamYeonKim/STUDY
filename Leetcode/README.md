@@ -21,3 +21,4 @@
 |??|[Maximum Depth of Binary Tree](/Leetcode/maximum_depth_of_binary_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/256/complexity-analysis/2375/)|
 |??|[Pow(x,n)](/Leetcode/pow.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/256/complexity-analysis/2380/)|
 |??|[Merge Two Sorted Lists](/Leetcode/merge_two_sorted_lists.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/253/conclusion/2382/)|
+|??|[K-th Symbol in Grammar](/Leetcode/kth_symbol_in_grammar.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/253/conclusion/1675/)|
