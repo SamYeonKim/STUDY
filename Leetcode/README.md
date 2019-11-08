@@ -25,3 +25,4 @@
 |??|[Merge Two Sorted Lists](/Leetcode/merge_two_sorted_lists.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/253/conclusion/2382/)|
 |??|[K-th Symbol in Grammar](/Leetcode/kth_symbol_in_grammar.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/253/conclusion/1675/)|
 |??|[**Unique Binary Search Trees II**](/Leetcode/unique_bst_ii.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/253/conclusion/2384/)|
+|A|[What is Devide And Conquer](/Leetcode/what_is_devide_and_conquer.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/470/divide-and-conquer/2897/)|
