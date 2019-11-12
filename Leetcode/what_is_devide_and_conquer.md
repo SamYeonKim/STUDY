@@ -5,9 +5,9 @@
 #### Flow
 
 
-$$
-\sqrt{3x-1}
-$$
+<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
-1. `Divide` : $$$ \sqrt{3x-1} $$$
+
+
+1. `Divide` : <img src="https://render.githubusercontent.com/render/math?math=c^2">
 2. 
