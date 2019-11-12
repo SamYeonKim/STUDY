@@ -4,10 +4,5 @@
 
 #### Flow
 
-
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
-
-
-
-1. `Divide` : <img src="https://render.githubusercontent.com/render/math?math=c^2">
+1. `Divide` : 문제 <img src="https://render.githubusercontent.com/render/math?math=S"> 를 다음과 같이 여러개의 서브 문제로 분할 한다. <img src="https://render.githubusercontent.com/render/math?math=\{S_1,S_2,...S_n\}, n \geq 2">
 2. 
