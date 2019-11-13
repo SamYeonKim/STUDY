@@ -27,3 +27,4 @@
 |??|[**Unique Binary Search Trees II**](/Leetcode/unique_bst_ii.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-i/253/conclusion/2384/)|
 |A|[What is Devide And Conquer](/Leetcode/what_is_devide_and_conquer.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/470/divide-and-conquer/2897/)|
 |??|[Sort an Array](/Leetcode/sort_an_array.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/470/divide-and-conquer/2944/)|
+|??|[Validate Binary Search Tree](/Leetcode/validate_binary_search_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/470/divide-and-conquer/2874/)|
