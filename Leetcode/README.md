@@ -31,3 +31,4 @@
 |??|[Search a 2D Matrix II](/Leetcode/search_2d_matrix_ii.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/470/divide-and-conquer/2872/)|
 |A|[What is Quick Sort](/Leetcode/what_is_quick_sort.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/470/divide-and-conquer/2870/)|
 |??|[N-Queens II](/Leetcode/n_queens_ii.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2804/)|
+|??|[Sudoku Solver](/Leetcode/sudoku_solver.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2796/)|
