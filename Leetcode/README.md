@@ -38,3 +38,4 @@
 |??|[Binary Tree Inorder Traversal](/Leetcode/binary_tree_inorder_traversal.md.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/503/recursion-to-iteration/2774/)|
 |??|[Binary Tree Level Order Traversal](/Leetcode/binary_tree_level_order_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/503/recursion-to-iteration/2784/)|
 |??|[**Largest Rectangle in Histogram**](/Leetcode/largest_rectangle_in_histogram.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/2901/)|
+|??|[**Permutations**](/Leetcode/permutations.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/2903/)|
