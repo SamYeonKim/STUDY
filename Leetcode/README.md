@@ -39,7 +39,5 @@
 |??|[Binary Tree Level Order Traversal](/Leetcode/binary_tree_level_order_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/503/recursion-to-iteration/2784/)|
 |??|[**Largest Rectangle in Histogram**](/Leetcode/largest_rectangle_in_histogram.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/2901/)|
 |??|[**Permutations**](/Leetcode/permutations.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/2903/)|
-|??|[Letter Combinations of a Phone Number
-](/Leetcode/letter_combination_phone.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/2905/)|
-|??|[The Skyline Problem
-](/Leetcode/skyline_problem.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/3006/)|
+|??|[Letter Combinations of a Phone Number](/Leetcode/letter_combination_phone.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/2905/)|
+|??|[The Skyline Problem](/Leetcode/skyline_problem.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/3006/)|
