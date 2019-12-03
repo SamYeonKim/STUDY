@@ -43,3 +43,4 @@
 |??|[The Skyline Problem](/Leetcode/skyline_problem.md)| [leetcode](https://leetcode.com/explore/learn/card/recursion-ii/507/beyond-recursion/3006/)|
 |??|[Binary Tree Preorder Traversal](/Leetcode/binary_tree_preorder_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/928/)|
 |??|[Binary Tree Postorder Traversal](/Leetcode/binary_tree_postorder_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/930/)|
+|??|[Symmetric Tree](/Leetcode/symmetric_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/536/)|
