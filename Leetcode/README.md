@@ -44,3 +44,4 @@
 |??|[Binary Tree Preorder Traversal](/Leetcode/binary_tree_preorder_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/928/)|
 |??|[Binary Tree Postorder Traversal](/Leetcode/binary_tree_postorder_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/data-structure-tree/134/traverse-a-tree/930/)|
 |??|[Symmetric Tree](/Leetcode/symmetric_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/536/)|
+|??|[Path Sum](/Leetcode/path_sum.md)| [leetcode](https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/537/)|
