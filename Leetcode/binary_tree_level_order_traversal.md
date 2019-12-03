@@ -68,7 +68,7 @@ class Solution {
 }
 ```
 
-# My Answer ( Iteration )
+# My Answer ( Iteration_1 )
 
 * 반복문을 이용해서 해결
 * 다음 `Level`의 `node`들을 `next_nodes`에 저장하고, `while`문에서는 `next_nodes`를 순회 돌면서, `node`들의 값을 결과 리스트에 추가 한다.
@@ -116,6 +116,55 @@ class Solution {
             
             result.add(sub_result);
         }        
+        return result;
+    }
+}
+```
+
+# My Answer ( Iteration_2 )
+
+* 반복문을 이용해서 해결
+* 위의 [My Answer ( Iteration_1 )](#my-answer--iteration1)는 2개의 `List<TreeNode>`를 사용했던것을 하나의 `Queue<TreeNode>`쓰는 방식으로 변경
+* `while`문 반복시 마다 현재 `Queue`에 있는 갯수 만큼 순회 하면서 결과 리스트에 넣고, 자식 노드를 넣어 준다.
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if ( root == null ) {
+            return result;
+        }
+        
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        
+        q.add(root);
+        
+        while (q.size() > 0 ) {            
+            List<Integer> sub_result = new ArrayList<Integer>();
+            
+            int n_size = q.size();
+            for( int n = 0; n < n_size; n++ ) {
+                TreeNode node = q.poll();
+                sub_result.add(node.val);
+                
+                if ( node.left != null )
+                    q.add(node.left);
+                if ( node.right != null )
+                    q.add(node.right);
+            }
+            
+            result.add(sub_result);
+        }
+        
         return result;
     }
 }
