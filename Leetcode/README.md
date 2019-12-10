@@ -54,3 +54,4 @@
 |??|[N-ary Tree Postorder Traversal](/Leetcode/n_ary_tree_postorder_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/n-ary-tree/130/traversal/926/)|
 |??|[N-ary Tree Level Order Traversal](/Leetcode/n_ary_tree_levelorder_traversal.md)| [leetcode](https://leetcode.com/explore/learn/card/n-ary-tree/130/traversal/915/)|
 |??|[Maximum Depth of N-ary Tree](/Leetcode/maximum_depth_of_n_ary_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/n-ary-tree/131/recursion/919/)|
+|??|[Binary Search](/Leetcode/binary_search.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/138/background/1038/)|
