@@ -56,3 +56,4 @@
 |??|[Maximum Depth of N-ary Tree](/Leetcode/maximum_depth_of_n_ary_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/n-ary-tree/131/recursion/919/)|
 |??|[Binary Search](/Leetcode/binary_search.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/138/background/1038/)|
 |??|[Sqrt(x)](/Leetcode/sqrt.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/950/)|
+|??|[Guess Number Higher or Lower](/Leetcode/guess_number_higher_or_lower.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/951/)|
