@@ -58,3 +58,4 @@
 |??|[Sqrt(x)](/Leetcode/sqrt.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/950/)|
 |??|[Guess Number Higher or Lower](/Leetcode/guess_number_higher_or_lower.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/951/)|
 |??|[Search in Rotated Sorted Array](/Leetcode/search_in_rotated_sorted_array.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/952/)|
+|??|[First Bad Version](/Leetcode/first_bad_version.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/126/template-ii/947/)|
