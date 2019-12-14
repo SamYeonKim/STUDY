@@ -57,3 +57,4 @@
 |??|[Binary Search](/Leetcode/binary_search.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/138/background/1038/)|
 |??|[Sqrt(x)](/Leetcode/sqrt.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/950/)|
 |??|[Guess Number Higher or Lower](/Leetcode/guess_number_higher_or_lower.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/951/)|
+|??|[Search in Rotated Sorted Array](/Leetcode/search_in_rotated_sorted_array.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/125/template-i/952/)|
