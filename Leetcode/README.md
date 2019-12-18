@@ -66,3 +66,4 @@
 |??|[Valid Perfect Square](/Leetcode/valid_perfect_square.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/137/conclusion/978/)|
 |??|[Find Smallest Letter Greater Than Target](/Leetcode/find_smallest_letter_greater_target.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/137/conclusion/977/)|
 |??|[Find Minimum in Rotated Sorted Array II](/Leetcode/find_minimum_in_rotated_sorted_array_ii.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/126/template-ii/949/)|
+|??|[Intersection of Two Arrays](/Leetcode/intersection_of_two_arrays.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/144/more-practices/1034/)|
