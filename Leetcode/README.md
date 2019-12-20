@@ -68,3 +68,4 @@
 |??|[Find Minimum in Rotated Sorted Array II](/Leetcode/find_minimum_in_rotated_sorted_array_ii.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/126/template-ii/949/)|
 |??|[Intersection of Two Arrays](/Leetcode/intersection_of_two_arrays.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/144/more-practices/1034/)|
 |??|[Two Sum II - Input array is sorted](/Leetcode/two_sum_ii_input_array_sorted.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/144/more-practices/1035/)|
+|??|[Find the Duplicate Number](/Leetcode/find_duplicate_number.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/146/more-practices-ii/1039/)|
