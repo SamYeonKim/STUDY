@@ -30,6 +30,54 @@ The median is (2 + 3)/2 = 2.5
 * `A`집합의 가장 큰값은 `B`집합의 가장 작은 값보다 작다.
 * `A`집합의 갯수와 `B`집합의 갯수는 동일하다.
 
+# My Answer
+
+* 2개의 배열을 하나의 배열로 합치자.
+* 이미 정렬되어 있는 배열들 이기 때문에, 모든 원소 $m+n$ 만큼 순회할 필요 없고 $\frac{m+n}{2}$ 만큼만 순회 하자.
+* 반복문에서 `nums1`과 `nums2`에 있는 값 중 작은 값을 `merge` 배열에 넣는다.
+* $m+n$이 짝수라면, $\frac{merge[mid] + merge[mid-1]}{2}$가 정답
+* $m+n$이 홀수라면, $merge[mid]$가 정답
+
+```java
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int[] merge = new int[m+n];
+        int mid = (m+n)/2;
+        
+        int i=0;
+        int j=0;
+        int s=0;
+        
+        while ( s <= mid ) {
+            if ( m == 0 || i >= m ) {
+                merge[s++] = nums2[j++];
+            } else if ( n == 0 || j >= n) {
+                merge[s++] = nums1[i++];
+            } else if ( nums1[i] < nums2[j] ) {
+                merge[s++] = nums1[i++];
+            } else if ( nums1[i] > nums2[j] ) {
+                merge[s++] = nums2[j++];
+            } else {
+                if ( n > m ) {
+                    merge[s++] = nums2[j++];
+                } else {
+                    merge[s++] = nums1[i++];
+                }
+            }            
+        }
+   
+        if ( (m+n)%2 == 0 ) {
+            return (merge[mid] + merge[mid-1]) / 2.0;
+        } else {
+            return merge[mid];
+        }        
+    }
+}
+```
+
+
 # Solution
   
 * `LeetCode`의 Solution 내용이다.
