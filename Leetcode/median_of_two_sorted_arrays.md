@@ -50,7 +50,7 @@ class Solution {
         int j=0;
         int s=0;
         
-        while ( s <= mid ) {
+        while ( s <= mid ) {            
             if ( m == 0 || i >= m ) {
                 merge[s++] = nums2[j++];
             } else if ( n == 0 || j >= n) {
