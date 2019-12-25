@@ -71,3 +71,4 @@
 |??|[Find the Duplicate Number](/Leetcode/find_duplicate_number.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/146/more-practices-ii/1039/)|
 |??|[**Median of Two Sorted Arrays**](/Leetcode/median_of_two_sorted_arrays.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/146/more-practices-ii/1040/)|
 |??|[**Find K-th Smallest Pair Distance**](/Leetcode/find_k_th_smallest_pair_distance.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/146/more-practices-ii/1041/)|
+|??|[**Find K-th Smallest Pair Distance**](/Leetcode/split_array_largest_sum.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/146/more-practices-ii/1042/)|
