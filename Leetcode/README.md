@@ -76,3 +76,4 @@
 |[Binary Search Tree Iterator](/Leetcode/binary_search_tree_iterator.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/140/introduction-to-a-bst/1008/)|
 |[Search in a Binary Search Tree](/Leetcode/search_in_binary_search_tree.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/141/basic-operations-in-a-bst/1000/)|
 |[Insert into a Binary Search Tree](/Leetcode/insert_into_binary_search_tree.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/141/basic-operations-in-a-bst/1003/)|
+|[Delete Node in a BST](/Leetcode/delete_node_in_bst.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/141/basic-operations-in-a-bst/1006/)|
