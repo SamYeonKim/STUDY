@@ -1,4 +1,5 @@
-**Bold**로 되어 있는건 아직 파악을 100% 못했다는것이니 나중에 다시 한번 보자
+* **Bold**로 되어 있는건 아직 파악을 100% 못했다는것이니 나중에 다시 한번 보자
+* 수학식을 정상적으로 렌더링시키려면 [크롬 플러그인](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima)이 필요 하다.
 
 |no|code|url|
 |:----:|:-----:|:-----:|
