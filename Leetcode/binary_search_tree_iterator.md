@@ -85,6 +85,24 @@ class BSTIterator {
 
 # Fastest Answer
 
+* `nxt`가 다음 노드를 가리키는 객체이다.
+* `next()`에선 다음 노드의 값을 반환함과 동시에 `nxt`의 값을 다음 `next()`가 호출될때 사용할 값으로 할당한다.
+* `right` 값이 `null` 인것을 이용해서 다음 노드와의 연결을 만든다.
+* `left`가 `null`인 경우엔 `next()`의 타겟이 되는 노드는 `nxt`이고, 다음 노드는 `nxt.right`가 된다.
+* 예를 들어 예제는 다음과 같은 흐름으로 진행된다.
+    ```
+    Input : [7,3,15,null,null,9,20]
+    nxt = 7
+    next()
+        nxt = 3, 3's right is 7
+        res = 3, nxt = 7
+    next()
+        nxt = 7, 3's right is null
+        res = 7, nxt = 15
+    ...
+    ```
+* `3`의 `left`, `right` 둘 다 처음엔 `null`이 였는데, `next()` 호출에서 `right`에 `7`을 할당해서 다음 호출시 사용한다.
+  
 ```java
 /**
  * Definition for a binary tree node.
