@@ -75,3 +75,4 @@
 |??|[**Split Array Largest Sum**](/Leetcode/split_array_largest_sum.md)| [leetcode](https://leetcode.com/explore/learn/card/binary-search/146/more-practices-ii/1042/)|
 |??|[Binary Search Tree Iterator](/Leetcode/binary_search_tree_iterator.md)| [leetcode](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/140/introduction-to-a-bst/1008/)|
 |??|[Search in a Binary Search Tree](/Leetcode/search_in_binary_search_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/141/basic-operations-in-a-bst/1000/)|
+|??|[Insert into a Binary Search Tree](/Leetcode/insert_into_binary_search_tree.md)| [leetcode](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/141/basic-operations-in-a-bst/1003/)|
