@@ -122,3 +122,50 @@ class Solution {
 }
 ```
 
+# Fastest Answer
+
+* 재귀를 이용
+* 순회 보다 훨씬 깔끔하다.
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if (root == null) {
+            return root;
+        }
+        if (root.val == key) {
+            // only one children
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+            // two children
+            TreeNode suc = inorderSuc(root.right);
+            root.val = suc.val;
+            root.right = deleteNode(root.right, root.val);
+        } else if (root.val > key) {
+            root.left = deleteNode(root.left, key);
+        } else {
+            root.right = deleteNode(root.right, key);
+        }
+        return root;
+    }
+    
+    public TreeNode inorderSuc(TreeNode root) {
+        while (root.left!= null) {
+            root = root.left;
+        }
+        return root;
+    }
+}
+```
