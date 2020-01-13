@@ -78,3 +78,4 @@
 |[Insert into a Binary Search Tree](/Leetcode/insert_into_binary_search_tree.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/141/basic-operations-in-a-bst/1003/)|
 |[Delete Node in a BST](/Leetcode/delete_node_in_bst.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/141/basic-operations-in-a-bst/1006/)|
 |[Kth Largest Element in a Stream](/Leetcode/kth_largest_element_stream.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/142/conclusion/1018/|
+|[Lowest Common Ancestor of a Binary Search Tree](/Leetcode/lowest_common_ancestor_of_a_bst.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/142/conclusion/1012/|
