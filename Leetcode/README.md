@@ -81,3 +81,4 @@
 |[Lowest Common Ancestor of a Binary Search Tree](/Leetcode/lowest_common_ancestor_of_a_bst.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/142/conclusion/1012/)|
 |[**Contains Duplicate III**](/Leetcode/contains_duplicate_iii.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/142/conclusion/1013/)|
 |[Balanced Binary Tree](/Leetcode/balanced_binary_tree.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/143/appendix-height-balanced-bst/1027/)|
+|[Implement Trie (Prefix Tree)](/Leetcode/implement_trie.md)| [problem](https://leetcode.com/explore/learn/card/trie/147/basic-operations/1047/)|
