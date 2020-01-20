@@ -23,20 +23,21 @@ Explanation: The maximum result is 5 ^ 25 = 28.
   
 ```java
 class Trie {
-    public Trie[] children;
-    public Trie() {
-        children = new Trie[2];
-    }
+    public Trie one;
+    public Trie zero;
     
     public void insert(int n) {
         Trie cur = this;
         
-        for(int i=31;i>=0;i--) {        //int가 32비트 이기 때문에, 32bit로 표현한다.
-            int bit = ( n >> i) & 1;    //현재 i번째 bit가 0인지 1인지 확인.
-            if ( cur.children[bit] == null ) {     
-                cur.children[bit] = new Trie();
-            }
-            cur = cur.children[bit];               
+        for(int i=31;i>=0;i--) {
+            int bit = ( n >> i) & 1;
+            if ( bit == 0 && cur.zero == null ) {
+                cur.zero = new Trie();
+            } else if ( bit == 1 && cur.one == null ) {
+                cur.one = new Trie();  
+            }    
+            
+            cur = bit == 1 ? cur.one : cur.zero;
         }
     }
 }
@@ -45,7 +46,7 @@ class Solution {
     public int findMaximumXOR(int[] nums) {
         Trie trie = new Trie();
         
-        for(int n : nums) {     //nums에 있는 숫자들을 이용해서 Trie를 구성
+        for(int n : nums) {
             trie.insert(n);
         }
         
@@ -54,15 +55,15 @@ class Solution {
         for(int n : nums) {
             Trie cur = trie;
             int max_xor = 0;
-            for(int i=31;i>=0;i--) {        //Trie를 구성할때 32비트로 했기 때문에 마찬가지로 32비트로 계산
+            for(int i=31;i>=0;i--) {
                 int bit = ( n >> i) & 1;
-                
-                if ( cur.children[bit == 1 ? 0 : 1] != null ) {     //XOR은 bit가 서로 다를때 1이기 때문에, 현재 bit와 반대의 자식이 있을경우를 확인
-                    max_xor += 1 << i;      //XOR로 인해 현재 i번째 비트가 1이 될것이니, max_xor에 i번째 비트가 1일때의 값을 더한다.
-                    cur = cur.children[bit == 1 ? 0 : 1] ;
+                Trie next = bit == 1 ? cur.zero : cur.one;
+                if ( next != null ) {
+                    max_xor += 1 << i;
+                    cur = next;
                 } else {
-                    cur = cur.children[bit];
-                }
+                    cur = bit == 1 ? cur.one : cur.zero;
+                }                
             }
             max = max > max_xor ? max : max_xor;
         }
