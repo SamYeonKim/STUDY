@@ -83,3 +83,4 @@
 |[Balanced Binary Tree](/Leetcode/balanced_binary_tree.md)| [problem](https://leetcode.com/explore/learn/card/introduction-to-data-structure-binary-search-tree/143/appendix-height-balanced-bst/1027/)|
 |[Implement Trie (Prefix Tree)](/Leetcode/implement_trie.md)| [problem](https://leetcode.com/explore/learn/card/trie/147/basic-operations/1047/)|
 |[Replace Words](/Leetcode/replace_words.md)| [problem](https://leetcode.com/explore/learn/card/trie/148/practical-application-i/1053/)|
+|[Add and Search Word - Data structure design](/Leetcode/add_search_word.md)| [problem](https://leetcode.com/explore/learn/card/trie/148/practical-application-i/1052/)|
