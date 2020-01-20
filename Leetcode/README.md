@@ -84,3 +84,4 @@
 |[Implement Trie (Prefix Tree)](/Leetcode/implement_trie.md)| [problem](https://leetcode.com/explore/learn/card/trie/147/basic-operations/1047/)|
 |[Replace Words](/Leetcode/replace_words.md)| [problem](https://leetcode.com/explore/learn/card/trie/148/practical-application-i/1053/)|
 |[Add and Search Word - Data structure design](/Leetcode/add_search_word.md)| [problem](https://leetcode.com/explore/learn/card/trie/148/practical-application-i/1052/)|
+|[Maximum XOR of Two Numbers in an Array](/Leetcode/max_xor_two_numbers_in_array.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1057/)|
