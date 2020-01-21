@@ -156,7 +156,7 @@ class Solution {
         for(String word : dict ) {
             trie.insert(word);
         }
-        
+
         int start = 0;
         int end = 0;    
         
