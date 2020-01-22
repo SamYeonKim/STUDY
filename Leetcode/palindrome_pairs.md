@@ -65,14 +65,14 @@ class Solution {
     void findPalindrome ( Trie trie, String word, int index, List<List<Integer>> result ) {
         int i=0;
         int count = word.length();
-        while(i < count) {            
+        while(i < count) {      //Trie에 역순으로 들어가 있기 때문에, 정상적으로 앞에서 부터 비교해 나가면 된다.            
             if ( trie.children == null ) break;
             
             char c = word.charAt(i);
             
             if ( trie.children[c-'a'] == null ) break;                
             
-            if ( trie.index >= 0 && trie.index != index && isPalindrome(word, i,count-1) ) {
+            if ( trie.index >= 0 && trie.index != index && isPalindrome(word, i,count-1) ) {    //word 보다 작은길이가 trie에 이미 있으면서, word의 나머지가 Palindrome이다.
                 result.add(Arrays.asList(index, trie.index));    
             }
         
@@ -80,7 +80,7 @@ class Solution {
             i++;
         }
         
-        if ( !isPalindrome(word, i,count-1) ) 
+        if ( !isPalindrome(word, i,count-1) )
             return;
         
         if ( trie.index >= 0 &&  trie.index != index ) {
@@ -107,7 +107,7 @@ class Solution {
     
     void insert( Trie root, String word, int index ) {
         int count = word.length();
-        for(int i=count-1;i>=0;i--) {
+        for(int i=count-1;i>=0;i--) {   //word의 역순으로 Trie를 구성하자.
             if ( root.children == null ) 
                 root.children = new Trie[26];
             
@@ -116,7 +116,7 @@ class Solution {
             if ( root.children[c-'a'] == null ) 
                 root.children[c-'a'] = new Trie();
             
-            if ( isPalindrome(word, 0, i) ) {
+            if ( isPalindrome(word, 0, i) ) {       //이하 단어 만으로 Palindrome을 만족하는지 확인하자. 만족한다면, 현재 노드까지만 일치 하더라도, 이하는 확인할 필요 없이 만족 한다는것을 증명할 수 있다.
                 if ( root.p_index == null )
                     root.p_index = new ArrayList<>();
                 root.p_index.add(index);
