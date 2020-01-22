@@ -86,3 +86,4 @@
 |[Add and Search Word - Data structure design](/Leetcode/add_search_word.md)| [problem](https://leetcode.com/explore/learn/card/trie/148/practical-application-i/1052/)|
 |[Maximum XOR of Two Numbers in an Array](/Leetcode/max_xor_two_numbers_in_array.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1057/)|
 |[Word Search II](/Leetcode/word_search_ii.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1056/)|
+|[**Palindrome Pairs**](/Leetcode/palindrome_pairs.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1138/)|
