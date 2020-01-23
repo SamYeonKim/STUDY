@@ -121,3 +121,42 @@ class Solution {
     }    
 }
 ```
+
+# My Answer ( Use HashSet )
+
+* `nums1`을 순회하면서 `HashSet`에 넣자.
+* `nums2`를 순회하면서 중복된 값이 있는지 확인하고, 중복된 값이 있다면, `nums1`의 앞에서 부터 덮어 쓰면서 중복된 값의 갯수를 `k`에 저장.
+* `nums1`의 `0~k-1`의 값이 최종 결과
+
+```java
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> hashSet = new HashSet<>();
+        
+        Arrays.sort(nums2);
+        
+        int i=0;
+        while(i < nums1.length ) {
+            if ( !hashSet.contains(nums1[i]) )
+                hashSet.add(nums1[i]);            
+            i++;
+        }
+        
+        i=0;
+        int k=0;
+        while(i < nums2.length ) {
+            if ( hashSet.contains(nums2[i])) {
+                if ( k == 0 || nums1[k-1] != nums2[i]) {
+                    nums1[k++] = nums2[i];        
+                }
+            }
+            i++;
+        }
+        
+        int[] result = new int[k];
+        System.arraycopy(nums1, 0, result, 0, k);
+        
+        return result;
+    }    
+}
+```
