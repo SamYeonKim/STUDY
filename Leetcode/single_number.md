@@ -35,3 +35,23 @@ class Solution {
 }
 ```
 
+# My Answer ( Use HashSet )
+
+```java
+class Solution {
+    public int singleNumber(int[] nums) {
+        Set<Integer> hashSet = new HashSet<>();
+        
+        for ( int n : nums) {
+            if ( hashSet.contains(n)) {
+                hashSet.remove(n);
+            } else {
+                hashSet.add(n);
+            }
+        }
+        
+        return hashSet.iterator().next();
+    }
+}
+```
+
