@@ -87,3 +87,4 @@
 |[Maximum XOR of Two Numbers in an Array](/Leetcode/max_xor_two_numbers_in_array.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1057/)|
 |[Word Search II](/Leetcode/word_search_ii.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1056/)|
 |[**Palindrome Pairs**](/Leetcode/palindrome_pairs.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1138/)|
+|[Design HashSet](/Leetcode/design_hashset.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1139/)|
