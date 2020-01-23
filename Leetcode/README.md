@@ -90,3 +90,4 @@
 |[Design HashSet](/Leetcode/design_hashset.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1139/)|
 |[Design HashSet](/Leetcode/design_hashmap.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1140/)|
 |[Contains Duplicate](/Leetcode/contains_duplicate.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1112/)|
+|[Single Number](/Leetcode/single_number.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1176/)|
