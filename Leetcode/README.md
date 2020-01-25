@@ -91,3 +91,5 @@
 |[Design HashSet](/Leetcode/design_hashmap.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1140/)|
 |[Contains Duplicate](/Leetcode/contains_duplicate.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1112/)|
 |[Single Number](/Leetcode/single_number.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1176/)|
+|[Happy Number](/Leetcode/happy_number.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1131/)|
+|[Two Sum](/Leetcode/two_sum.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1115/)|
