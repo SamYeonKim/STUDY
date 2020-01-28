@@ -95,3 +95,4 @@
 |[Two Sum](/Leetcode/two_sum.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1115/)|
 |[Isomorphic Strings](/Leetcode/isomorphic_strings.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1117/)|
 |[Minimum Index Sum of Two Lists](/Leetcode/min_idx_sum_two_lists.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1177/)|
+|[First Unique Character in a String](/Leetcode/first_unique_char_in_string.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1120/)|
