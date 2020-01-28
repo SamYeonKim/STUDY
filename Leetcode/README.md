@@ -94,3 +94,4 @@
 |[Happy Number](/Leetcode/happy_number.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1131/)|
 |[Two Sum](/Leetcode/two_sum.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1115/)|
 |[Isomorphic Strings](/Leetcode/isomorphic_strings.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1117/)|
+|[Minimum Index Sum of Two Lists](/Leetcode/min_idx_sum_two_lists.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1177/)|
