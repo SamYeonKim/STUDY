@@ -99,4 +99,5 @@
 |[Group Anagrams](/Leetcode/group_anagrams.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1124/)|
 |[Valid Sudoku](/Leetcode/valid_sudoku.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1126/)|
 |[**Find Duplicate Subtrees**](/Leetcode/find_duplicate_subtrees.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1127/)|
-|[Jewels and Stones](/Leetcode/jewels_stones.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/187/conclusion-hash-table/1136/|
+|[Jewels and Stones](/Leetcode/jewels_stones.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/187/conclusion-hash-table/1136/)|
+|[Longest Substring Without Repeating Characters](/Leetcode/longest_substring_repeat_char.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/187/conclusion-hash-table/1135/)|
