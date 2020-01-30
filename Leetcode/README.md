@@ -98,3 +98,4 @@
 |[First Unique Character in a String](/Leetcode/first_unique_char_in_string.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1120/)|
 |[Group Anagrams](/Leetcode/group_anagrams.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1124/)|
 |[Valid Sudoku](/Leetcode/valid_sudoku.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1126/)|
+|[**Find Duplicate Subtrees**](/Leetcode/find_duplicate_subtrees.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1127/)|
