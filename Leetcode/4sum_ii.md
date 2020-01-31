@@ -24,8 +24,8 @@ The two tuples are:
 
 # My Answer
 
-* 위 문제는 다음과 같은 수식으로 생각 할 수 있다. $A+B+C+D=A+B-(A+B)=0$
-* 즉, $C+D == -(A+B)$ 를 만족하는 케이스를 찾아야 한다.
+* 위 문제는 다음과 같은 수식으로 생각 할 수 있다. <img src="/Leetcode/tex/bd2e9faacd42abe5253c7fcc330671c0.svg?invert_in_darkmode&sanitize=true" align=middle width=289.24452644999997pt height=24.65753399999998pt/>
+* 즉, <img src="/Leetcode/tex/d721c621deee18fca2aea5bba55769bd.svg?invert_in_darkmode&sanitize=true" align=middle width=153.06938459999998pt height=24.65753399999998pt/> 를 만족하는 케이스를 찾아야 한다.
 * `A,B` 배열의 조합을 통해 나올 수 있는 `A+B`를 `HashMap`의 키로하고, 발생 횟수를 값으로 하자.
 * `C,D` 배열의 조합을 통해 나올 수 있는 `-(C+D)`를 `HashMap`의 키로 사용되는것을 찾고 결과에 더해 주자.
 
