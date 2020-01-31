@@ -88,7 +88,7 @@
 |[Word Search II](/Leetcode/word_search_ii.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1056/)|
 |[**Palindrome Pairs**](/Leetcode/palindrome_pairs.md)| [problem](https://leetcode.com/explore/learn/card/trie/149/practical-application-ii/1138/)|
 |[Design HashSet](/Leetcode/design_hashset.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1139/)|
-|[Design HashSet](/Leetcode/design_hashmap.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1140/)|
+|[Design HashMap](/Leetcode/design_hashmap.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1140/)|
 |[Contains Duplicate](/Leetcode/contains_duplicate.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1112/)|
 |[Single Number](/Leetcode/single_number.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1176/)|
 |[Happy Number](/Leetcode/happy_number.md)| [problem](https://leetcode.com/explore/learn/card/hash-table/183/combination-with-other-algorithms/1131/)|
