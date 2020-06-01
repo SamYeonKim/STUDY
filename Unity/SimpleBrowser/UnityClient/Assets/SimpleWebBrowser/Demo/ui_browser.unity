@@ -487,7 +487,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000011757742844, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010958089028, guid: a157ba4f6c2697e45940e6c6b280da74,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010958089028, guid: a157ba4f6c2697e45940e6c6b280da74,
+        type: 3}
+      propertyPath: InitialURL
+      value: https://naver.com
       objectReference: {fileID: 0}
     - target: {fileID: 224000014171993264, guid: a157ba4f6c2697e45940e6c6b280da74,
         type: 3}

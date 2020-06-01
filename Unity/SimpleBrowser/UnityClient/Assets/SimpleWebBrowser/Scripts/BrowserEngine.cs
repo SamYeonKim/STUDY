@@ -66,6 +66,7 @@ namespace SimpleWebBrowser
         private string _initialURL;
         private bool _enableWebRTC;
         private bool _enableGPU;
+        private bool _enableTransparent;
 
         #endregion
 
@@ -109,7 +110,7 @@ namespace SimpleWebBrowser
         }*/
 
 
-        public IEnumerator InitPlugin(int width, int height, string sharedfilename,string initialURL,bool enableWebRTC,bool enableGPU)
+        public IEnumerator InitPlugin(int width, int height, string sharedfilename,string initialURL,bool enableWebRTC,bool enableGPU, bool transparent = false)
         {
             //Initialization (for now) requires a predefined path to PluginServer,
             //so change this section if you move the folder
@@ -151,9 +152,16 @@ namespace SimpleWebBrowser
             _initialURL = initialURL;
             _enableWebRTC = enableWebRTC;
             _enableGPU = enableGPU;
+            _enableTransparent = transparent;
 
-              if (BrowserTexture == null)
+            if (BrowserTexture == null)
+            {
                 BrowserTexture = new Texture2D(kWidth, kHeight, TextureFormat.BGRA32, false, true);
+                BrowserTexture.alphaIsTransparency = true;
+
+            }
+
+            
 
             sPixelLock = new object();
 
@@ -222,6 +230,11 @@ namespace SimpleWebBrowser
                 ret = ret + " 0"+" ";
 
             if(_enableGPU)
+                ret = ret + " 1" + " ";
+            else
+                ret = ret + " 0" + " ";
+            
+            if (_enableTransparent)
                 ret = ret + " 1" + " ";
             else
                 ret = ret + " 0" + " ";
@@ -521,6 +534,8 @@ namespace SimpleWebBrowser
                                     OnPageLoaded(ge.NavigateUrl);
                             }
                         }
+
+                        Debug.Log(ep.Type + " : " + ep.Event);
                     }
 
                 }

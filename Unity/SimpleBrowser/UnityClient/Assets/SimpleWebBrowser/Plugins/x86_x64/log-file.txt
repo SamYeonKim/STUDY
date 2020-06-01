@@ -1,189 +1,300 @@
-2020-05-28 11:17:43,330 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 11:17:43,377 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:500,height:500,url:http://www.google.com,memfile:d6811c3b-3817-4bf9-bb68-c146fefec6c6,inMem:e334ad91-8814-474c-a9bd-e3a621c484af,outMem:37b41c18-d91b-4cb3-aa38-8edc5181410c, WebRtc:True,Enable GPU:False
-2020-05-28 11:17:57,273 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:'MessageLibrary.GenericEvent' 개체 형식에 대한 어셈블리 ID가 없습니다.
-2020-05-28 11:18:10,865 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:지정한 코드 페이지의 4 인덱스에서 바이트 [FA]을(를) 유니코드로 변환할 수 없습니다.
-2020-05-28 11:18:16,825 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:'MessageLibrary.GenericEvent' 개체 형식에 대한 어셈블리 ID가 없습니다.
-2020-05-28 11:18:18,002 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:'MessageLibrary.GenericEvent' 개체 형식에 대한 어셈블리 ID가 없습니다.
-2020-05-28 11:18:22,518 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 11:21:32,041 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 11:21:32,075 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:28e98a78-e09f-4ef0-acc8-b6ab911e4b23,inMem:515b1568-ba1b-42b1-a918-8b1f544116c6,outMem:107854b8-97cf-4e80-bc66-55837897ec94, WebRtc:False,Enable GPU:False
-2020-05-28 11:21:36,642 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:지정한 코드 페이지의 3 인덱스에서 바이트 [F0]을(를) 유니코드로 변환할 수 없습니다.
-2020-05-28 11:21:43,701 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 11:26:18,980 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 11:26:19,014 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:500,height:500,url:http://www.google.com,memfile:879c9217-9096-40ef-8a94-de00f2ac34d6,inMem:debd950a-4135-44d7-ab62-a2d9977b416d,outMem:5f779a10-b9f9-4b7f-b15f-452bef0c416d, WebRtc:True,Enable GPU:False
-2020-05-28 11:26:21,488 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 11:27:45,979 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 11:27:46,008 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:500,height:500,url:http://www.google.com,memfile:aaaf91aa-a623-4705-ac4e-f78e3e0d7e20,inMem:0f187f5b-d44d-44aa-b026-babae6fccf49,outMem:becaafc9-9064-4cb6-a601-28c5f838ee03, WebRtc:True,Enable GPU:False
-2020-05-28 11:27:48,470 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 16:43:15,365 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 16:43:15,394 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:500,height:500,url:http://www.google.com,memfile:c8a6e9ed-02ac-4b2a-961b-c746aadf96fc,inMem:56929491-b7ef-49c5-b599-418aa9d2825f,outMem:0c712f0d-33e1-4577-b95a-4842f3cc6a58, WebRtc:True,Enable GPU:False
-2020-05-28 16:43:26,703 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 16:58:16,587 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 16:58:16,616 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:500,height:500,url:http://www.google.com,memfile:96eee9de-ed86-4874-8d0c-beebf1698a65,inMem:a2a38ae9-07fb-47e4-845d-7ef76f83954f,outMem:07525837-a7f7-4cca-8159-92f620050a00, WebRtc:True,Enable GPU:False
-2020-05-28 16:58:54,641 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-28 16:58:54,641 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 17:01:50,634 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 17:01:50,663 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://akimgfiles.plaync.com/file/MAP/download/20191016090004-zyq5Qw7XCZZieRTCj4nJ0-v4?download=false,memfile:bb4a835e-9bb9-4434-8220-20c27b50d3b9,inMem:a0cf0972-712f-454e-a12d-78bad059c9e8,outMem:751c6b0b-6a40-44ed-8488-43e1fde7c368, WebRtc:False,Enable GPU:False
-2020-05-28 17:02:13,201 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 17:02:15,181 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 17:02:15,211 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://akimgfiles.plaync.com/file/MAP/download/20191016090004-zyq5Qw7XCZZieRTCj4nJ0-v4?download=false,memfile:f9746337-d06a-4adc-b302-c58861eef185,inMem:33ffd766-a577-423e-93f4-3b6d062cba85,outMem:4f9b8348-b6dd-4cd1-87c0-5c0b057d1a11, WebRtc:False,Enable GPU:False
-2020-05-28 17:02:16,605 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-28 17:02:22,694 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-28 17:02:22,726 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://akimgfiles.plaync.com/file/MAP/download/20191016090004-zyq5Qw7XCZZieRTCj4nJ0-v4?download=false,memfile:57e8abed-19ed-4e3e-a8d0-672a422410eb,inMem:7893dd32-f387-4c71-bf83-c3c91d01ec5d,outMem:603ce51e-9a50-4af0-933e-f1c338968c08, WebRtc:False,Enable GPU:True
-2020-05-28 17:02:29,095 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 13:43:30,760 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 13:43:30,815 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:ca325def-8379-4ac2-b26f-1ca3c9f41aa3,inMem:c3e95725-d2e7-42ee-8377-94489be6f423,outMem:4bf78b1e-ee47-45c3-86f4-2c4131de3ec2, WebRtc:False,Enable GPU:False
-2020-05-29 13:43:33,605 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 14:42:48,693 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 14:42:48,746 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:eeddd27a-66f9-4e7c-9ab9-8474e48b6889,inMem:59619717-ed6d-42ed-917b-e2e9019ccf0a,outMem:687ac435-e3f2-40eb-95c3-a036daeb6442, WebRtc:False,Enable GPU:False
-2020-05-29 14:42:52,655 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:20:04,249 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:20:04,303 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1920,height:1080,url:http://www.google.com,memfile:a3b362bf-15b3-4079-a73e-c7f8a5e50d76,inMem:662201ee-998e-41d0-a182-27c31c3733dc,outMem:836326df-349b-452b-9a66-293ee80f9f9e, WebRtc:False,Enable GPU:False
-2020-05-29 15:20:38,648 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:23:50,282 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:23:50,339 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1920,height:1080,url:http://www.google.com,memfile:be8131bc-2925-42b8-9602-34021f0f07cb,inMem:dd18f3fe-0bc9-4a88-91d9-20f4a08984b2,outMem:670f7d0e-0af5-4bae-98f7-8a2b11994364, WebRtc:False,Enable GPU:False
-2020-05-29 15:24:08,215 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:24:08,215 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:29:33,906 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:29:33,962 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1280,height:720,url:http://www.google.com,memfile:8a7d8609-5860-49d1-a80a-0acd76826856,inMem:5b4be4e8-b91c-4ce8-b460-05505ec591dc,outMem:a11f5f96-a4a3-4602-b0c7-085a4b1985fe, WebRtc:False,Enable GPU:False
-2020-05-29 15:30:19,623 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:30:19,624 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:34:18,712 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:34:18,768 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:b63d0180-90be-4aba-8792-f4231ccfd717,inMem:ccc3fe79-ae13-4246-8687-6489f9e45666,outMem:a781fa3f-f82d-4b10-9c5d-57dc879caec2, WebRtc:False,Enable GPU:False
-2020-05-29 15:36:01,401 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:36:01,401 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:47:06,528 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:47:06,581 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:84771115-e3e2-40ec-a91f-a2b9a67c8294,inMem:cf72c681-5c7e-447e-8e1d-2f30b1c6f3ed,outMem:33115f5d-b1cf-48a8-841e-7a84448cd19c, WebRtc:False,Enable GPU:False
-2020-05-29 15:47:25,206 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:47:25,206 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:51:52,803 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:51:52,858 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:3db96080-98ba-4cdf-980d-6dbf7aaf14d6,inMem:f937e3b6-7d66-4e43-9b68-046db1bcf7f2,outMem:608c93f2-814a-4a79-9946-43de9626ce41, WebRtc:False,Enable GPU:False
-2020-05-29 15:52:02,942 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:52:02,943 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:52:23,554 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:52:23,609 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:adc6203b-eca9-47e0-adf5-358afde9a498,inMem:37f2f7a7-d806-4d54-8a78-fa6ca3ac12ef,outMem:1cb86959-9e71-48c7-a2c8-be5ec0383704, WebRtc:False,Enable GPU:False
-2020-05-29 15:52:33,695 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:52:33,696 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:53:28,278 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:53:28,335 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:4a2d62e2-7213-4493-a7e5-bf0e4c3a47cf,inMem:eb941ba9-8251-4c0b-a4e2-7d42455c35b5,outMem:25e87da2-8d07-4c34-9ed4-6e2cea745682, WebRtc:False,Enable GPU:False
-2020-05-29 15:53:44,899 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:53:44,899 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:55:24,417 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:55:24,470 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:2488759c-cca8-44a8-b074-ecab2a970685,inMem:97615165-6460-4af9-8420-2e7831a7f359,outMem:d1576113-e46e-4969-9054-d391f8777679, WebRtc:False,Enable GPU:False
-2020-05-29 15:55:34,554 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:55:34,554 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:55:47,459 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:55:47,513 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:dd051f55-af42-4f23-969b-2e6ddca39d9c,inMem:9f8dc9f6-ba19-4dd1-8af3-e33658d71311,outMem:49cb9707-efb7-4755-b7de-b7e842d5a476, WebRtc:False,Enable GPU:False
-2020-05-29 15:56:01,582 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:56:01,583 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:58:07,369 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:58:07,425 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:64983445-3305-4229-8ad1-05d1b056e259,inMem:6b5ef3a6-ac1b-49a2-b2af-3e40084b61e8,outMem:e253b3e0-0fc0-4e9d-ba65-dc5ad9d4eb91, WebRtc:False,Enable GPU:False
-2020-05-29 15:58:20,303 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 15:58:20,304 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 15:58:35,954 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 15:58:36,008 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:54772561-0124-4ba0-a623-72bba42f9ec7,inMem:1f00aeed-df8b-4771-af3a-afc44e85374e,outMem:9b6b0085-967c-4927-aff6-8237a93798ba, WebRtc:False,Enable GPU:False
-2020-05-29 15:58:39,400 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 16:09:35,719 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 16:09:35,772 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:file:///C:/Users/scrc8603/Downloads/unity-webview-master/sample/Assets/StreamingAssets/sample.html,memfile:56125b88-5390-45b2-ac75-0e17d57682d9,inMem:df0d8df5-1a6c-4536-94f8-383848296c4e,outMem:b0bb93ac-981a-4d9d-9f5a-c55f4fb8a5dc, WebRtc:False,Enable GPU:False
-2020-05-29 16:10:01,794 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 16:10:01,794 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 16:11:15,284 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 16:11:15,338 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:file:///C:/Users/scrc8603/Downloads/unity-webview-master/sample/Assets/StreamingAssets/sample.html,memfile:db3c35f5-cdfb-40fe-93ba-286f4d49c691,inMem:4dedd819-0464-4fa8-be87-f99aa76abf62,outMem:443180f3-f39f-477e-9b89-c2623009f050, WebRtc:False,Enable GPU:False
-2020-05-29 16:11:50,761 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 16:11:50,762 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 16:14:59,369 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 16:14:59,421 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:file:///C:/Users/scrc8603/Downloads/unity-webview-master/sample/Assets/StreamingAssets/sample.html,memfile:c4afbe13-3d6c-4b23-af9e-b06e58aefc42,inMem:3cac544f-f438-40c8-a46e-e7ef1eae5e9d,outMem:f5b95f5c-ada5-4f90-b151-bcfcef6b7294, WebRtc:False,Enable GPU:False
-2020-05-29 16:15:09,501 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 16:15:09,501 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 16:15:11,287 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 16:15:11,340 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:file:///C:/Users/scrc8603/Downloads/unity-webview-master/sample/Assets/StreamingAssets/sample.html,memfile:c4afbe13-3d6c-4b23-af9e-b06e58aefc42,inMem:3cac544f-f438-40c8-a46e-e7ef1eae5e9d,outMem:f5b95f5c-ada5-4f90-b151-bcfcef6b7294, WebRtc:False,Enable GPU:False
-2020-05-29 16:16:03,376 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 16:16:03,376 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 16:17:26,963 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 16:17:27,020 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:file:///C:/Users/scrc8603/Downloads/vitaly_chashin-simpleunitybrowser-7b3d94b8afa9/BindingTest.html,memfile:abd37868-bdcf-4426-a5a9-c9f1bd1782aa,inMem:19bc41d9-d6bf-4636-b43a-372375461710,outMem:4b8146b2-f175-4745-97f0-858913765800, WebRtc:False,Enable GPU:False
-2020-05-29 16:17:49,237 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:09:23,665 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:09:23,726 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.google.com,memfile:9ea4fecf-0b64-4053-b65d-5fde88776b70,inMem:e37fd836-7136-46a4-bd94-c995d12b7fdd,outMem:d6e7ab75-7022-408f-8d25-d57336238ee8, WebRtc:False,Enable GPU:False
-2020-05-29 17:09:38,956 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 17:09:38,956 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:21:41,544 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:21:41,929 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:http://www.naver.com,memfile:89b9b668-1f4d-4f4c-a103-c4e35ae61a9f,inMem:3c43edef-a200-4bba-9aa9-f5ed0358c18a,outMem:bbb99c9e-44be-4a0a-840d-79027b1c6686, WebRtc:False,Enable GPU:False
-2020-05-29 17:21:52,849 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:35:41,564 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:35:41,616 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:a2343a89-a839-4bae-82ca-fceae45693c8,inMem:f5249340-a7f0-48bb-8b5d-2c1b56910ea6,outMem:0a263f24-389f-4298-b2dc-56b1b2cba776, WebRtc:False,Enable GPU:False
-2020-05-29 17:35:53,428 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:37:03,907 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:37:03,961 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:f3572ca8-dec1-407c-b8a5-8a98ca9184e3,inMem:858401b7-cf3d-4b3e-8c85-9a9fc439c9de,outMem:7f7be160-ce73-4442-843b-4f07a4a41ea5, WebRtc:False,Enable GPU:False
-2020-05-29 17:37:08,215 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:37:25,392 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:37:25,451 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:978e6911-33f8-44a7-8fce-5706029c9028,inMem:ef17e899-6ca5-4c18-9b7f-5bab3018fe60,outMem:4e114c39-904a-47a8-9bc1-649c165de565, WebRtc:False,Enable GPU:False
-2020-05-29 17:37:42,235 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:40:52,663 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:40:52,721 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:bf9ba014-f7f2-4a14-a92f-f6f636a7b704,inMem:f45bc84a-e471-40fb-9a95-5761aa588f03,outMem:238e6c6a-0144-4d45-8af9-6c73c8a8cfb9, WebRtc:False,Enable GPU:False
-2020-05-29 17:41:13,482 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 17:41:13,482 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:42:49,173 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:42:49,232 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:00ff4493-611c-46e9-83c2-60e13fa24a6b,inMem:d63c7908-e08e-42d8-ab56-fef56e0c3c93,outMem:714e7d0e-568c-4ea1-a8a0-801ccd1ddb6e, WebRtc:False,Enable GPU:False
-2020-05-29 17:43:20,615 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 17:43:20,615 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:44:11,673 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:44:11,735 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:0ee576c0-d7c2-4f1a-b69b-b813a3b81f79,inMem:4bf46399-d5b2-439e-b08c-944baa4b9d69,outMem:e8ff18e7-d52f-452c-8317-3b6cde68d8bb, WebRtc:False,Enable GPU:False
-2020-05-29 17:44:28,958 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:49:27,978 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:49:28,036 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:8fac3efd-7c4b-4462-b7bb-214aa8dbbfd8,inMem:5578f72f-6dd0-4a29-a0ca-9854015e5e74,outMem:91abd29b-0a51-4e58-920a-23f202c5c1e0, WebRtc:False,Enable GPU:False
-2020-05-29 17:49:35,813 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:49:37,666 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:49:37,725 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:65eea16f-9de1-4c6c-a6f1-0873d5db723e,inMem:0b0be1b3-bdda-48e6-93d4-4147925a7751,outMem:f88e09bb-10fe-460e-8582-e354f727491b, WebRtc:False,Enable GPU:False
-2020-05-29 17:49:45,197 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:50:04,379 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:50:04,439 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:0cee4f21-3a17-4aa4-bb83-ed6e2110b475,inMem:186c9a73-fd10-400d-bd6e-39c9f0415458,outMem:0005e33a-b544-4ada-8e01-ddff92c42afe, WebRtc:False,Enable GPU:False
-2020-05-29 17:50:11,266 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:50:12,963 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:50:13,021 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:295e261b-7c56-477b-8f42-4a4b2e05d47f,inMem:b8651e65-a3bd-4919-860d-fbb2c51c15ac,outMem:b1664af7-4598-4a7d-9324-a0e36c7bd415, WebRtc:False,Enable GPU:False
-2020-05-29 17:50:34,548 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:57:02,126 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:57:02,184 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:62456626-ef28-4a20-a777-28edb1f78c2e,inMem:a3794862-121f-4c2b-a3db-b0a6baee412a,outMem:aa6feb4b-343d-4ae1-ad1c-1e28ee8d2b9f, WebRtc:False,Enable GPU:False
-2020-05-29 17:57:23,477 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:57:28,852 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:57:28,909 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:58322628-f002-4386-b730-888d84453c8d,inMem:3ce879e9-a45f-4e16-a2ae-575b4559da42,outMem:c73c2d26-4da4-4751-86c3-03384e3c0390, WebRtc:False,Enable GPU:False
-2020-05-29 17:57:54,473 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:57:57,202 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 17:57:57,262 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:bd6f2f14-8332-4869-9fd1-4949d9654f7e,inMem:50323f83-7ef1-40f9-bdd3-bb745fefb897,outMem:f4f23883-779e-4ea7-b2a7-32cc5bca7b33, WebRtc:False,Enable GPU:False
-2020-05-29 17:58:17,902 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 17:58:25,925 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 17:58:25,947 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:00:41,170 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:00:41,230 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:22a89793-befb-4d3d-87ea-4a7ee507a9a8,inMem:4468d9c1-874b-4c07-a141-751b28e7914e,outMem:288c8726-c7cd-4c3c-bc59-9fd50ec7eff4, WebRtc:False,Enable GPU:False
-2020-05-29 18:00:56,876 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:00:59,286 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:00:59,345 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:e907fd59-735f-4672-bede-9c1ffd415d79,inMem:6a383b40-4636-4094-ae35-fdd291d2d9d5,outMem:f07a8b3e-6947-484f-a83c-8d517b3cf863, WebRtc:False,Enable GPU:False
-2020-05-29 18:01:22,040 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:01:34,072 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:01:34,128 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:4137651c-bf52-43c9-a6b3-5f4b4a57ec12,inMem:93f2b9d9-1b26-43ef-b1f7-ebf45ab7b71f,outMem:d7d28520-50fe-4628-ae29-f51c33615af0, WebRtc:False,Enable GPU:False
-2020-05-29 18:01:49,511 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:08:38,990 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:08:39,044 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:e40014a4-c822-4a62-b8b8-0a7dc8adc330,inMem:c88a6c9a-7185-4416-a6bc-144a78a60d46,outMem:6d3c56bd-8993-429b-baf7-5835acdce09b, WebRtc:False,Enable GPU:False
-2020-05-29 18:08:51,098 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
-2020-05-29 18:08:51,099 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:10:40,375 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:10:40,430 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:410e323a-4f1d-4c0f-a401-0e9263d83131,inMem:38831b35-c9b8-424e-854f-46ba6db8c431,outMem:3a948e6a-1364-4800-96bd-b2de7359ed3c, WebRtc:False,Enable GPU:False
-2020-05-29 18:10:58,021 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:11:14,077 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:11:14,133 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:68545021-7b58-4c8a-85aa-82396db3ce2d,inMem:2d50773a-8794-4256-9c6d-b3690bc113ed,outMem:d94f4355-3546-4511-b626-9dcd0a78b40b, WebRtc:False,Enable GPU:False
-2020-05-29 18:11:16,183 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:지정한 코드 페이지의 4 인덱스에서 바이트 [FA]을(를) 유니코드로 변환할 수 없습니다.
-2020-05-29 18:11:18,330 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:'MessageLibrary.GenericEventType' 개체 형식에 대한 어셈블리 ID가 없습니다.
-2020-05-29 18:11:19,545 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:지정한 코드 페이지의 4 인덱스에서 바이트 [FA]을(를) 유니코드로 변환할 수 없습니다.
-2020-05-29 18:11:31,837 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:지정한 코드 페이지의 4 인덱스에서 바이트 [FA]을(를) 유니코드로 변환할 수 없습니다.
-2020-05-29 18:11:34,240 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:11:44,471 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:11:44,525 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:abfa4c76-a273-48b8-a686-85f1ae8ff419,inMem:14720ade-c771-4af5-a84b-67180bda4ba6,outMem:5158abc5-ebc3-4012-8af1-fd25eca3a786, WebRtc:False,Enable GPU:False
-2020-05-29 18:12:11,645 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:12:17,318 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:12:17,382 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:9778ac01-2168-4ad9-923c-92159da7d4ad,inMem:72a7d6bc-c11b-47ef-8a4b-01a699e97080,outMem:fc7b64b3-3a8e-40cb-aa43-4f2adb7d2449, WebRtc:False,Enable GPU:False
-2020-05-29 18:12:34,077 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:12:49,511 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:12:49,564 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:a9598d06-b753-41b8-8bb3-daa8f6745a05,inMem:e749d9aa-8c55-4fbf-89f1-176e1bb2e1b2,outMem:687619dd-a3e5-4450-81e5-eac6ceb4f99c, WebRtc:False,Enable GPU:False
-2020-05-29 18:13:00,309 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-05-29 18:13:03,111 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-05-29 18:13:03,171 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1920,height:1080,url:https://google.com,memfile:f2c58f19-f54b-415c-84f0-219018fb0c52,inMem:f67a62b7-f6ff-42a3-9136-48c1684c121f,outMem:8b5fc0c9-a93c-4cc5-a4cb-bd859710de27, WebRtc:False,Enable GPU:False
-2020-05-29 18:13:15,520 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 13:24:01,841 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 13:24:01,872 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:39ebdb5d-dc94-44d0-be86-ebb913ec7b9f,inMem:50263c40-6cc6-483b-8cbc-6c98d0de80eb,outMem:4656acf4-6e25-493d-a9f3-472860822af7, WebRtc:False,Enable GPU:False
+2020-06-01 13:24:02,781 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 13:24:02,784 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:24:03,752 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 13:24:03,752 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:24:03,752 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 13:24:03,752 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:24:15,601 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 13:24:15,601 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 13:26:10,944 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 13:26:10,974 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:e0da1295-35f2-4be1-92d3-f2cd20a34f8b,inMem:5912724f-841c-460f-b152-fb07ffcc2b70,outMem:5781ae3f-c83f-491a-8cf0-08c6ce6b8eeb, WebRtc:False,Enable GPU:False
+2020-06-01 13:26:11,902 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 13:26:11,903 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:26:15,721 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 13:26:15,721 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:26:15,721 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 13:26:15,722 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:26:26,021 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 13:26:26,021 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 13:30:30,716 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 13:30:30,750 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:7700316f-7a28-4545-9ec7-00ccde9ea107,inMem:3abc7b5e-b0b2-4ebf-96bd-fbc385dd6d6a,outMem:83da1b2c-f052-4160-a3e0-e46ae198bb9d, WebRtc:False,Enable GPU:False
+2020-06-01 13:30:31,665 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 13:30:31,666 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:30:34,526 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 13:30:34,526 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:30:34,527 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 13:30:34,527 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:30:57,886 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 13:30:57,886 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 13:31:17,762 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 13:31:17,793 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:f8ccc77f-1c35-41e3-b137-d9b282b60d86,inMem:21211c17-11cc-4766-b4d2-6bf821c76fd5,outMem:bb496595-5300-4b1d-a095-ebfdc855b73b, WebRtc:False,Enable GPU:False
+2020-06-01 13:31:18,724 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 13:31:18,725 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:31:21,339 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 13:31:21,339 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:31:21,340 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 13:31:21,340 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 13:31:31,637 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 13:31:31,638 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 16:10:09,613 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 16:10:09,645 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:f21a9bee-c9e8-4370-b40c-2b31c018001d,inMem:03092125-8b2a-4a2e-8617-3dd73624f2fd,outMem:394befab-8491-4256-8ea3-e1e87ce00ff2, WebRtc:False,Enable GPU:False
+2020-06-01 16:10:10,554 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 16:10:10,556 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 16:10:20,888 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 16:10:20,889 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 16:10:47,983 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 16:10:48,017 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:af870bcb-4cb6-47ff-bb14-439fdbdc1627,inMem:977eeaea-f68f-48c4-928c-c814e4ec2070,outMem:8cddf7eb-1949-4fa8-aae6-29e873e9ffb7, WebRtc:False,Enable GPU:False
+2020-06-01 16:10:48,953 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 16:10:48,954 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 16:10:50,812 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 16:10:50,812 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 16:10:50,813 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 16:10:50,813 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 16:11:37,432 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 16:11:37,432 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 17:05:33,806 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 17:05:33,837 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:70eec237-7cfc-4647-aea6-abdba85b8358,inMem:2c98a472-78ab-4b4f-ac96-48f635be328d,outMem:7878e20f-5276-491d-9114-7192f5ddb436, WebRtc:False,Enable GPU:False
+2020-06-01 17:05:34,762 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 17:05:34,763 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:05:37,440 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 17:05:37,440 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:05:37,440 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 17:05:37,440 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:05:40,258 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:읽기 형식 요청 '8'이(가) 잘못되었습니다.
+2020-06-01 17:06:14,184 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 17:06:14,185 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 17:10:56,091 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 17:10:56,123 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:05cc7300-73c2-4da7-8b0f-39947ffd771f,inMem:13573646-4094-41bb-bf68-0ff7e9918cb6,outMem:2ed15478-5def-4e77-94b4-6a090f94f046, WebRtc:False,Enable GPU:False
+2020-06-01 17:10:57,053 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 17:10:57,054 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:10:58,007 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 17:10:58,008 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:10:58,008 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 17:10:58,008 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:11:13,872 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-01 17:11:13,872 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 17:19:26,568 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 17:19:26,600 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:7fccf9b8-a2c7-4135-8248-454d294e4e1e,inMem:90e4a886-ffdb-4099-9d1d-cad33f5f2bd1,outMem:80fc1562-ce27-4f2e-9ce6-0fa6e8eff399, WebRtc:False,Enable GPU:False
+2020-06-01 17:19:27,527 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 17:19:27,529 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:19:28,464 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 17:19:28,465 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:19:28,465 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 17:19:28,465 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:19:34,645 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 17:22:35,656 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 17:22:35,687 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:06f62d6d-6307-4fc8-8d74-78b35747c4f5,inMem:e37533be-8fec-406a-a5f2-417268365825,outMem:04e115a0-699e-4f5a-ba7c-924f104d92ef, WebRtc:False,Enable GPU:False
+2020-06-01 17:22:36,702 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 17:22:36,703 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:22:37,521 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 17:22:37,521 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:22:37,522 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 17:22:37,522 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:22:40,067 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:지정한 코드 페이지의 12 인덱스에서 바이트 [FF]을(를) 유니코드로 변환할 수 없습니다.
+2020-06-01 17:22:51,361 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 17:26:14,871 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 17:26:14,903 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:6cd20c3f-1e15-40e7-a505-c9e7697d4229,inMem:4b3e5076-0242-47ed-951d-a3449cc1d0f9,outMem:0f9dd378-4e83-4efb-b83c-323cdf6934a0, WebRtc:False,Enable GPU:False,Transparent:False
+2020-06-01 17:26:15,822 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 17:26:15,824 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:26:16,759 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 17:26:16,760 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:26:16,760 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 17:26:16,760 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:26:35,552 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-01 17:26:40,490 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-01 17:26:40,521 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:d3714f1e-5ce5-4879-b3a0-4107d3838e4b,inMem:73f55932-faaa-4c33-ac2c-7b0d61017fcf,outMem:e82197f5-b67e-4af4-99f0-732ff2ac57c3, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-01 17:26:41,724 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-01 17:26:41,725 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:26:42,417 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-01 17:26:42,417 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:26:42,418 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-01 17:26:42,418 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-01 17:26:47,826 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========

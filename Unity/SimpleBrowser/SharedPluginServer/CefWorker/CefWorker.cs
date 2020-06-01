@@ -93,7 +93,7 @@ namespace SharedPluginServer
         /// <param name="width">Browser rect width</param>
         /// <param name="height">Browser rect height</param>
         /// <param name="starturl"></param>
-        public void Init(int width,int height,string starturl)
+        public void Init(int width,int height,string starturl, bool transparent = false)
         {
 
            
@@ -101,7 +101,7 @@ namespace SharedPluginServer
                RegisterMessageRouter();
 
                 CefWindowInfo cefWindowInfo = CefWindowInfo.Create();
-                cefWindowInfo.SetAsWindowless(IntPtr.Zero, false);
+                cefWindowInfo.SetAsWindowless(IntPtr.Zero, transparent);
                 var cefBrowserSettings = new CefBrowserSettings();
 
                 cefBrowserSettings.JavaScript=CefState.Enabled;
@@ -110,6 +110,7 @@ namespace SharedPluginServer
                 cefBrowserSettings.WebSecurity=CefState.Disabled;
                 cefBrowserSettings.WebGL=CefState.Enabled;
                 cefBrowserSettings.WindowlessFrameRate = 30;
+                cefBrowserSettings.BackgroundColor = new CefColor(0);
 
             _client = new WorkerCefClient(width, height,this);
             
@@ -150,12 +151,14 @@ namespace SharedPluginServer
 
         private void Handler_OnBrowserQuery(string query)
         {
+            log.Info("Handler_OnBrowserQuery : " + query);
           OnBrowserJSQuery?.Invoke(query);
 
         }
 
         public void AnswerQuery(string resp)
         {
+            log.Info("AnswerQuery : " + resp);
             _queryHandler.Callback(resp);
         }
 #endregion

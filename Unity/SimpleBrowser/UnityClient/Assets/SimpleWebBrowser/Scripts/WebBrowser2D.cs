@@ -27,6 +27,8 @@ namespace SimpleWebBrowser
 
         public bool EnableWebRTC = false;
 
+        public bool BackgroundTransparent = false;
+
         [Header("Testing")]
         public bool EnableGPU = false;
 
@@ -141,7 +143,19 @@ namespace SimpleWebBrowser
             InitPrefabLinks();
             mainUIPanel.InitPrefabLinks();
 
-            yield return _mainEngine.InitPlugin(Width, Height, MemoryFile, InitialURL,EnableWebRTC,EnableGPU);
+            yield return _mainEngine.InitPlugin(Width, Height, MemoryFile, InitialURL,EnableWebRTC,EnableGPU, BackgroundTransparent);
+
+            JSInitializationCode = @"
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                ";
             //run initialization
             if (JSInitializationCode.Trim() != "")
                 _mainEngine.RunJSOnce(JSInitializationCode);
@@ -170,7 +184,43 @@ namespace SimpleWebBrowser
             _setUrl = true;
             _setUrlString = url;
 
-            Debug.Log(url);
+            Debug.Log("OnPageLoaded : " + url);
+
+            // RunJavaScript(@"
+            //         window.Unity = {
+            //             call: function(msg) {
+            //                 window.cefQuery({
+            //                     request: 'test : ' + msg,
+            //                     onSuccess: function(response) {}
+            //                     onFailure: function(error_code, error_message) {}
+            //                 })
+            //             }
+            //         }
+            //     ");
+            // RunJavaScript(@"Unity.call(`HelloWolrld`);");
+
+            RunJavaScript(@"
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            ");
+            RunJavaScript(@"Unity.call('ua=' + navigator.userAgent)");
+
+            // RunJavaScript(@"
+            //     function sendMessage(msg) {
+            //         window.cefQuery({
+            //             request: `Test :` + msg;
+            //             onSuccess: function(response){}
+            //             onFailure: function(error_code, error_message){}
+            //         });
+            //     }
+            //     sendMessage(`Call`);
+            // ");
+            // RunJavaScript(@"sendMessage(`HellowWord`);");
+
+            // RunJavaScript(@"window.location = `https://google.com`;");
         }
 
         #endregion
@@ -183,19 +233,19 @@ namespace SimpleWebBrowser
             _jsQueryString = message;
             _startQuery = true;
 
-            Debug.Log(message);
+            Debug.Log("OnJavaScriptQuery : " + message);
         }
 
         public void RespondToJSQuery(string response)
         {
-
-            Debug.Log(response);
+            Debug.Log("RespondToJSQuery : " + response);
             _mainEngine.SendQueryResponse(response);
         }
 
         private void _mainEngine_OnJavaScriptDialog(string message, string prompt, DialogEventType type)
         {
-            Debug.Log(message);
+            Debug.Log("OnJavaScriptDialog : " + message);
+
             _showDialog = true;
             _dialogEventType = type;
             _dialogMessage = message;

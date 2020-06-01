@@ -29,7 +29,9 @@ namespace SharedPluginServer
         public delegate void LoadFinished(int StatusCode);
 
         public event LoadFinished OnLoadFinished;
-
+       
+        private static readonly log4net.ILog log =
+ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public WorkerCefClient(int windowWidth, int windowHeight,CefWorker mainCefWorker)
         {
             _mainWorker = mainCefWorker;
@@ -241,7 +243,9 @@ namespace SharedPluginServer
         public void ExecuteJavaScript(string jscode)
         {
             CefFrame frame = _lifespanHandler.MainBrowser.GetMainFrame();
-            frame.ExecuteJavaScript(jscode,frame.Url,0);
+            
+            log.Info("ExecuteJavaScript : " + frame.ToString());
+            frame.ExecuteJavaScript(jscode,frame.Url,0);            
         }
 
         #endregion

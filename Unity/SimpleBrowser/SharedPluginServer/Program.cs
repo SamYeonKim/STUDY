@@ -62,7 +62,6 @@ namespace SharedPluginServer
 
             //attach page events
             _mainWorker.OnPageLoaded += _mainWorker_OnPageLoaded;
-
            
 
             IsRunning = true;
@@ -244,6 +243,7 @@ namespace SharedPluginServer
                                 break;
 
                                 case GenericEventType.ExecuteJS:
+                                    log.Info("ExecuteJS : " + genericEvent.JsCode);
                                     _mainWorker.ExecuteJavaScript(genericEvent.JsCode);
                                 break;
                                
@@ -384,10 +384,10 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
 
             bool EnableGPU = false;
 
+            bool useTransparent = false;
+
             if (args.Length>0&&args[0] != "--type=renderer")
             {
-               
-
                 if (args.Length > 1)
                 {
                     defWidth = Int32.Parse(args[0]);
@@ -407,10 +407,13 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                 if (args.Length > 7)
                     if (args[7] == "1")
                         EnableGPU = true;
+                if ( args.Length > 8 )
+                    if ( args[8] == "1" )
+                        useTransparent = true;
             }
 
-            log.InfoFormat("Starting plugin, settings:width:{0},height:{1},url:{2},memfile:{3},inMem:{4},outMem:{5}, WebRtc:{6},Enable GPU:{7}",
-                defWidth, defHeight, defUrl, defFileName,defInFileName,defOutFileName, useWebRTC,EnableGPU);
+            log.InfoFormat("Starting plugin, settings:width:{0},height:{1},url:{2},memfile:{3},inMem:{4},outMem:{5}, WebRtc:{6},Enable GPU:{7},Transparent:{8}",
+                defWidth, defHeight, defUrl, defFileName,defInFileName,defOutFileName, useWebRTC,EnableGPU, useTransparent);
 
             try
             {
@@ -434,8 +437,8 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                 MultiThreadedMessageLoop = true,
                 WindowlessRenderingEnabled = true,
                 LogSeverity = CefLogSeverity.Info,
-
             };
+
 
 
 
@@ -461,7 +464,7 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
 
 
                 CefWorker worker = new CefWorker();
-                worker.Init(defWidth, defHeight, defUrl);
+                worker.Init(defWidth, defHeight, defUrl, useTransparent);
 
                 SharedMemServer server = new SharedMemServer();
                 server.Init(defWidth * defHeight * 4, defFileName);
