@@ -14,12 +14,8 @@ using Object = System.Object;
 
 namespace SimpleWebBrowser
 {
-
-
-
     public class BrowserEngine
     {
-
         private SharedArray<byte> _mainTexArray;
 
         private SharedCommServer _inCommServer;
@@ -48,6 +44,10 @@ namespace SimpleWebBrowser
         public delegate void PageLoaded(string url);
 
         public event PageLoaded OnPageLoaded;
+
+        public delegate void PageLoadedError(Xilium.CefGlue.CefErrorCode errorCode, string errorText, string errorUrl);
+
+        public event PageLoadedError OnPageLoadedError;
 
         #endregion
 
@@ -440,11 +440,6 @@ namespace SimpleWebBrowser
         }
 
         #endregion
-
-        
-
-
-
      public void UpdateTexture()
         {
 
@@ -533,6 +528,12 @@ namespace SimpleWebBrowser
                                 if (OnPageLoaded != null)
                                     OnPageLoaded(ge.NavigateUrl);
                             }
+                            else if ( ge.Type == GenericEventType.PageLoadedError )
+                            {
+                                if ( OnPageLoadedError != null )
+                                    OnPageLoadedError((Xilium.CefGlue.CefErrorCode)ge.ErrorCode, ge.ErrorText, ge.ErrorFailedUrl);
+                            }
+                            
                         }
 
                         Debug.Log(ep.Type + " : " + ep.Event);

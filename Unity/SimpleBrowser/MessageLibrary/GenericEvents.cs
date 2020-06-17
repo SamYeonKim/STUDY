@@ -67,10 +67,8 @@ namespace MessageLibrary
         ExecuteJS=4,
         JSQuery=5,
         JSQueryResponse=6,
-        PageLoaded=7
-       
-
-        
+        PageLoaded=7,
+        PageLoadedError = 8
     }
 
    
@@ -87,6 +85,10 @@ namespace MessageLibrary
         public string JsQuery;
 
         public string JsQueryResponse;
+
+        public int ErrorCode;
+        public string ErrorText;
+        public string ErrorFailedUrl;
 
         /*protected override bool Compare(AbstractEvent ev2)
         {

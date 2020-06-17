@@ -175,6 +175,7 @@ namespace SimpleWebBrowser
             _mainEngine.OnJavaScriptDialog += _mainEngine_OnJavaScriptDialog;
             _mainEngine.OnJavaScriptQuery += _mainEngine_OnJavaScriptQuery;
             _mainEngine.OnPageLoaded += _mainEngine_OnPageLoaded;
+            _mainEngine.OnPageLoadedError += _mainEngine_OnPageLoadedError;
 
             DialogPanel.SetActive(false);
         }
@@ -223,6 +224,10 @@ namespace SimpleWebBrowser
             // RunJavaScript(@"window.location = `https://google.com`;");
         }
 
+        private void _mainEngine_OnPageLoadedError(Xilium.CefGlue.CefErrorCode errorCode, string errorText, string errorUrl)
+        {
+            Debug.Log(string.Format("OnPageLoadedError : Code : {0}, Msg : {1}, Url : {2}", errorCode.ToString(), errorText, errorUrl));
+        }
         #endregion
 
         #region Queries and dialogs

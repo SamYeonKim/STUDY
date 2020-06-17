@@ -62,8 +62,8 @@ namespace SharedPluginServer
 
             //attach page events
             _mainWorker.OnPageLoaded += _mainWorker_OnPageLoaded;
-           
-
+            _mainWorker.OnPageLoadedError += _mainWorker_OnPageLoadedError;
+            
             IsRunning = true;
 
            _exitTimer=new Timer();
@@ -92,6 +92,26 @@ namespace SharedPluginServer
                 NavigateUrl = url,
                 GenericType = BrowserEventType.Generic,
                 Type = GenericEventType.PageLoaded
+            };
+
+            EventPacket ep = new EventPacket
+            {
+                Event = msg,
+                Type = BrowserEventType.Generic
+            };
+
+            _outCommServer.WriteMessage(ep);
+        }
+
+        private void _mainWorker_OnPageLoadedError(CefErrorCode errorCode, string errorText, string failedUrl)
+        {
+            GenericEvent msg = new GenericEvent()
+            {
+                ErrorCode = (int)errorCode,
+                ErrorText = errorText,
+                ErrorFailedUrl = failedUrl,
+                GenericType = BrowserEventType.Generic,
+                Type = GenericEventType.PageLoadedError
             };
 
             EventPacket ep = new EventPacket

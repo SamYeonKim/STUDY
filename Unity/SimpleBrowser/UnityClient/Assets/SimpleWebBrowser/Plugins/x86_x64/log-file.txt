@@ -298,3 +298,501 @@
 2020-06-01 17:26:42,418 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
 2020-06-01 17:26:42,418 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
 2020-06-01 17:26:47,826 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 16:03:06,931 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 16:03:07,017 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:b93720fa-b899-48a8-844b-7f79825fb1a0,inMem:d2ec2d7a-4aa1-4649-940f-ec2ecf1c4a36,outMem:be1bf4dd-0430-43c0-be29-984ec0524a2c, WebRtc:False,Enable GPU:False,Transparent:False
+2020-06-17 16:03:07,583 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 16:03:07,584 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:09,344 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 16:03:09,345 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:09,345 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 16:03:09,345 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:11,148 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 16:03:16,573 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 16:03:16,603 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:b2dcac1f-2f6e-4045-8a64-bd0474b16868,inMem:894cae1c-46cd-4f48-b7cc-b4b213c65124,outMem:acb8eccf-d42b-4dcf-819e-21e6e712ac4a, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 16:03:17,410 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 16:03:17,412 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:18,713 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 16:03:18,713 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:18,714 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 16:03:18,714 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:22,291 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 16:03:22,969 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 16:03:22,997 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:4f4b9428-a232-4222-b2ac-d070eb3a79cb,inMem:00b02442-d585-41ce-bc2d-6a9cb8814d29,outMem:a6cfe0c4-fbc7-4051-bad5-b46ba9876efc, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 16:03:24,491 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 16:03:24,492 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:25,657 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 16:03:25,658 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:25,658 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 16:03:25,659 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:03:46,564 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 16:04:00,989 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 16:04:01,019 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.com,memfile:f2e7df5b-7a2b-47b5-8c49-652970d24ddb,inMem:e44ad326-01c1-4e47-b530-f7f546eaf4be,outMem:ceed0062-937a-4792-b7b4-cefdf7d15abb, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 16:04:01,840 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 16:04:01,841 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:04:02,827 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 16:04:02,827 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:04:02,828 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 16:04:02,828 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:04:13,936 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-17 16:04:13,936 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 16:05:17,056 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 16:05:17,096 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:4e2f9333-08ff-48eb-86fd-7e6b45fafc97,inMem:3ad9b14a-8260-4382-a506-1e615cf88761,outMem:a89d5518-7ea1-4d6c-b380-3aff09e9e8f0, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 16:05:17,909 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 16:05:17,910 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:05:19,193 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 16:05:19,194 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:05:19,194 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 16:05:19,194 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:05:23,764 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 16:05:23,765 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:05:23,765 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 16:05:23,765 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 16:05:26,004 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 18:38:10,348 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 18:38:10,387 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:26324fed-67f3-4662-ad44-dfdcc0d9840b,inMem:67773df8-fb5e-4eb0-9a04-498230423524,outMem:98e30ab4-22c1-4154-927e-ed6395bcc2ee, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 18:38:11,198 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 18:38:11,199 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:38:12,499 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 18:38:12,499 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:38:12,500 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 18:38:12,500 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:38:18,428 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 18:38:24,569 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 18:38:24,599 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:b5617c4b-2a4b-4df4-a0f9-5bb7f61f5f25,inMem:528b8699-92ad-4156-bb86-bf83493e00fc,outMem:4880d11c-6526-4ffe-9b30-c27d58acbc73, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 18:38:25,418 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 18:38:25,419 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:38:26,654 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 18:38:26,654 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:38:26,655 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 18:38:26,655 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:38:27,563 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 18:38:35,258 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 18:38:35,289 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://naver.cm,memfile:a521556a-3fa5-4d2c-ad54-24e070051745,inMem:71bd64a0-4c04-474a-9ea6-fbd912ee4ac1,outMem:7271da01-31c0-4343-93c2-df5b97800cce, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 18:38:36,116 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 18:38:36,117 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:38:49,765 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 18:39:17,662 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 18:39:17,692 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://google.com,memfile:c98b1548-f203-47ae-b743-ab2d32196e71,inMem:40c402bf-8a27-4797-96c6-6d8f64f37d25,outMem:6102f0e6-dd4b-4d37-a091-f35d22f896be, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 18:39:18,519 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 18:39:18,520 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:39:19,743 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 18:39:19,743 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:39:19,744 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 18:39:19,744 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:39:29,559 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 18:40:16,562 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 18:40:16,593 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:wwww.naver.com,memfile:e3ba811e-b342-4c03-b7f1-6b1f49a86a6a,inMem:98079bd1-9431-4a28-ab41-86f8012276e1,outMem:c6af5331-3b83-4864-a239-9addb431f8de, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 18:40:17,412 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 18:40:17,413 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:40:17,951 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 18:40:17,951 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:40:17,952 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 18:40:17,952 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 18:40:29,736 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:36:51,618 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:36:51,647 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:wwww.naver.com,memfile:f37e3608-b42c-43e5-9421-8ef113ec1b69,inMem:77155803-dcfc-4435-9d68-e6b493fe29bf,outMem:8b6ac982-74c8-4dee-9ce6-f5621e9e64d7, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:36:52,453 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:36:52,455 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:36:52,990 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:36:52,990 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:36:52,991 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:36:52,991 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:37:21,210 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-17 19:37:21,210 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:37:44,730 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:37:44,760 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:wwww.naver.com,memfile:c678f413-05b7-4236-9f5d-6d5a17da3e8f,inMem:52b67e81-6bdd-418c-bb51-6721dd67aee9,outMem:8836667a-1476-4911-a8a8-b68abb6c810d, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:37:45,593 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:37:45,594 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:37:46,030 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:37:46,030 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:37:46,031 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:37:46,031 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:37:50,109 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:38:24,174 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:38:24,205 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:www.naver.cm,memfile:0ae29ff8-993e-4d95-b877-ac88e523ab77,inMem:386dcae8-a724-4c69-97fb-e6614e55cc28,outMem:b9cdee9c-ea76-46c8-a3b8-7c274a479c71, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:38:25,022 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:38:25,024 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:30,216 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:38:30,216 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:30,217 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:38:30,217 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:36,310 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:38:37,018 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:38:37,048 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:www.naver.cm,memfile:223f8387-1e81-4b11-9367-155b182fedf6,inMem:a7b69078-a96f-4db0-96b6-ccf063fd215b,outMem:76098b7d-8cc0-4965-9cc5-14fefbcaaa31, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:38:37,873 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:38:37,874 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:41,661 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:38:41,661 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:41,662 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:38:41,663 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:42,614 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:38:52,982 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:38:53,012 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:www.naver.co,memfile:e00db4e1-cde3-402e-90ae-1b37d1c66252,inMem:af18ac6b-1d52-4206-9865-371e7ba97f36,outMem:760b432b-ce70-4e58-80a9-73cd618e70e6, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:38:53,851 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:38:53,852 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:55,003 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:38:55,003 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:38:55,004 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:38:55,004 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:39:09,084 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:39:22,771 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:39:22,802 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:www.sksj.co,memfile:d5683718-82ee-492f-8bbd-f945921405e0,inMem:4924f2df-8fce-49ca-8bda-3b707418a0da,outMem:33f661dc-3991-4d89-b144-c3a16585f72a, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:39:23,636 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:39:23,638 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:39:24,205 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:39:24,205 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:39:24,206 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:39:24,206 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:39:33,005 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:40:30,704 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:40:30,734 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://icloud.com,memfile:88a7eff0-0602-44c1-bfb8-08d4a1fa68c6,inMem:814e24b0-5615-4438-b3fa-0ffea38ada7e,outMem:79bb5801-2554-4a20-af46-6de9d13e204d, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:40:31,553 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:40:31,554 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:40:32,654 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:40:32,654 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:40:32,655 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:40:32,655 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:40:32,834 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:40:32,834 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:40:32,835 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:40:32,835 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:41:06,630 [1] INFO  SharedPluginServer.App [(null)] - Exiting by timer,timeout:10000
+2020-06-17 19:41:06,630 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:45:59,943 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:45:59,974 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://icloud.com,memfile:1a631aff-ff88-4d41-87ef-c89950624f60,inMem:a3a0b14c-a8bd-417a-9308-6006f46ffe96,outMem:e869a28d-2d23-4cad-85b3-fa83538c143d, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:46:00,790 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:46:00,791 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:01,877 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:46:01,877 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:01,878 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:46:01,878 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:02,074 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:46:02,074 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:02,075 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:46:02,076 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:03,268 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-17 19:46:15,572 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-17 19:46:15,603 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1024,height:768,url:https://iclod.com,memfile:b0e221f7-339c-4bbe-bc92-02098466f108,inMem:48c870d5-cc63-4b36-b9ff-96509e9df66d,outMem:ad3fed12-555b-46c9-a229-7c9312f47619, WebRtc:False,Enable GPU:False,Transparent:True
+2020-06-17 19:46:16,417 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                    window.Unity = {
+                        call: function(msg) {
+                            window.cefQuery({
+                                request: msg,
+                                onSuccess: function(response) {}
+                                onFailure: function(error_code, error_message) {}
+                            })
+                        }
+                    }
+                
+2020-06-17 19:46:16,418 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:17,898 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : 
+                window.Unity = {
+                    call: function(msg) {
+                        windows.location = `Unity:` + msg;
+                    }
+                }
+            
+2020-06-17 19:46:17,899 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:17,900 [1] INFO  SharedPluginServer.App [(null)] - ExecuteJS : Unity.call('ua=' + navigator.userAgent)
+2020-06-17 19:46:17,900 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
+2020-06-17 19:46:28,039 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========

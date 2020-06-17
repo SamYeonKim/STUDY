@@ -24,8 +24,15 @@ namespace SharedPluginServer
             
             if (frame.IsMain)
             {
-            _mainWorker.InvokePageLoaded(frame.Url,httpStatusCode);
-             
+                _mainWorker.InvokePageLoaded(frame.Url,httpStatusCode);             
+            }
+        }
+
+        protected override void OnLoadError(CefBrowser browser, CefFrame frame, CefErrorCode errorCode, string errorText, string failedUrl)
+        {
+            if ( frame.IsMain )
+            {
+                _mainWorker.InvokePageLoadedError(errorCode, errorText, failedUrl);
             }
         }
     }

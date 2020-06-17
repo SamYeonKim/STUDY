@@ -31,9 +31,17 @@ namespace SharedPluginServer
 
         public event PageLoaded OnPageLoaded;
 
+        public delegate void PageLoadedError(CefErrorCode errorCode, string errorText, string failedUrl);
+
+        public event PageLoadedError OnPageLoadedError;
+
         public void InvokePageLoaded(string url, int status)
         {
             OnPageLoaded?.Invoke(url,status);
+        }
+        public void InvokePageLoadedError(CefErrorCode errorCode, string errorText, string failedUrl)
+        {
+            OnPageLoadedError?.Invoke(errorCode, errorText, failedUrl);
         }
 
 

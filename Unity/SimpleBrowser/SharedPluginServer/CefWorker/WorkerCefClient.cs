@@ -30,8 +30,6 @@ namespace SharedPluginServer
 
         public event LoadFinished OnLoadFinished;
        
-        private static readonly log4net.ILog log =
- log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public WorkerCefClient(int windowWidth, int windowHeight,CefWorker mainCefWorker)
         {
             _mainWorker = mainCefWorker;
