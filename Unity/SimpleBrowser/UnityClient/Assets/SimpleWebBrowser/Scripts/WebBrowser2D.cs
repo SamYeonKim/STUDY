@@ -29,6 +29,8 @@ namespace SimpleWebBrowser
 
         public bool BackgroundTransparent = false;
 
+        public string url;
+
         [Header("Testing")]
         public bool EnableGPU = false;
 
@@ -125,7 +127,6 @@ namespace SimpleWebBrowser
                 DialogPrompt = DialogPanel.transform.Find("Prompt").gameObject.GetComponent<InputField>();
 
         }
-
 
         void Awake()
         {
@@ -312,6 +313,16 @@ namespace SimpleWebBrowser
             _mainEngine.SendExecuteJSEvent(js);
         }
 
+        public void LoadUrl(string url)
+        {
+            _mainEngine.SendNavigateEvent(url, false, false);         
+        }
+
+        public void LoadHtml(string fileName)
+        {
+            string url = "file://" + System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
+            LoadUrl(url);
+        }
         #endregion
 
         #region UI
@@ -596,14 +607,9 @@ namespace SimpleWebBrowser
                 foreach (char c in Input.inputString)
                 {
                     _mainEngine.SendCharEvent((int) c, KeyboardEventType.CharKey);
-
-
                 }
                 ProcessKeyEvents();
-
-
             }
-
         }
 
         #region Keys
@@ -632,6 +638,24 @@ namespace SimpleWebBrowser
             _mainEngine.Shutdown();
         }
 
+        private void OnGUI() {
+            url = GUI.TextField(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.15f, Screen.height * 0.1f), url);
 
+            if ( url.EndsWith(".html") )
+            {
+                if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadHTML") )
+                {
+                    LoadHtml(url);
+                }
+            }
+            else
+            {
+                if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadURL") )
+                {
+                    LoadUrl(url);
+                }
+            }
+            
+        }
     }
 }

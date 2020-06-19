@@ -158,10 +158,7 @@ namespace SimpleWebBrowser
             {
                 BrowserTexture = new Texture2D(kWidth, kHeight, TextureFormat.BGRA32, false, true);
                 BrowserTexture.alphaIsTransparency = true;
-
             }
-
-            
 
             sPixelLock = new object();
 
@@ -184,7 +181,6 @@ namespace SimpleWebBrowser
                             WorkingDirectory = PluginServerPath,
                             FileName = PluginServerPath + @"\SharedPluginServer.exe",
                             Arguments = args
-
                         }
                     };
 

@@ -259,7 +259,7 @@ namespace SharedPluginServer
                                 break;
 
                                 case GenericEventType.GoForward:
-                                        _mainWorker.GoForward();
+                                    _mainWorker.GoForward();
                                 break;
 
                                 case GenericEventType.ExecuteJS:
