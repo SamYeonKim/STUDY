@@ -323,6 +323,29 @@ namespace SimpleWebBrowser
             string url = "file://" + System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
             LoadUrl(url);
         }
+        public void SetMargin(int left, int top, int right, int bottom)
+        {
+            var rectTransform = this.GetComponent<RectTransform>();
+
+            rectTransform.anchorMin = new Vector2(0, 0);
+            rectTransform.anchorMax = new Vector2(1, 1);
+
+            int width = Screen.width;
+            int height = Screen.height;
+
+            float leftRate = left / (float)width;
+            float rightRate = right / (float)width;
+            float topRate = top / (float)height;
+            float bottomRate = bottom / (float)height;
+
+            float leftResult = leftRate + rightRate < 1 ? leftRate * width : 0.0f;
+            float rightResult = leftRate + rightRate < 1 ? rightRate * -width : 0.0f;
+            float topResult = topRate + bottomRate < 1 ? topRate * -height : 0.0f;
+            float bottomResult = topRate + bottomRate < 1 ? bottomRate * height : 0.0f;
+            
+            rectTransform.offsetMin = new Vector2(leftResult, bottomResult);
+            rectTransform.offsetMax = new Vector2(rightResult, topResult);
+        }
         #endregion
 
         #region UI
@@ -656,6 +679,10 @@ namespace SimpleWebBrowser
                 }
             }
             
+            if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.3f, Screen.width * 0.05f, Screen.height * 0.1f), "SetMargin") )
+            {
+                SetMargin((int)(Screen.width * 0.2f),(int)(Screen.height * 0.2f),(int)(Screen.width * 0.2f),(int)(Screen.height * 0.2f) );
+            }
         }
     }
 }
