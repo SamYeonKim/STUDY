@@ -6,7 +6,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using MessageLibrary;
 using SharedMemory;
-
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
@@ -91,43 +90,39 @@ namespace SimpleWebBrowser
         #region Init
 
         //A really hackish way to avoid thread error. Should be better way
-      /*  public bool ConnectTcp(out TcpClient tcp)
-        {
-            TcpClient ret = null;
-            try
-            {
-                ret = new TcpClient("127.0.0.1", _port);
-            }
-            catch (Exception ex)
-            {
-                tcp = null;
-                return false;
-            }
+        /*  public bool ConnectTcp(out TcpClient tcp)
+          {
+              TcpClient ret = null;
+              try
+              {
+                  ret = new TcpClient("127.0.0.1", _port);
+              }
+              catch (Exception ex)
+              {
+                  tcp = null;
+                  return false;
+              }
 
-            tcp = ret;
-            return true;
+              tcp = ret;
+              return true;
 
-        }*/
+          }*/
 
 
-        public IEnumerator InitPlugin(int width, int height, string sharedfilename,string initialURL,bool enableWebRTC,bool enableGPU, bool transparent = false)
+        public IEnumerator InitPlugin(int width, int height, string sharedfilename, string initialURL, bool enableWebRTC, bool enableGPU, bool transparent = false)
         {
             //Initialization (for now) requires a predefined path to PluginServer,
             //so change this section if you move the folder
             //Also change the path in deployment script.
 #if UNITY_EDITOR
-    #if UNITY_64
+#if UNITY_64
             string PluginServerPath = Application.dataPath + @"\SimpleWebBrowser\Plugins\x86_x64";
-    #else
-            string PluginServerPath = Application.dataPath + @"\SimpleWebBrowser\Plugins\x86";
-    #endif
 #else
-            Debug.Log("Data path:"+Application.dataPath);
+            string PluginServerPath = Application.dataPath + @"\SimpleWebBrowser\Plugins\x86";
+#endif
+#else
             //HACK
             string AssemblyPath=System.Reflection.Assembly.GetExecutingAssembly().Location;
-            //log this for error handling
-            Debug.Log("Assembly path:"+AssemblyPath);
-
             AssemblyPath = Path.GetDirectoryName(AssemblyPath); //Managed
             
             AssemblyPath = Directory.GetParent(AssemblyPath).FullName; //<project>_Data
@@ -154,7 +149,7 @@ namespace SimpleWebBrowser
             _enableGPU = enableGPU;
             _enableTransparent = transparent;
 
-            if (BrowserTexture == null)
+            if ( BrowserTexture == null )
             {
                 BrowserTexture = new Texture2D(kWidth, kHeight, TextureFormat.BGRA32, false, true);
                 BrowserTexture.alphaIsTransparency = true;
@@ -165,12 +160,12 @@ namespace SimpleWebBrowser
 
             string args = BuildParamsString();
 
-           _connected = false;
+            _connected = false;
 
             _inCommServer = new SharedCommServer(false);
             _outCommServer = new SharedCommServer(true);
 
-            while (!_connected)
+            while ( !_connected )
             {
                 try
                 {
@@ -188,27 +183,28 @@ namespace SimpleWebBrowser
                     _pluginProcess.EnableRaisingEvents = true;
                     Initialized = false;
                 }
-                catch (Exception ex)
+                catch ( Exception ex )
                 {
                     //log the file
                     Debug.Log("FAILED TO START SERVER FROM:" + PluginServerPath + @"\SharedPluginServer.exe");
                     throw;
                 }
                 yield return new WaitForSeconds(1.0f);
-               //connected = ConnectTcp(out _clientSocket);
+                //connected = ConnectTcp(out _clientSocket);
 
                 _inCommServer.Connect(_inCommFile);
                 bool b1 = _inCommServer.GetIsOpen();
                 _outCommServer.Connect(_outCommFile);
                 bool b2 = _outCommServer.GetIsOpen();
-                
+
                 _connected = b1 && b2;
-               
-               _pluginProcess.Exited += (object sender, EventArgs e) =>{
-                   Debug.Log("Exited");
-                   Initialized = false;   
-                   _connected = false;             
-               };
+
+                _pluginProcess.Exited += (object sender, EventArgs e) =>
+                {
+                    Debug.Log("Exited");
+                    Initialized = false;
+                    _connected = false;
+                };
             }
         }
 
@@ -220,17 +216,17 @@ namespace SimpleWebBrowser
             ret = ret + _outCommFile + " ";
             ret = ret + _inCommFile + " ";
 
-            if (_enableWebRTC)
-                ret = ret + " 1"+" ";
-            else
-                ret = ret + " 0"+" ";
-
-            if(_enableGPU)
+            if ( _enableWebRTC )
                 ret = ret + " 1" + " ";
             else
                 ret = ret + " 0" + " ";
-            
-            if (_enableTransparent)
+
+            if ( _enableGPU )
+                ret = ret + " 1" + " ";
+            else
+                ret = ret + " 0" + " ";
+
+            if ( _enableTransparent )
                 ret = ret + " 1" + " ";
             else
                 ret = ret + " 0" + " ";
@@ -246,7 +242,7 @@ namespace SimpleWebBrowser
 
         public void SendNavigateEvent(string url, bool back, bool forward)
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 GenericEvent ge = new GenericEvent()
                 {
@@ -255,9 +251,9 @@ namespace SimpleWebBrowser
                     NavigateUrl = url
                 };
 
-                if (back)
+                if ( back )
                     ge.Type = GenericEventType.GoBack;
-                else if (forward)
+                else if ( forward )
                     ge.Type = GenericEventType.GoForward;
 
                 EventPacket ep = new EventPacket()
@@ -266,18 +262,13 @@ namespace SimpleWebBrowser
                     Type = MessageLibrary.BrowserEventType.Generic
                 };
 
-                /*MemoryStream mstr = new MemoryStream();
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(mstr, ep);
-                byte[] b = mstr.GetBuffer();
-                _outCommServer.WriteBytes(b);*/
                 _outCommServer.WriteMessage(ep);
             }
         }
 
         public void SendShutdownEvent()
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 GenericEvent ge = new GenericEvent()
                 {
@@ -297,13 +288,13 @@ namespace SimpleWebBrowser
 
         public void PushMessages()
         {
-            if(Initialized)
-            _outCommServer.PushMessages();
+            if ( Initialized )
+                _outCommServer.PushMessages();
         }
 
-       public void SendDialogResponse(bool ok, string dinput)
+        public void SendDialogResponse(bool ok, string dinput)
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 DialogEvent de = new DialogEvent()
                 {
@@ -324,7 +315,7 @@ namespace SimpleWebBrowser
 
         public void SendQueryResponse(string response)
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 GenericEvent ge = new GenericEvent()
                 {
@@ -345,7 +336,7 @@ namespace SimpleWebBrowser
 
         public void SendCharEvent(int character, KeyboardEventType type)
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 KeyboardEvent keyboardEvent = new KeyboardEvent()
                 {
@@ -364,7 +355,7 @@ namespace SimpleWebBrowser
 
         public void SendMouseEvent(MouseMessage msg)
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 EventPacket ep = new EventPacket
                 {
@@ -379,7 +370,7 @@ namespace SimpleWebBrowser
 
         public void SendExecuteJSEvent(string js)
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 GenericEvent ge = new GenericEvent()
                 {
@@ -399,24 +390,24 @@ namespace SimpleWebBrowser
         }
 
         public void SendPing()
-       {
-            if (Initialized)
+        {
+            if ( Initialized )
             {
-            GenericEvent ge = new GenericEvent()
-            {
-                Type = GenericEventType.Navigate, //could be any
-                GenericType = BrowserEventType.Ping,
+                GenericEvent ge = new GenericEvent()
+                {
+                    Type = GenericEventType.Navigate, //could be any
+                    GenericType = BrowserEventType.Ping,
 
-            };
+                };
 
-            EventPacket ep = new EventPacket()
-            {
-                Event = ge,
-                Type = BrowserEventType.Ping
-            };
+                EventPacket ep = new EventPacket()
+                {
+                    Event = ge,
+                    Type = BrowserEventType.Ping
+                };
 
-            _outCommServer.WriteMessage(ep);
-       }
+                _outCommServer.WriteMessage(ep);
+            }
         }
 
 
@@ -429,26 +420,20 @@ namespace SimpleWebBrowser
         /// Used to run JS on initialization, for example, to set CSS
         /// </summary>
         /// <param name="js">JS code</param>
-       public void RunJSOnce(string js )
+        public void RunJSOnce(string js)
         {
             _needToRunOnce = true;
             _runOnceJS = js;
         }
 
         #endregion
-     public void UpdateTexture()
+        public void UpdateTexture()
         {
-
-            if (Initialized)
+            if ( Initialized )
             {
-
-
                 UpdateInitialized();
 
-
-
-                //execute run-once functions
-                if (_needToRunOnce)
+                if ( _needToRunOnce )
                 {
                     SendExecuteJSEvent(_runOnceJS);
                     _needToRunOnce = false;
@@ -456,72 +441,61 @@ namespace SimpleWebBrowser
             }
             else
             {
-                //  yield return new WaitForSeconds(2);
-                if(_connected)
-                { 
-               
-                   
-                    
-                        //Thread.Sleep(200); //give it some time to initialize
+                if ( _connected )
+                {
+                    try
+                    {
+                        _mainTexArray = new SharedArray<byte>(_sharedFileName);
 
-                        try
-                        {
-
-
-                            //init memory file
-                            _mainTexArray = new SharedArray<byte>(_sharedFileName);
-
-                            Initialized = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            //SharedMem and TCP exceptions
-                            Debug.Log("Exception on init:" + ex.Message + ".Waiting for plugin server");
-                        }
+                        Initialized = true;
+                    }
+                    catch ( Exception ex )
+                    {
+                        //SharedMem and TCP exceptions
+                        Debug.Log("Exception on init:" + ex.Message + ".Waiting for plugin server");
+                    }
 
                 }
-               
+
 
             }
         }
-
         //Receiver
         public void CheckMessage()
         {
-
-            if (Initialized)
+            if ( Initialized )
             {
                 try
                 {
                     // Ensure that no other threads try to use the stream at the same time.
                     EventPacket ep = _inCommServer.GetMessage();
-                    if (ep != null)
+                    if ( ep != null )
                     {
                         //main handlers
-                        if (ep.Type == BrowserEventType.Dialog)
+                        if ( ep.Type == BrowserEventType.Dialog )
                         {
                             DialogEvent dev = ep.Event as DialogEvent;
-                            if (dev != null)
+                            if ( dev != null )
                             {
-                                if (OnJavaScriptDialog != null)
+                                if ( OnJavaScriptDialog != null )
                                     OnJavaScriptDialog(dev.Message, dev.DefaultPrompt, dev.Type);
                             }
                         }
-                        if (ep.Type == BrowserEventType.Generic)
+                        if ( ep.Type == BrowserEventType.Generic )
                         {
                             GenericEvent ge = ep.Event as GenericEvent;
-                            if (ge != null)
+                            if ( ge != null )
                             {
-                                if (ge.Type == GenericEventType.JSQuery)
+                                if ( ge.Type == GenericEventType.JSQuery )
                                 {
-                                    if (OnJavaScriptQuery != null)
+                                    if ( OnJavaScriptQuery != null )
                                         OnJavaScriptQuery(ge.JsQuery);
                                 }
                             }
 
-                            if (ge.Type == GenericEventType.PageLoaded)
+                            if ( ge.Type == GenericEventType.PageLoaded )
                             {
-                                if (OnPageLoaded != null)
+                                if ( OnPageLoaded != null )
                                     OnPageLoaded(ge.NavigateUrl);
                             }
                             else if ( ge.Type == GenericEventType.PageLoadedError )
@@ -529,43 +503,36 @@ namespace SimpleWebBrowser
                                 if ( OnPageLoadedError != null )
                                     OnPageLoadedError((Xilium.CefGlue.CefErrorCode)ge.ErrorCode, ge.ErrorText, ge.ErrorFailedUrl);
                             }
-                            
-                        }
 
-                        Debug.Log(ep.Type + " : " + ep.Event);
+                        }
                     }
 
                 }
-                catch (Exception e)
+                catch ( Exception e )
                 {
                     Debug.Log("Error reading from socket,waiting for plugin server to start...");
                 }
             }
         }
-
-
         public void Shutdown()
         {
             GameObject.DestroyImmediate(BrowserTexture);
             SendShutdownEvent();
         }
-
-        //////////Added//////////
         public void UpdateInitialized()
         {
-            if (Initialized)
+            if ( Initialized )
             {
                 SendPing();
 
-                if (_bufferBytes == null)
+                if ( _bufferBytes == null )
                 {
                     long arraySize = _mainTexArray.Length;
-                    Debug.Log("Memory array size:" + arraySize);
                     _bufferBytes = new byte[arraySize];
                 }
                 _mainTexArray.CopyTo(_bufferBytes, 0);
 
-                lock (sPixelLock)
+                lock ( sPixelLock )
                 {
 
                     BrowserTexture.LoadRawTextureData(_bufferBytes);
@@ -575,5 +542,5 @@ namespace SimpleWebBrowser
             }
         }
     }
-   
+
 }

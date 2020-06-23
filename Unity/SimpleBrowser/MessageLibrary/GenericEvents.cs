@@ -89,12 +89,5 @@ namespace MessageLibrary
         public int ErrorCode;
         public string ErrorText;
         public string ErrorFailedUrl;
-
-        /*protected override bool Compare(AbstractEvent ev2)
-        {
-            GenericEvent ge = ev2 as GenericEvent;
-
-            return (NavigateUrl == ge.NavigateUrl && JsCode == ge.JsCode && JsQuery == ge.JsQuery && JsQueryResponse == ge.JsQueryResponse);
-        }*/
     }
 }

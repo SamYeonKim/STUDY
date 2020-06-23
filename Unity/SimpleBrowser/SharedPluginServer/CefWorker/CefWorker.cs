@@ -160,8 +160,7 @@ namespace SharedPluginServer
         private void Handler_OnBrowserQuery(string query)
         {
             log.Info("Handler_OnBrowserQuery : " + query);
-          OnBrowserJSQuery?.Invoke(query);
-
+            OnBrowserJSQuery?.Invoke(query);
         }
 
         public void AnswerQuery(string resp)

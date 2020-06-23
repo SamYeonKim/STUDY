@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using MessageLibrary;
+using System;
 using System.Collections;
-using System.Text;
-//using System.Diagnostics;
-using MessageLibrary;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -15,20 +13,14 @@ namespace SimpleWebBrowser
 
         #region General
 
-        [Header("General settings")] public int Width = 1024;
-
+        [Header("General settings")]
+        public int Width = 1024;
         public int Height = 768;
-
         public string MemoryFile = "MainSharedMem";
-
         public bool RandomMemoryFile = true;
-
         public string InitialURL = "http://www.google.com";
-
         public bool EnableWebRTC = false;
-
         public bool BackgroundTransparent = false;
-
         public string url;
 
         [Header("Testing")]
@@ -44,11 +36,9 @@ namespace SimpleWebBrowser
         [SerializeField]
         public RawImage Browser2D = null;
 
-
         [Header("UI settings")]
         [SerializeField]
         public BrowserUI mainUIPanel;
-
         public bool KeepUIVisible = false;
 
         [Header("Dialog settings")]
@@ -78,30 +68,18 @@ namespace SimpleWebBrowser
         private bool _setUrl = false;
         private string _setUrlString = "";
 
-        //input
-        //private GraphicRaycaster _raycaster;
-        //private StandaloneInputModule _input;
-
         #region JS Query events
 
         public delegate void JSQuery(string query);
-
         public event JSQuery OnJSQuery;
 
         #endregion
 
         private Material _mainMaterial;
-
         private BrowserEngine _mainEngine;
-
-
-
         private bool _focused = false;
-
-
         private int posX = 0;
         private int posY = 0;
-
         private Camera _mainCamera;
 
         #region Initialization
@@ -109,30 +87,29 @@ namespace SimpleWebBrowser
         //why Unity does not store the links in package?
         void InitPrefabLinks()
         {
-            if (Browser2D == null)
+            if ( Browser2D == null )
                 Browser2D = gameObject.GetComponent<RawImage>();
-            if (mainUIPanel == null)
+            if ( mainUIPanel == null )
                 mainUIPanel = gameObject.transform.Find("MainUI").gameObject.GetComponent<BrowserUI>();
-            if (DialogPanel == null)
+            if ( DialogPanel == null )
                 DialogPanel = gameObject.transform.Find("MessageBox").gameObject;
-            if (DialogText == null)
+            if ( DialogText == null )
                 DialogText = DialogPanel.transform.Find("MessageText").gameObject.GetComponent<Text>();
-            if (OkButton == null)
+            if ( OkButton == null )
                 OkButton = DialogPanel.transform.Find("OK").gameObject.GetComponent<Button>();
-            if (YesButton == null)
+            if ( YesButton == null )
                 YesButton = DialogPanel.transform.Find("Yes").gameObject.GetComponent<Button>();
-            if (NoButton == null)
+            if ( NoButton == null )
                 NoButton = DialogPanel.transform.Find("No").gameObject.GetComponent<Button>();
-            if (DialogPrompt == null)
+            if ( DialogPrompt == null )
                 DialogPrompt = DialogPanel.transform.Find("Prompt").gameObject.GetComponent<InputField>();
-
         }
 
         void Awake()
         {
             _mainEngine = new BrowserEngine();
 
-            if (RandomMemoryFile)
+            if ( RandomMemoryFile )
             {
                 Guid memid = Guid.NewGuid();
                 MemoryFile = memid.ToString();
@@ -140,11 +117,11 @@ namespace SimpleWebBrowser
         }
 
         IEnumerator Start()
-        {            
+        {
             InitPrefabLinks();
             mainUIPanel.InitPrefabLinks();
 
-            yield return _mainEngine.InitPlugin(Width, Height, MemoryFile, InitialURL,EnableWebRTC,EnableGPU, BackgroundTransparent);
+            yield return _mainEngine.InitPlugin(Width, Height, MemoryFile, InitialURL, EnableWebRTC, EnableGPU, BackgroundTransparent);
 
             JSInitializationCode = @"
                     window.Unity = {
@@ -157,8 +134,9 @@ namespace SimpleWebBrowser
                         }
                     }
                 ";
+                
             //run initialization
-            if (JSInitializationCode.Trim() != "")
+            if ( JSInitializationCode.Trim() != "" )
                 _mainEngine.RunJSOnce(JSInitializationCode);
 
             _mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -169,7 +147,7 @@ namespace SimpleWebBrowser
 
             // _mainInput = MainUrlInput.GetComponent<Input>();
             mainUIPanel.KeepUIVisible = KeepUIVisible;
-            if (!KeepUIVisible)
+            if ( !KeepUIVisible )
                 mainUIPanel.Hide();
 
             //attach dialogs and querys
@@ -188,41 +166,10 @@ namespace SimpleWebBrowser
 
             Debug.Log("OnPageLoaded : " + url);
 
-            // RunJavaScript(@"
-            //         window.Unity = {
-            //             call: function(msg) {
-            //                 window.cefQuery({
-            //                     request: 'test : ' + msg,
-            //                     onSuccess: function(response) {}
-            //                     onFailure: function(error_code, error_message) {}
-            //                 })
-            //             }
-            //         }
-            //     ");
-            // RunJavaScript(@"Unity.call(`HelloWolrld`);");
+            // JsDialog 테스트용
+            // RunJavaScript(@"alert('helloworld')");
 
-            RunJavaScript(@"
-                window.Unity = {
-                    call: function(msg) {
-                        windows.location = `Unity:` + msg;
-                    }
-                }
-            ");
-            RunJavaScript(@"Unity.call('ua=' + navigator.userAgent)");
-
-            // RunJavaScript(@"
-            //     function sendMessage(msg) {
-            //         window.cefQuery({
-            //             request: `Test :` + msg;
-            //             onSuccess: function(response){}
-            //             onFailure: function(error_code, error_message){}
-            //         });
-            //     }
-            //     sendMessage(`Call`);
-            // ");
-            // RunJavaScript(@"sendMessage(`HellowWord`);");
-
-            // RunJavaScript(@"window.location = `https://google.com`;");
+            RunJavaScript(@"window.cefQuery({ request: navigator.userAgent, onSuccess: function(response) { console.log(response); }, onFailure: function(err,msg) { console.log(err, msg); } });");
         }
 
         private void _mainEngine_OnPageLoadedError(Xilium.CefGlue.CefErrorCode errorCode, string errorText, string errorUrl)
@@ -261,8 +208,7 @@ namespace SimpleWebBrowser
 
         private void ShowDialog()
         {
-
-            switch (_dialogEventType)
+            switch ( _dialogEventType )
             {
                 case DialogEventType.Alert:
                 {
@@ -315,7 +261,7 @@ namespace SimpleWebBrowser
 
         public void LoadUrl(string url)
         {
-            _mainEngine.SendNavigateEvent(url, false, false);         
+            _mainEngine.SendNavigateEvent(url, false, false);
         }
 
         public void LoadHtml(string fileName)
@@ -342,7 +288,7 @@ namespace SimpleWebBrowser
             float rightResult = leftRate + rightRate < 1 ? rightRate * -width : 0.0f;
             float topResult = topRate + bottomRate < 1 ? topRate * -height : 0.0f;
             float bottomResult = topRate + bottomRate < 1 ? bottomRate * height : 0.0f;
-            
+
             rectTransform.offsetMin = new Vector2(leftResult, bottomResult);
             rectTransform.offsetMax = new Vector2(rightResult, topResult);
         }
@@ -359,7 +305,7 @@ namespace SimpleWebBrowser
 
         public void GoBackForward(bool forward)
         {
-            if (forward)
+            if ( forward )
                 _mainEngine.SendNavigateEvent("", false, true);
             else
                 _mainEngine.SendNavigateEvent("", true, false);
@@ -392,18 +338,18 @@ namespace SimpleWebBrowser
             var _raycaster = GetComponentInParent<GraphicRaycaster>();
             var _input = FindObjectOfType<StandaloneInputModule>();
 
-            if (_raycaster != null && _input != null && _mainEngine.Initialized)
+            if ( _raycaster != null && _input != null && _mainEngine.Initialized )
             {
-                while (Application.isPlaying)
+                while ( Application.isPlaying )
                 {
                     Vector2 localPos = GetScreenCoords(_raycaster, _input);
 
-                    int px = (int) localPos.x;
-                    int py = (int) localPos.y;
+                    int px = (int)localPos.x;
+                    int py = (int)localPos.y;
 
                     ProcessScrollInput(px, py);
 
-                    if (posX != px || posY != py)
+                    if ( posX != px || posY != py )
                     {
                         MouseMessage msg = new MouseMessage
                         {
@@ -415,11 +361,11 @@ namespace SimpleWebBrowser
                             Button = MouseButton.None
                         };
 
-                        if (Input.GetMouseButton(0))
+                        if ( Input.GetMouseButton(0) )
                             msg.Button = MouseButton.Left;
-                        if (Input.GetMouseButton(1))
+                        if ( Input.GetMouseButton(1) )
                             msg.Button = MouseButton.Right;
-                        if (Input.GetMouseButton(1))
+                        if ( Input.GetMouseButton(1) )
                             msg.Button = MouseButton.Middle;
 
                         posX = px;
@@ -437,29 +383,29 @@ namespace SimpleWebBrowser
         public void OnPointerDown(PointerEventData data)
         {
 
-            if (_mainEngine.Initialized)
+            if ( _mainEngine.Initialized )
             {
                 var _raycaster = GetComponentInParent<GraphicRaycaster>();
                 var _input = FindObjectOfType<StandaloneInputModule>();
                 Vector2 pixelUV = GetScreenCoords(_raycaster, _input);
 
-                switch (data.button)
+                switch ( data.button )
                 {
                     case PointerEventData.InputButton.Left:
                     {
-                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Left,
+                        SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Left,
                             MouseEventType.ButtonDown);
                         break;
                     }
                     case PointerEventData.InputButton.Right:
                     {
-                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Right,
+                        SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Right,
                             MouseEventType.ButtonDown);
                         break;
                     }
                     case PointerEventData.InputButton.Middle:
                     {
-                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Middle,
+                        SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Middle,
                             MouseEventType.ButtonDown);
                         break;
                     }
@@ -476,29 +422,29 @@ namespace SimpleWebBrowser
         public void OnPointerUp(PointerEventData data)
         {
 
-            if (_mainEngine.Initialized)
+            if ( _mainEngine.Initialized )
             {
                 var _raycaster = GetComponentInParent<GraphicRaycaster>();
                 var _input = FindObjectOfType<StandaloneInputModule>();
 
                 Vector2 pixelUV = GetScreenCoords(_raycaster, _input);
 
-                switch (data.button)
+                switch ( data.button )
                 {
                     case PointerEventData.InputButton.Left:
                     {
-                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Left, MouseEventType.ButtonUp);
+                        SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Left, MouseEventType.ButtonUp);
                         break;
                     }
                     case PointerEventData.InputButton.Right:
                     {
-                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Right,
+                        SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Right,
                             MouseEventType.ButtonUp);
                         break;
                     }
                     case PointerEventData.InputButton.Middle:
                     {
-                        SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Middle,
+                        SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Middle,
                             MouseEventType.ButtonUp);
                         break;
                     }
@@ -508,16 +454,11 @@ namespace SimpleWebBrowser
             }
 
         }
-
-
-
         #endregion
 
         #region Helpers
-
         private Vector2 GetScreenCoords(GraphicRaycaster ray, StandaloneInputModule input)
         {
-
             Vector2 localPos; // Mouse position  
             RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, Input.mousePosition,
                 ray.eventCamera, out localPos);
@@ -525,16 +466,13 @@ namespace SimpleWebBrowser
             // local pos is the mouse position.
             RectTransform trns = transform as RectTransform;
             localPos.y = trns.rect.height - localPos.y;
-            //Debug.Log("x:"+localPos.x+",y:"+localPos.y);
 
             //now recalculate to texture
-            localPos.x = (localPos.x*Width)/trns.rect.width;
-            localPos.y = (localPos.y*Height)/trns.rect.height;
+            localPos.x = (localPos.x * Width) / trns.rect.width;
+            localPos.y = (localPos.y * Height) / trns.rect.height;
 
             return localPos;
-
         }
-
         private void SendMouseButtonEvent(int x, int y, MouseButton btn, MouseEventType type)
         {
             MouseMessage msg = new MouseMessage
@@ -543,21 +481,18 @@ namespace SimpleWebBrowser
                 X = x,
                 Y = y,
                 GenericType = MessageLibrary.BrowserEventType.Mouse,
-                // Delta = e.Delta,
                 Button = btn
             };
             _mainEngine.SendMouseEvent(msg);
         }
-
         private void ProcessScrollInput(int px, int py)
         {
             float scroll = Input.GetAxis("Mouse ScrollWheel");
+            scroll = scroll * _mainEngine.BrowserTexture.height;
 
-            scroll = scroll*_mainEngine.BrowserTexture.height;
+            int scInt = (int)scroll;
 
-            int scInt = (int) scroll;
-
-            if (scInt != 0)
+            if ( scInt != 0 )
             {
                 MouseMessage msg = new MouseMessage
                 {
@@ -569,20 +504,24 @@ namespace SimpleWebBrowser
                     Button = MouseButton.None
                 };
 
-                if (Input.GetMouseButton(0))
+                if ( Input.GetMouseButton(0) )
+                {
                     msg.Button = MouseButton.Left;
-                if (Input.GetMouseButton(1))
+                }
+                if ( Input.GetMouseButton(1) )
+                {
                     msg.Button = MouseButton.Right;
-                if (Input.GetMouseButton(1))
+                }
+                if ( Input.GetMouseButton(1) )
+                {
                     msg.Button = MouseButton.Middle;
+                }
 
                 _mainEngine.SendMouseEvent(msg);
             }
         }
-
         #endregion
 
-        // Update is called once per frame
         void Update()
         {
             _mainEngine.UpdateTexture();
@@ -591,69 +530,57 @@ namespace SimpleWebBrowser
             if ( !_mainEngine.Initialized )
                 return;
 
-            #region 2D mouse
-
-            if (Browser2D != null)
-            {
-                //GetScreenCoords(true);
-            }
-
-
-            #endregion
-
             //Dialog
-            if (_showDialog)
+            if ( _showDialog )
             {
                 ShowDialog();
             }
 
             //Query
-            if (_startQuery)
+            if ( _startQuery )
             {
                 _startQuery = false;
-                if (OnJSQuery != null)
+                if ( OnJSQuery != null )
                     OnJSQuery(_jsQueryString);
             }
 
             //Status
-            if (_setUrl)
+            if ( _setUrl )
             {
                 _setUrl = false;
                 mainUIPanel.UrlField.text = _setUrlString;
 
             }
 
-
-
-            if (_focused && !mainUIPanel.UrlField.isFocused) //keys
+            if ( _focused && !mainUIPanel.UrlField.isFocused )
             {
-                foreach (char c in Input.inputString)
+                foreach ( char c in Input.inputString )
                 {
-                    _mainEngine.SendCharEvent((int) c, KeyboardEventType.CharKey);
+                    _mainEngine.SendCharEvent((int)c, KeyboardEventType.CharKey);
                 }
                 ProcessKeyEvents();
             }
         }
 
         #region Keys
-
         private void ProcessKeyEvents()
         {
-            foreach (KeyCode k in Enum.GetValues(typeof (KeyCode)))
+            foreach ( KeyCode k in Enum.GetValues(typeof(KeyCode)) )
             {
                 CheckKey(k);
             }
-
         }
-
         private void CheckKey(KeyCode code)
         {
-            if (Input.GetKeyDown(code))
-                _mainEngine.SendCharEvent((int) code, KeyboardEventType.Down);
-            if (Input.GetKeyUp(KeyCode.Backspace))
-                _mainEngine.SendCharEvent((int) code, KeyboardEventType.Up);
+            if ( Input.GetKeyDown(code) )
+            {
+                _mainEngine.SendCharEvent((int)code, KeyboardEventType.Down);
+            }                
+            if ( Input.GetKeyUp(KeyCode.Backspace) )
+            {
+                _mainEngine.SendCharEvent((int)code, KeyboardEventType.Up);
+            }
         }
-
         #endregion
 
         void OnDisable()
@@ -661,7 +588,8 @@ namespace SimpleWebBrowser
             _mainEngine.Shutdown();
         }
 
-        private void OnGUI() {
+        private void OnGUI()
+        {
             url = GUI.TextField(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.15f, Screen.height * 0.1f), url);
 
             if ( url.EndsWith(".html") )
@@ -678,10 +606,10 @@ namespace SimpleWebBrowser
                     LoadUrl(url);
                 }
             }
-            
+
             if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.3f, Screen.width * 0.05f, Screen.height * 0.1f), "SetMargin") )
             {
-                SetMargin((int)(Screen.width * 0.2f),(int)(Screen.height * 0.2f),(int)(Screen.width * 0.2f),(int)(Screen.height * 0.2f) );
+                SetMargin((int)(Screen.width * 0.2f), (int)(Screen.height * 0.2f), (int)(Screen.width * 0.2f), (int)(Screen.height * 0.2f));
             }
         }
     }
