@@ -30,7 +30,7 @@ public class StressTest : MonoBehaviour
     private string strHeight;
     private string strCount;
 
-    private List<WebBrowser2D> createdBrowser = new List<WebBrowser2D>();
+    private List<WebBrowser> createdBrowser = new List<WebBrowser>();
     
     private void Start() {
         strWidth = width.ToString();    
@@ -58,15 +58,27 @@ public class StressTest : MonoBehaviour
 
                 RectTransform transform = newBrowserGo.GetComponent<RectTransform>();
                 transform.Translate(deltaX * i, deltaY* i , 0);
-                WebBrowser2D browser = newBrowserGo.GetComponent<WebBrowser2D>();
-                browser.Width = width;
-                browser.Height = height;
 
-                browser.InitialURL = urlVariation[i%urlVariation.Length];
+                // #region For WebBrowser2D
+                // WebBrowser2D browser = newBrowserGo.GetComponent<WebBrowser2D>();
+                // browser.Width = width;
+                // browser.Height = height;
+
+                // // browser.InitialURL = urlVariation[i%urlVariation.Length];
+                // browser.InitialURL = "";
+                // #endregion
+
+                WebBrowser browserReal = newBrowserGo.GetComponent<WebBrowser>();
+                browserReal.width = width;
+                browserReal.height = height;
 
                 newBrowserGo.SetActive(true);
 
-                createdBrowser.Add(browser);
+                browserReal.Init(false, null, null, null);
+
+                browserReal.LoadUrl(urlVariation[i%urlVariation.Length]);
+
+                createdBrowser.Add(browserReal);
             }
         }
 

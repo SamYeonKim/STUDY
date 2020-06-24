@@ -119,10 +119,6 @@ public class SharedCommServer : SharedMemServer
                 sent = true;
             }
         }
-        /* if(_isWrite)
-         {
-             _packetsToSend.Enqueue(ep);
-         }*/
     }
 
     public void PushMessages()

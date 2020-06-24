@@ -18,26 +18,7 @@ namespace MessageLibrary
     [Serializable]
     public abstract class AbstractEvent
     {
-        public BrowserEventType GenericType;//?
-
-       /* protected abstract bool Compare(AbstractEvent ev2);
-
-        public static bool operator !=(AbstractEvent ep1, AbstractEvent ep2)
-        {
-            if (ep1.GenericType != ep2.GenericType)
-                return true;
-            else
-                return !ep1.Compare(ep2);
-        }
-
-        public static bool operator ==(AbstractEvent ep1, AbstractEvent ep2)
-        {
-            if (ep1.GenericType == ep2.GenericType)
-
-                return ep1.Compare(ep2);
-            else
-                return false;
-        }*/
+        public BrowserEventType GenericType;
     }
 
     [Serializable]
@@ -46,16 +27,6 @@ namespace MessageLibrary
         public BrowserEventType Type;
 
         public AbstractEvent Event;
-
-      /*  public static bool operator != (EventPacket ep1, EventPacket ep2)
-        {
-            return !(ep1.Type == ep2.Type && ep1.Event != ep2.Event);
-        }
-
-        public static bool operator ==(EventPacket ep1, EventPacket ep2)
-        {
-            return (ep1.Type == ep2.Type && ep1.Event != ep2.Event);
-        }*/
     }
 
     public enum GenericEventType
@@ -69,25 +40,33 @@ namespace MessageLibrary
         JSQueryResponse=6,
         PageLoaded=7,
         PageLoadedError = 8
-    }
-
-   
+    }  
 
     [Serializable]
     public class GenericEvent : AbstractEvent
     {
-        public GenericEventType Type;
+        public GenericEventType Type;                
+    }
 
-        public string NavigateUrl;
-
-        public string JsCode;
-
-        public string JsQuery;
-
-        public string JsQueryResponse;
-
+    [Serializable]
+    public class ErrorEvent : GenericEvent
+    {
         public int ErrorCode;
         public string ErrorText;
         public string ErrorFailedUrl;
+    }
+
+    [Serializable]
+    public class NavigateEvent : GenericEvent
+    {
+        public string NavigateUrl;
+        public bool CanGoForward;
+        public bool CanGoBack;
+    }
+
+    [Serializable]
+    public class JSEvent : GenericEvent
+    {
+        public string JsCode;
     }
 }

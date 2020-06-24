@@ -1,567 +1,464 @@
-﻿using System;
-using UnityEngine;
+﻿using MessageLibrary;
+using System;
 using System.Collections;
-using System.Text;
-//using System.Diagnostics;
-using MessageLibrary;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
-namespace SimpleWebBrowser
+[RequireComponent(typeof(RawImage))]
+public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,IPointerUpHandler    
 {
-    public class WebBrowser : MonoBehaviour
+    [Header("General settings")]
+    public int width = 1024;
+    public int height = 768;
+    public string memoryFile = "MainSharedMem";
+    public bool randomMemoryFile = true;
+    public bool backgroundTransparent = false;
+    public string url;
+
+    [Multiline]
+    public string jSInitializationCode = "";
+
+    [Header("2D setup")]
+    [SerializeField]
+    public RawImage rawImage = null;
+
+    private string lastLoadedUrl = "";
+    private SimpleWebBrowser.BrowserEngine mainEngine;
+    private bool inputFocused = false;
+    private int mousePosX = 0;
+    private int mousePosY = 0;
+    private Action<string> callOnError;
+    private Action<string> callOnLoaded;
+    private Action<string> callFromJS;
+
+    private void OnDisable()
     {
-
-        #region General
-
-        [Header("General settings")] public int Width = 1024;
-
-        public int Height = 768;
-
-        public string MemoryFile = "MainSharedMem";
-
-        public bool RandomMemoryFile = true;
-
-
-        public string InitialURL = "http://www.google.com";
-
-        public bool EnableWebRTC = false;
-
-        [Header("Testing")]
-        public bool EnableGPU = false;
-
-        [Multiline]
-        public string JSInitializationCode = "";
-
-        #endregion
-
-
-
-        [Header("UI settings")]
-        [SerializeField]
-        public BrowserUI mainUIPanel;
-
-        public bool KeepUIVisible = false;
-
-        public bool UIEnabled = true;
-       public Camera MainCamera;
-
-        [Header("Dialog settings")] [SerializeField] public bool DialogEnabled = false;
-
-        [SerializeField]
-        public Canvas DialogCanvas;
-        [SerializeField]
-        public Text DialogText;
-        [SerializeField]
-        public Button OkButton;
-        [SerializeField]
-        public Button YesButton;
-        [SerializeField]
-        public Button NoButton;
-        [SerializeField]
-        public InputField DialogPrompt;
-
-        //dialog states - threading
-        private bool _showDialog = false;
-        private string _dialogMessage = "";
-        private string _dialogPrompt = "";
-        private DialogEventType _dialogEventType;
-        //query - threading
-        private bool _startQuery = false;
-        private string _jsQueryString = "";
-        
-        //status - threading
-        private bool _setUrl = false;
-        private string _setUrlString = "";
-       
-
-        #region JS Query events
-
-        public delegate void JSQuery(string query);
-
-        public event JSQuery OnJSQuery;
-
-        #endregion
-
-
-        private Material _mainMaterial;
-
-
-
-
-
-        private BrowserEngine _mainEngine;
-
-
-
-        private bool _focused = false;
-
-
-        private int posX = 0;
-        private int posY = 0;
-
-
-        //why Unity does not store the links in package?
-        void InitPrefabLinks()
+        if ( mainEngine != null )
         {
-            if (mainUIPanel == null)
-                mainUIPanel = gameObject.transform.Find("MainUI").gameObject.GetComponent<BrowserUI>();
-            if (DialogEnabled)
-            {
-                if (DialogCanvas == null)
-                    DialogCanvas = gameObject.transform.Find("MessageBox").gameObject.GetComponent<Canvas>();
-            if (DialogText == null)
-                DialogText = DialogCanvas.transform.Find("MessageText").gameObject.GetComponent<Text>();
-            if (OkButton == null)
-                OkButton = DialogCanvas.transform.Find("OK").gameObject.GetComponent<Button>();
-            if (YesButton == null)
-                YesButton = DialogCanvas.transform.Find("Yes").gameObject.GetComponent<Button>();
-            if (NoButton == null)
-                NoButton = DialogCanvas.transform.Find("No").gameObject.GetComponent<Button>();
-            if (DialogPrompt == null)
-                DialogPrompt = DialogCanvas.transform.Find("Prompt").gameObject.GetComponent<InputField>();
-
+            Debug.Log("OnDisable");
+            mainEngine.Shutdown();
+        }        
     }
-  }
 
-        void Start()
+    public void Init(bool transparent, Action<string> callOnError, Action<string> callOnLoad, Action<string> callFromJS)
+    {
+        this.callOnError = callOnError;
+        this.callOnLoaded = callOnLoad;
+        this.callFromJS = callFromJS;
+        
+        rawImage = gameObject.GetComponent<RawImage>();
+        backgroundTransparent = transparent;
+
+        mainEngine = new SimpleWebBrowser.BrowserEngine();
+
+        if (randomMemoryFile)
         {
-            _mainEngine = new BrowserEngine();
-
-            if (RandomMemoryFile)
-            {
-                Guid memid = Guid.NewGuid();
-                MemoryFile = memid.ToString();
-            }
-           
-
-
-
-  StartCoroutine(          _mainEngine.InitPlugin(Width, Height, MemoryFile, InitialURL,EnableWebRTC,EnableGPU));
-            //run initialization
-            if (JSInitializationCode.Trim() != "")
-                _mainEngine.RunJSOnce(JSInitializationCode);
-
-            //
-            if (UIEnabled)
-            {
-                InitPrefabLinks();
-                mainUIPanel.InitPrefabLinks();
-            }
-
-            if (MainCamera == null)
-            {
-                MainCamera = Camera.main;
-                if (MainCamera == null)
-                    Debug.LogError("Error: can't find main camera");
-            }
-
-            _mainMaterial = GetComponent<MeshRenderer>().material;
-            _mainMaterial.SetTexture("_MainTex", _mainEngine.BrowserTexture);
-            _mainMaterial.SetTextureScale("_MainTex", new Vector2(-1, 1));
-
-            
-            if(UIEnabled)
-            mainUIPanel.MainCanvas.worldCamera = MainCamera;
-
-
-
-
-
-              // _mainInput = MainUrlInput.GetComponent<Input>();
-            if (UIEnabled)
-            {
-                mainUIPanel.KeepUIVisible = KeepUIVisible;
-                if (!KeepUIVisible)
-                    mainUIPanel.Hide();
-            }
-
-            //attach dialogs and querys
-            _mainEngine.OnJavaScriptDialog += _mainEngine_OnJavaScriptDialog;
-            _mainEngine.OnJavaScriptQuery += _mainEngine_OnJavaScriptQuery;
-_mainEngine.OnPageLoaded += _mainEngine_OnPageLoaded;
-
-            if (DialogEnabled)
-            {
-                DialogCanvas.worldCamera = MainCamera;
-                DialogCanvas.gameObject.SetActive(false);
-            }
-
+            Guid memid = Guid.NewGuid();
+            memoryFile = memid.ToString();
         }
 
-        private void _mainEngine_OnPageLoaded(string url)
+        jSInitializationCode = @"window.Unity = { call: function(msg) { window.cefQuery({ request: msg, onSuccess: function(response) { console.log(response); }, onFailure: function(err,msg) { console.log(err, msg); } }); }}";
+        
+        if (jSInitializationCode.Trim() != "")
+            mainEngine.RunJSOnce(jSInitializationCode);
+
+        mainEngine.OnJavaScriptQuery += OnJavaScriptQuery;
+        mainEngine.OnPageLoaded += OnPageLoaded;
+        mainEngine.OnPageLoadedError += OnPageLoadedError;
+    }
+    public void RunJavaScript(string js)
+    {
+        mainEngine.SendExecuteJSEvent(js);
+    }
+    public void LoadUrl(string url)
+    {
+        if ( mainEngine == null )
         {
-            _setUrl = true;
-            _setUrlString = url;
-           
+            Debug.Log("MainEngine is NULL");
+            return;
         }
 
-        //make it thread-safe
-        private void _mainEngine_OnJavaScriptQuery(string message)
+        if ( !mainEngine.Initialized )
         {
-            _jsQueryString = message;
-            _startQuery = true;
+            StartCoroutine(ShowWebViewUrl(url));
+        }
+        else
+        {
+            mainEngine.SendNavigateEvent(url, false, false);
+            this.url = url;
+        }
+    }
+    public void LoadHtml(string fileName)
+    {
+        string url = "file://" + System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
+        LoadUrl(url);
+    }
+    public void SetMargin(int left, int top, int right, int bottom)
+    {
+        var rectTransform = this.GetComponent<RectTransform>();
+
+        rectTransform.anchorMin = new Vector2(0, 0);
+        rectTransform.anchorMax = new Vector2(1, 1);
+
+        int width = Screen.width;
+        int height = Screen.height;
+
+        float leftRate = left / (float)width;
+        float rightRate = right / (float)width;
+        float topRate = top / (float)height;
+        float bottomRate = bottom / (float)height;
+
+        float leftResult = leftRate + rightRate < 1 ? leftRate * width : 0.0f;
+        float rightResult = leftRate + rightRate < 1 ? rightRate * -width : 0.0f;
+        float topResult = topRate + bottomRate < 1 ? topRate * -height : 0.0f;
+        float bottomResult = topRate + bottomRate < 1 ? bottomRate * height : 0.0f;
+
+        rectTransform.offsetMin = new Vector2(leftResult, bottomResult);
+        rectTransform.offsetMax = new Vector2(rightResult, topResult);
+    }
+    public void GoBack()
+    {
+        mainEngine.SendNavigateEvent("", true, false);
+    }
+    public void GoForward()
+    {
+        mainEngine.SendNavigateEvent("", false, true);
+    }
+    public bool CanGoForward()
+    {
+        if ( mainEngine == null )
+        {
+            return false;
+        }
+        
+        return mainEngine.CanGoForward;
+    }
+    public bool CanGoBack()
+    {
+        if ( mainEngine == null )
+        {
+            return false;
         }
 
-        public void RespondToJSQuery(string response)
+        return mainEngine.CanGoBack;
+    }
+    private void OnPageLoaded(string url)
+    {
+        if(callOnLoaded != null)
         {
-            _mainEngine.SendQueryResponse(response);
+            callOnLoaded(url);
         }
 
-        private void _mainEngine_OnJavaScriptDialog(string message, string prompt, DialogEventType type)
+        lastLoadedUrl = url;
+        if ( !rawImage.enabled ) 
         {
-            _showDialog = true;
-            _dialogEventType = type;
-            _dialogMessage = message;
-            _dialogPrompt = prompt;
-
+            rawImage.enabled = true;
         }
 
-         private void ShowDialog()
+        Debug.Log("OnPageLoaded : " + url);
+
+        // JsDialog 테스트용
+        // RunJavaScript(@"alert('helloworld')");
+
+        RunJavaScript(@"window.Unity.call(navigator.userAgent);");
+    }
+    private void OnPageLoadedError(Xilium.CefGlue.CefErrorCode errorCode, string errorText, string errorUrl)
+    {
+        if(callOnError != null)
         {
-            if (DialogEnabled)
+            callOnError(errorCode.ToString());
+        }
+
+        Debug.Log(string.Format("OnPageLoadedError : Code : {0}, Msg : {1}, Url : {2}", errorCode.ToString(), errorText, errorUrl));
+    }
+    private void OnJavaScriptQuery(string message)
+    {
+        if(callFromJS != null)
+        {
+            callFromJS(message);
+        }
+        Debug.Log("OnJavaScriptQuery : " + message);
+    }
+    private IEnumerator ShowWebViewUrl(string url)
+    {       
+        yield return mainEngine.InitPlugin(width, height, memoryFile, url, backgroundTransparent);
+        rawImage.texture = mainEngine.BrowserTexture;
+        rawImage.uvRect = new Rect(0f, 0f, 1f, -1f);
+
+        this.url = url;
+    }
+
+#region UGUI Mouse Event
+    public void OnPointerEnter(PointerEventData data)
+    {
+        inputFocused = true;
+        StartCoroutine(TrackPointer());
+    }
+
+    public void OnPointerExit(PointerEventData data)
+    {
+        inputFocused = false;
+        StopCoroutine(TrackPointer());
+    }    
+    public void OnPointerDown(PointerEventData data)
+    {
+        if ( mainEngine.Initialized )
+        {
+            var _raycaster = GetComponentInParent<GraphicRaycaster>();
+            var _input = FindObjectOfType<StandaloneInputModule>();
+            Vector2 pixelUV = GetScreenCoords(_raycaster, _input);
+
+            switch ( data.button )
             {
-                switch (_dialogEventType)
+                case PointerEventData.InputButton.Left:
                 {
-                case DialogEventType.Alert:
-                {
-                    DialogCanvas.gameObject.SetActive(true);
-                    OkButton.gameObject.SetActive(true);
-                    YesButton.gameObject.SetActive(false);
-                    NoButton.gameObject.SetActive(false);
-                    DialogPrompt.text = "";
-                    DialogPrompt.gameObject.SetActive(false);
-                    DialogText.text = _dialogMessage;
+                    SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Left,
+                        MouseEventType.ButtonDown);
                     break;
                 }
-                case DialogEventType.Confirm:
+                case PointerEventData.InputButton.Right:
                 {
-                    DialogCanvas.gameObject.SetActive(true);
-                    OkButton.gameObject.SetActive(false);
-                    YesButton.gameObject.SetActive(true);
-                    NoButton.gameObject.SetActive(true);
-                    DialogPrompt.text = "";
-                    DialogPrompt.gameObject.SetActive(false);
-                    DialogText.text = _dialogMessage;
+                    SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Right,
+                        MouseEventType.ButtonDown);
                     break;
                 }
-                case DialogEventType.Prompt:
+                case PointerEventData.InputButton.Middle:
                 {
-                    DialogCanvas.gameObject.SetActive(true);
-                    OkButton.gameObject.SetActive(false);
-                    YesButton.gameObject.SetActive(true);
-                    NoButton.gameObject.SetActive(true);
-                    DialogPrompt.text = _dialogPrompt;
-                    DialogPrompt.gameObject.SetActive(true);
-                    DialogText.text = _dialogMessage;
+                    SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Middle,
+                        MouseEventType.ButtonDown);
                     break;
                 }
             }
-                _showDialog = false;
-            }
         }
-
-        #region UI
-
-        public void OnNavigate()
+    }
+    public void OnPointerUp(PointerEventData data)
+    {
+        if ( mainEngine.Initialized )
         {
-            // MainUrlInput.isFocused
-            _mainEngine.SendNavigateEvent(mainUIPanel.UrlField.text, false, false);
+            var _raycaster = GetComponentInParent<GraphicRaycaster>();
+            var _input = FindObjectOfType<StandaloneInputModule>();
 
-        }
+            Vector2 pixelUV = GetScreenCoords(_raycaster, _input);
 
-        public void RunJavaScript(string js)
-        {
-            _mainEngine.SendExecuteJSEvent(js);
-        }
-
-        public void GoBackForward(bool forward)
-        {
-            if (forward)
-                _mainEngine.SendNavigateEvent("", false, true);
-            else
-                _mainEngine.SendNavigateEvent("", true, false);
-        }
-
-        #endregion
-
-        #region Dialogs
-
-        public void DialogResult(bool result)
-        {
-            if (DialogEnabled)
+            switch ( data.button )
             {
-                DialogCanvas.gameObject.SetActive(false);
-                _mainEngine.SendDialogResponse(result, DialogPrompt.text);
-            }
-
-        }
-
-        #endregion
-
-
-        #region Events (3D)
-
-        void OnMouseEnter()
-        {
-            _focused = true;
-            if(UIEnabled)
-            mainUIPanel.Show();
-        }
-
-        void OnMouseExit()
-        {
-            _focused = false;
-           if(UIEnabled)
-            mainUIPanel.Hide();
-        }
-
-        void OnMouseDown()
-        {
-
-            if (_mainEngine.Initialized)
-            {
-                Vector2 pixelUV = GetScreenCoords();
-
-                if (pixelUV.x > 0)
+                case PointerEventData.InputButton.Left:
                 {
-                    SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Left, MouseEventType.ButtonDown);
-
+                    SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Left, MouseEventType.ButtonUp);
+                    break;
                 }
-            }
-
-        }
-
-
-
-
-        void OnMouseUp()
-        {
-            if (_mainEngine.Initialized)
-            {
-                Vector2 pixelUV = GetScreenCoords();
-
-                if (pixelUV.x > 0)
+                case PointerEventData.InputButton.Right:
                 {
-                   SendMouseButtonEvent((int) pixelUV.x, (int) pixelUV.y, MouseButton.Left, MouseEventType.ButtonUp);
+                    SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Right,
+                        MouseEventType.ButtonUp);
+                    break;
+                }
+                case PointerEventData.InputButton.Middle:
+                {
+                    SendMouseButtonEvent((int)pixelUV.x, (int)pixelUV.y, MouseButton.Middle,
+                        MouseEventType.ButtonUp);
+                    break;
                 }
             }
         }
+    }    
+#endregion
+    IEnumerator TrackPointer()
+    {
+        var _raycaster = GetComponentInParent<GraphicRaycaster>();
+        var _input = FindObjectOfType<StandaloneInputModule>();
 
-        void OnMouseOver()
+        if ( _raycaster != null && _input != null && mainEngine.Initialized )
         {
-            if (_mainEngine.Initialized)
+            while ( Application.isPlaying )
             {
-                Vector2 pixelUV = GetScreenCoords();
+                Vector2 localPos = GetScreenCoords(_raycaster, _input);
 
-                if (pixelUV.x > 0)
+                int px = (int)localPos.x;
+                int py = (int)localPos.y;
+
+                ProcessScrollInput(px, py);
+
+                if ( mousePosX != px || mousePosY != py )
                 {
-                    int px = (int) pixelUV.x;
-                    int py = (int) pixelUV.y;
-
-                    ProcessScrollInput(px, py);
-
-                    if (posX != px || posY != py)
+                    MouseMessage msg = new MouseMessage
                     {
-                        MouseMessage msg = new MouseMessage
-                        {
-                            Type = MouseEventType.Move,
-                            X = px,
-                            Y = py,
-                            GenericType = MessageLibrary.BrowserEventType.Mouse,
-                            // Delta = e.Delta,
-                            Button = MouseButton.None
-                        };
+                        Type = MouseEventType.Move,
+                        X = px,
+                        Y = py,
+                        GenericType = MessageLibrary.BrowserEventType.Mouse,
+                        // Delta = e.Delta,
+                        Button = MouseButton.None
+                    };
 
-                        if (Input.GetMouseButton(0))
-                            msg.Button = MouseButton.Left;
-                        if (Input.GetMouseButton(1))
-                            msg.Button = MouseButton.Right;
-                        if (Input.GetMouseButton(1))
-                            msg.Button = MouseButton.Middle;
-
-                        posX = px;
-                        posY = py;
-                        _mainEngine.SendMouseEvent(msg);
+                    if ( Input.GetMouseButton(0) )
+                    {
+                        msg.Button = MouseButton.Left;
                     }
-
-                    //check other buttons...
-                    if (Input.GetMouseButtonDown(1))
-                       SendMouseButtonEvent(px, py, MouseButton.Right, MouseEventType.ButtonDown);
-                    if (Input.GetMouseButtonUp(1))
-                       SendMouseButtonEvent(px, py, MouseButton.Right, MouseEventType.ButtonUp);
-                    if (Input.GetMouseButtonDown(2))
-                        SendMouseButtonEvent(px, py, MouseButton.Middle, MouseEventType.ButtonDown);
-                    if (Input.GetMouseButtonUp(2))
-                        SendMouseButtonEvent(px, py, MouseButton.Middle, MouseEventType.ButtonUp);
+                    if ( Input.GetMouseButton(1) )
+                    {
+                        msg.Button = MouseButton.Right;
+                    }
+                    if ( Input.GetMouseButton(1) )
+                    {
+                        msg.Button = MouseButton.Middle;
+                    }
+                        
+                    mousePosX = px;
+                    mousePosY = py;
+                    mainEngine.SendMouseEvent(msg);
                 }
+
+                yield return 0;
             }
-
-            // Debug.Log(pixelUV);
         }
+    }
+    private Vector2 GetScreenCoords(GraphicRaycaster ray, StandaloneInputModule input)
+    {
+        Vector2 localPos; // Mouse position  
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, Input.mousePosition,
+            ray.eventCamera, out localPos);
 
-        #endregion
+        // local pos is the mouse position.
+        RectTransform trns = transform as RectTransform;
+        localPos.y = trns.rect.height - localPos.y;
 
-        #region Helpers
+        //now recalculate to texture
+        localPos.x = (localPos.x * width) / trns.rect.width;
+        localPos.y = (localPos.y * height) / trns.rect.height;
 
-        private Vector2 GetScreenCoords()
+        return localPos;
+    }
+    private void SendMouseButtonEvent(int x, int y, MouseButton btn, MouseEventType type)
+    {
+        MouseMessage msg = new MouseMessage
         {
+            Type = type,
+            X = x,
+            Y = y,
+            GenericType = MessageLibrary.BrowserEventType.Mouse,
+            Button = btn
+        };
+        mainEngine.SendMouseEvent(msg);
+    }
+    private void ProcessScrollInput(int px, int py)
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        scroll = scroll * mainEngine.BrowserTexture.height;
 
+        int scInt = (int)scroll;
 
-            RaycastHit hit;
-            if (
-                !Physics.Raycast(
-                    MainCamera.ScreenPointToRay(Input.mousePosition), out hit))
-                return new Vector2(-1f, -1f);
-            Texture tex = _mainMaterial.mainTexture;
-
-
-            Vector2 pixelUV = hit.textureCoord;
-            pixelUV.x = (1 - pixelUV.x)*tex.width;
-            pixelUV.y *= tex.height;
-            return pixelUV;
-
-
-
-
-        }
-
-       void SendMouseButtonEvent(int x, int y, MouseButton btn, MouseEventType type)
+        if ( scInt != 0 )
         {
-           
             MouseMessage msg = new MouseMessage
             {
-                Type = type,
-                X = x,
-                Y = y,
+                Type = MouseEventType.Wheel,
+                X = px,
+                Y = py,
                 GenericType = MessageLibrary.BrowserEventType.Mouse,
-                // Delta = e.Delta,
-                Button = btn
+                Delta = scInt,
+                Button = MouseButton.None
             };
-            _mainEngine.SendMouseEvent(msg);
+
+            if ( Input.GetMouseButton(0) )
+            {
+                msg.Button = MouseButton.Left;
+            }
+            if ( Input.GetMouseButton(1) )
+            {
+                msg.Button = MouseButton.Right;
+            }
+            if ( Input.GetMouseButton(1) )
+            {
+                msg.Button = MouseButton.Middle;
+            }
+
+            mainEngine.SendMouseEvent(msg);
+        }
+    }
+
+    void Update()
+    {
+        if ( string.IsNullOrEmpty(url) )
+            return;
+
+        mainEngine.UpdateTexture();
+        mainEngine.CheckMessage();
+
+        if ( !mainEngine.Initialized )
+            return;
+
+        if ( inputFocused )
+        {
+            foreach ( char c in Input.inputString )
+            {
+                mainEngine.SendCharEvent((int)c, KeyboardEventType.CharKey);
+            }
+            ProcessKeyEvents();
+        }
+    }
+
+    private void ProcessKeyEvents()
+    {
+        foreach ( KeyCode k in Enum.GetValues(typeof(KeyCode)) )
+        {
+            CheckKey(k);
+        }
+    }
+    private void CheckKey(KeyCode code)
+    {
+        if ( Input.GetKeyDown(code) )
+        {
+            mainEngine.SendCharEvent((int)code, KeyboardEventType.Down);
+        }                
+        if ( Input.GetKeyUp(KeyCode.Backspace) )
+        {
+            mainEngine.SendCharEvent((int)code, KeyboardEventType.Up);
+        }
+    }
+    
+    private void OnGUI()
+    {
+        url = GUI.TextField(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.15f, Screen.height * 0.1f), url);
+
+        if ( url.EndsWith(".html") )
+        {
+            if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadHTML") )
+            {
+                LoadHtml(url);
+            }
+        }
+        else
+        {
+            if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadURL") )
+            {
+                LoadUrl(url);
+            }
         }
 
-        private void ProcessScrollInput(int px, int py)
+        if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.3f, Screen.width * 0.05f, Screen.height * 0.1f), "SetMargin") )
         {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            SetMargin((int)(Screen.width * 0.2f), (int)(Screen.height * 0.2f), (int)(Screen.width * 0.2f), (int)(Screen.height * 0.2f));
+        }
 
-            scroll = scroll*_mainEngine.BrowserTexture.height;
-
-            int scInt = (int) scroll;
-
-            if (scInt != 0)
+        if ( mainEngine != null )
+        {
+            if ( mainEngine.CanGoBack )
             {
-                MouseMessage msg = new MouseMessage
+                if ( GUI.Button(new Rect(Screen.width * 0.9f, Screen.height * 0.4f, Screen.width * 0.05f, Screen.height * 0.1f), "<<") )
                 {
-                    Type = MouseEventType.Wheel,
-                    X = px,
-                    Y = py,
-                    GenericType = MessageLibrary.BrowserEventType.Mouse,
-                    Delta = scInt,
-                    Button = MouseButton.None
-                };
-
-                if (Input.GetMouseButton(0))
-                    msg.Button = MouseButton.Left;
-                if (Input.GetMouseButton(1))
-                    msg.Button = MouseButton.Right;
-                if (Input.GetMouseButton(1))
-                    msg.Button = MouseButton.Middle;
-
-                _mainEngine.SendMouseEvent(msg);
-            }
-        }
-
-        #endregion
-
-        private void FixedUpdate()
-        {
-            _mainEngine.PushMessages(); //
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-            _mainEngine.UpdateTexture();
-
-           
-
-            //Dialog
-            if (_showDialog)
-            {
-                ShowDialog();
-            }
-
-            //Query
-            if (_startQuery)
-            {
-                _startQuery = false;
-                if (OnJSQuery != null)
-                    OnJSQuery(_jsQueryString);
-
-            }
-
-            //Status
-            if (_setUrl)
-            {
-                _setUrl = false;
-                if(UIEnabled)
-                mainUIPanel.UrlField.text = _setUrlString;
-
-            }
-
-if (UIEnabled)
-            {
-
-
-            if (_focused && !mainUIPanel.UrlField.isFocused) //keys
-            {
-                foreach (char c in Input.inputString)
-                {
-
-                    _mainEngine.SendCharEvent((int) c, KeyboardEventType.CharKey);
+                    GoBack();
                 }
-                ProcessKeyEvents();
-             }
-
-
-
-
             }
 
-
-            _mainEngine.CheckMessage();
-
-        }
-
-        #region Keys
-
-        private void ProcessKeyEvents()
-        {
-            foreach (KeyCode k in Enum.GetValues(typeof (KeyCode)))
+            if ( mainEngine.CanGoForward )
             {
-                CheckKey(k);
+                if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.4f, Screen.width * 0.05f, Screen.height * 0.1f), ">>") )
+                {
+                    GoForward();
+                }
             }
-
         }
-
-        private void CheckKey(KeyCode code)
-        {
-            if (Input.GetKeyDown(code))
-                _mainEngine.SendCharEvent((int) code, KeyboardEventType.Down);
-            if (Input.GetKeyUp(KeyCode.Backspace))
-                _mainEngine.SendCharEvent((int) code, KeyboardEventType.Up);
-        }
-
-        #endregion
-
-        void OnDisable()
-        {
-            _mainEngine.Shutdown();
-        }
-
-
-        public event BrowserEngine.PageLoaded OnPageLoaded;
     }
 }

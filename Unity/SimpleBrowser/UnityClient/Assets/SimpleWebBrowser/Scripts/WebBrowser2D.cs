@@ -121,20 +121,21 @@ namespace SimpleWebBrowser
             InitPrefabLinks();
             mainUIPanel.InitPrefabLinks();
 
-            yield return _mainEngine.InitPlugin(Width, Height, MemoryFile, InitialURL, EnableWebRTC, EnableGPU, BackgroundTransparent);
+            yield return null;
+            //yield return _mainEngine.InitPlugin(Width, Height, MemoryFile, InitialURL, EnableWebRTC, EnableGPU, BackgroundTransparent);
 
-            JSInitializationCode = @"
-                    window.Unity = {
-                        call: function(msg) {
-                            window.cefQuery({
-                                request: msg,
-                                onSuccess: function(response) {}
-                                onFailure: function(error_code, error_message) {}
-                            })
-                        }
-                    }
-                ";
-                
+            // JSInitializationCode = @"
+            //         window.Unity = {
+            //             call: function(msg) {
+            //                 window.cefQuery({
+            //                     request: msg,
+            //                     onSuccess: function(response) {}
+            //                     onFailure: function(error_code, error_message) {}
+            //                 })
+            //             }
+            //         }
+            //     ";
+            JSInitializationCode = @"window.Unity = { call: function(msg) { window.cefQuery({ request: msg, onSuccess: function(response) { console.log(response); }, onFailure: function(err,msg) { console.log(err, msg); } }); }}";
             //run initialization
             if ( JSInitializationCode.Trim() != "" )
                 _mainEngine.RunJSOnce(JSInitializationCode);
@@ -151,7 +152,6 @@ namespace SimpleWebBrowser
                 mainUIPanel.Hide();
 
             //attach dialogs and querys
-            _mainEngine.OnJavaScriptDialog += _mainEngine_OnJavaScriptDialog;
             _mainEngine.OnJavaScriptQuery += _mainEngine_OnJavaScriptQuery;
             _mainEngine.OnPageLoaded += _mainEngine_OnPageLoaded;
             _mainEngine.OnPageLoadedError += _mainEngine_OnPageLoadedError;
@@ -525,7 +525,7 @@ namespace SimpleWebBrowser
         void Update()
         {
             _mainEngine.UpdateTexture();
-            _mainEngine.CheckMessage();
+            _mainEngine.CheckMessage();            
 
             if ( !_mainEngine.Initialized )
                 return;

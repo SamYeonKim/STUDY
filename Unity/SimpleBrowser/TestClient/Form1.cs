@@ -393,11 +393,12 @@ namespace TestClient
 
         public void SendNavigateEvent(string url,bool back,bool forward)
         {
-            GenericEvent ge = new GenericEvent()
+            NavigateEvent ge = new NavigateEvent()
             {
                 Type = GenericEventType.Navigate,
                 GenericType = BrowserEventType.Generic,
-                NavigateUrl = url
+                NavigateUrl = url,
+                //CanGoForward = 
             };
 
             if(back)
@@ -415,14 +416,13 @@ namespace TestClient
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(mstr, ep);
             byte[] b = mstr.GetBuffer();
-            //
+            
             _outCommServer.WriteBytes(b);
-            //  MessageBox.Show(_sendEvents.Count.ToString());
         }
 
         public void SendExecuteJSEvent(string js)
         {
-            GenericEvent ge = new GenericEvent()
+            JSEvent ge = new JSEvent()
             {
                 Type = GenericEventType.ExecuteJS,
                 GenericType = BrowserEventType.Generic,

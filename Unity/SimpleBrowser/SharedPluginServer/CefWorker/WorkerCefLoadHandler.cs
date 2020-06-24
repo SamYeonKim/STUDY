@@ -4,9 +4,6 @@ namespace SharedPluginServer
 {
     class WorkerCefLoadHandler : CefLoadHandler
     {
-
-      
-
         private CefWorker _mainWorker;
 
         public WorkerCefLoadHandler(CefWorker mainWorker)
@@ -20,11 +17,10 @@ namespace SharedPluginServer
         }
 
         protected override void OnLoadEnd(CefBrowser browser, CefFrame frame, int httpStatusCode)
-        {
-            
+        {            
             if (frame.IsMain)
             {
-                _mainWorker.InvokePageLoaded(frame.Url,httpStatusCode);             
+                _mainWorker.InvokePageLoaded(frame, frame.Url,httpStatusCode);             
             }
         }
 
@@ -34,6 +30,11 @@ namespace SharedPluginServer
             {
                 _mainWorker.InvokePageLoadedError(errorCode, errorText, failedUrl);
             }
+        }
+
+        protected override void OnLoadingStateChange(CefBrowser browser, bool isLoading, bool canGoBack, bool canGoForward)
+        {
+            _mainWorker.OnLoadingStateChange(browser.GetMainFrame(), canGoBack, canGoForward);
         }
     }
 }

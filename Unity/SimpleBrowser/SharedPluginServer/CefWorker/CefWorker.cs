@@ -25,6 +25,9 @@ namespace SharedPluginServer
 
         private WorkerCefMessageRouterHandler _queryHandler;
 
+        private bool canGoBack;
+        private bool canGoForward;
+
         #region Status
 
         public delegate void PageLoaded(string url, int status);
@@ -35,16 +38,21 @@ namespace SharedPluginServer
 
         public event PageLoadedError OnPageLoadedError;
 
-        public void InvokePageLoaded(string url, int status)
+        //CanGoBack, CanGoForward가 갱신 되는 시점 보다 PageLoaded가 먼저이기 때문에, PageLoaded에서 받은 값을 변수로 저장해 놨다가.
+        //나중에 OnLoadingStateChange 에서 OnPageLoaded를 호출 하도록 한다.
+        CefFrame lastLoadedFrame;
+        int lastLoadedStatus;
+        public void InvokePageLoaded(CefFrame frame, string url, int status)
         {
-            OnPageLoaded?.Invoke(url,status);
+            lastLoadedFrame = frame;
+            lastLoadedStatus = status;
+            //OnPageLoaded?.Invoke(url,status);
         }
         public void InvokePageLoadedError(CefErrorCode errorCode, string errorText, string failedUrl)
         {
+            lastLoadedFrame = null;
             OnPageLoadedError?.Invoke(errorCode, errorText, failedUrl);
         }
-
-
         #endregion
 
         #region Dialogs
@@ -56,8 +64,7 @@ namespace SharedPluginServer
         {
             OnJSDialog?.Invoke(message,prompt,type);
         }
-
-
+        
         public void ContinueDialog(bool res, string input)
         {
             _client.ContinueDialog(res, input);
@@ -103,38 +110,39 @@ namespace SharedPluginServer
         /// <param name="starturl"></param>
         public void Init(int width,int height,string starturl, bool transparent = false)
         {
+            RegisterMessageRouter();
 
-           
+            CefWindowInfo cefWindowInfo = CefWindowInfo.Create();
+            cefWindowInfo.SetAsWindowless(IntPtr.Zero, transparent);
+            var cefBrowserSettings = new CefBrowserSettings();
 
-               RegisterMessageRouter();
-
-                CefWindowInfo cefWindowInfo = CefWindowInfo.Create();
-                cefWindowInfo.SetAsWindowless(IntPtr.Zero, transparent);
-                var cefBrowserSettings = new CefBrowserSettings();
-
-                cefBrowserSettings.JavaScript=CefState.Enabled;
-                //cefBrowserSettings.CaretBrowsing=CefState.Enabled;
-                cefBrowserSettings.TabToLinks=CefState.Enabled;
-                cefBrowserSettings.WebSecurity=CefState.Disabled;
-                cefBrowserSettings.WebGL=CefState.Enabled;
-                cefBrowserSettings.WindowlessFrameRate = 30;
-                cefBrowserSettings.BackgroundColor = new CefColor(0);
+            cefBrowserSettings.JavaScript=CefState.Enabled;
+            //cefBrowserSettings.CaretBrowsing=CefState.Enabled;
+            cefBrowserSettings.TabToLinks=CefState.Enabled;
+            cefBrowserSettings.WebSecurity=CefState.Disabled;
+            cefBrowserSettings.WebGL=CefState.Enabled;
+            cefBrowserSettings.WindowlessFrameRate = 30;
+            cefBrowserSettings.BackgroundColor = new CefColor(0);
 
             _client = new WorkerCefClient(width, height,this);
             
             string url = "http://www.yandex.ru/";
             if (starturl != "")
                 url = starturl;
-                CefBrowserHost.CreateBrowser(cefWindowInfo, _client, cefBrowserSettings, url);
+                    CefBrowserHost.CreateBrowser(cefWindowInfo, _client, cefBrowserSettings, url);
 
-                
-            
-
-                _initialized = true;
-               
-            
+            _initialized = true;
         }
+        public void OnLoadingStateChange(CefFrame frame, bool canGoBack, bool canGoForward)
+        {                        
+            this.canGoBack = canGoBack;
+            this.canGoForward = canGoForward;
 
+            if ( lastLoadedFrame != null )
+            {
+                OnPageLoaded?.Invoke(lastLoadedFrame.Url, lastLoadedStatus);
+            }
+        }
         public void SetMemServer(SharedMemServer memServer)
         {
             _client.SetMemServer(memServer);
@@ -195,9 +203,7 @@ namespace SharedPluginServer
 
         public delegate void Action();
 
-        #endregion
-
-        
+        #endregion  
 
         public byte[] GetBitmap()
         {
@@ -214,8 +220,6 @@ namespace SharedPluginServer
             return _client.GetWidth();
         }
 
-
-
         public void Shutdown()
         {
             _client.Shutdown();
@@ -227,15 +231,21 @@ namespace SharedPluginServer
         {
             _client.Navigate(url);
         }
-
         public void GoBack()
         {
             _client.GoBack();
         }
-
         public void GoForward()
         {
             _client.GoForward();
+        }
+        public bool CanGoBack()
+        {
+            return this.canGoBack;
+        }
+        public bool CanGoForward()
+        {
+            return this.canGoForward;
         }
 
         public void ExecuteJavaScript(string jscode)

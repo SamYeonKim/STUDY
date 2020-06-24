@@ -2,12 +2,9 @@ using System;
 using System.Diagnostics;
 using System.Collections;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
 using MessageLibrary;
 using SharedMemory;
 using UnityEngine;
-using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using Object = System.Object;
 
@@ -15,101 +12,35 @@ namespace SimpleWebBrowser
 {
     public class BrowserEngine
     {
-        private SharedArray<byte> _mainTexArray;
+        private static Object pixelLock;        
+        private SharedArray<byte> srcTexBuffer;
+        private byte[] dstTexBuffer = null;
+        private SharedCommServer inCommServer;
+        private SharedCommServer outCommServer;
+        private Process pluginProcess;        
+        private string runOnceJS = "";
+        private bool connected = false;
 
-        private SharedCommServer _inCommServer;
-        private SharedCommServer _outCommServer;
-
-        private Process _pluginProcess;
-
-        private static Object sPixelLock;
-
-        public Texture2D BrowserTexture = null;
-        public bool Initialized = false;
-
-
-        private bool _needToRunOnce = false;
-        private string _runOnceJS = "";
-
-        //Image buffer
-        private byte[] _bufferBytes = null;
-        private long _arraySize = 0;
-
-        private bool _connected = false;
-
-
-        #region Status events
-
+        public Texture2D BrowserTexture { get; private set; }
+        public bool Initialized { get; private set; }
+        public bool CanGoBack { get; private set; }
+        public bool CanGoForward { get; private set; }
         public delegate void PageLoaded(string url);
-
         public event PageLoaded OnPageLoaded;
-
         public delegate void PageLoadedError(Xilium.CefGlue.CefErrorCode errorCode, string errorText, string errorUrl);
-
         public event PageLoadedError OnPageLoadedError;
-
-        #endregion
-
-
-        #region Settings
-
-        public int kWidth = 512;
-        public int kHeight = 512;
-
-        private string _sharedFileName;
-
-        //comm files
-        private string _inCommFile;
-        private string _outCommFile;
-
-        private string _initialURL;
-        private bool _enableWebRTC;
-        private bool _enableGPU;
-        private bool _enableTransparent;
-
-        #endregion
-
-        #region Dialogs
-
-        public delegate void JavaScriptDialog(string message, string prompt, DialogEventType type);
-
-        public event JavaScriptDialog OnJavaScriptDialog;
-
-        #endregion
-
-        #region JSQuery
-
         public delegate void JavaScriptQuery(string message);
-
         public event JavaScriptQuery OnJavaScriptQuery;
 
-        #endregion
+        private int width = 512;
+        private int height = 512;
+        private string sharedMemFileName;
+        private string inCommFile;
+        private string outCommFile;
+        private string initialUrl;
+        private bool enableTransparent;
 
-
-
-        #region Init
-
-        //A really hackish way to avoid thread error. Should be better way
-        /*  public bool ConnectTcp(out TcpClient tcp)
-          {
-              TcpClient ret = null;
-              try
-              {
-                  ret = new TcpClient("127.0.0.1", _port);
-              }
-              catch (Exception ex)
-              {
-                  tcp = null;
-                  return false;
-              }
-
-              tcp = ret;
-              return true;
-
-          }*/
-
-
-        public IEnumerator InitPlugin(int width, int height, string sharedfilename, string initialURL, bool enableWebRTC, bool enableGPU, bool transparent = false)
+        public IEnumerator InitPlugin(int width, int height, string sharedfilename, string initialURL, bool transparent = false)
         {
             //Initialization (for now) requires a predefined path to PluginServer,
             //so change this section if you move the folder
@@ -132,44 +63,46 @@ namespace SimpleWebBrowser
 #endif
             Debug.Log("Starting server from:" + PluginServerPath);
 
-            kWidth = width;
-            kHeight = height;
+            this.width = width;
+            this.height = height;
 
-            _sharedFileName = sharedfilename;
+            sharedMemFileName = sharedfilename;
 
             //randoms
             Guid inID = Guid.NewGuid();
-            _outCommFile = inID.ToString();
+            outCommFile = inID.ToString();
 
             Guid outID = Guid.NewGuid();
-            _inCommFile = outID.ToString();
+            inCommFile = outID.ToString();
 
-            _initialURL = initialURL;
-            _enableWebRTC = enableWebRTC;
-            _enableGPU = enableGPU;
-            _enableTransparent = transparent;
+            initialUrl = initialURL;
+            enableTransparent = transparent;
 
             if ( BrowserTexture == null )
             {
-                BrowserTexture = new Texture2D(kWidth, kHeight, TextureFormat.BGRA32, false, true);
+                BrowserTexture = new Texture2D(this.width, this.height, TextureFormat.BGRA32, false, true);
                 BrowserTexture.alphaIsTransparency = true;
             }
 
-            sPixelLock = new object();
-
+            pixelLock = new object();
 
             string args = BuildParamsString();
 
-            _connected = false;
+            connected = false;
 
-            _inCommServer = new SharedCommServer(false);
-            _outCommServer = new SharedCommServer(true);
+            if ( inCommServer != null )
+                inCommServer.Dispose();
+            if ( outCommServer != null )
+                outCommServer.Dispose();
 
-            while ( !_connected )
+            inCommServer = new SharedCommServer(false);
+            outCommServer = new SharedCommServer(true);
+
+            while ( !connected )
             {
                 try
                 {
-                    _pluginProcess = new Process()
+                    pluginProcess = new Process()
                     {
                         StartInfo = new ProcessStartInfo()
                         {
@@ -179,8 +112,9 @@ namespace SimpleWebBrowser
                         }
                     };
 
-                    _pluginProcess.Start();
-                    _pluginProcess.EnableRaisingEvents = true;
+                    pluginProcess.Start();
+                    pluginProcess.EnableRaisingEvents = true;
+                    //_pluginProcess.WaitForInputIdle();
                     Initialized = false;
                 }
                 catch ( Exception ex )
@@ -189,44 +123,36 @@ namespace SimpleWebBrowser
                     Debug.Log("FAILED TO START SERVER FROM:" + PluginServerPath + @"\SharedPluginServer.exe");
                     throw;
                 }
+                
                 yield return new WaitForSeconds(1.0f);
-                //connected = ConnectTcp(out _clientSocket);
 
-                _inCommServer.Connect(_inCommFile);
-                bool b1 = _inCommServer.GetIsOpen();
-                _outCommServer.Connect(_outCommFile);
-                bool b2 = _outCommServer.GetIsOpen();
+                inCommServer.Connect(inCommFile);
+                bool b1 = inCommServer.GetIsOpen();
+                outCommServer.Connect(outCommFile);
+                bool b2 = outCommServer.GetIsOpen();
 
-                _connected = b1 && b2;
+                connected = b1 && b2;
 
-                _pluginProcess.Exited += (object sender, EventArgs e) =>
+                pluginProcess.Exited += (object sender, EventArgs e) =>
                 {
                     Debug.Log("Exited");
                     Initialized = false;
-                    _connected = false;
+                    connected = false;
                 };
+
+                UpdateInitialized();
             }
         }
 
         private string BuildParamsString()
         {
-            string ret = kWidth.ToString() + " " + kHeight.ToString() + " ";
-            ret = ret + _initialURL + " ";
-            ret = ret + _sharedFileName + " ";
-            ret = ret + _outCommFile + " ";
-            ret = ret + _inCommFile + " ";
+            string ret = width.ToString() + " " + height.ToString() + " ";
+            ret = ret + initialUrl + " ";
+            ret = ret + sharedMemFileName + " ";
+            ret = ret + outCommFile + " ";
+            ret = ret + inCommFile + " ";
 
-            if ( _enableWebRTC )
-                ret = ret + " 1" + " ";
-            else
-                ret = ret + " 0" + " ";
-
-            if ( _enableGPU )
-                ret = ret + " 1" + " ";
-            else
-                ret = ret + " 0" + " ";
-
-            if ( _enableTransparent )
+            if ( enableTransparent )
                 ret = ret + " 1" + " ";
             else
                 ret = ret + " 0" + " ";
@@ -234,17 +160,12 @@ namespace SimpleWebBrowser
             return ret;
         }
 
-        #endregion
-
-
-
         #region SendEvents
-
         public void SendNavigateEvent(string url, bool back, bool forward)
         {
             if ( Initialized )
             {
-                GenericEvent ge = new GenericEvent()
+                NavigateEvent ge = new NavigateEvent()
                 {
                     Type = GenericEventType.Navigate,
                     GenericType = MessageLibrary.BrowserEventType.Generic,
@@ -262,7 +183,7 @@ namespace SimpleWebBrowser
                     Type = MessageLibrary.BrowserEventType.Generic
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
         }
 
@@ -282,14 +203,14 @@ namespace SimpleWebBrowser
                     Type = MessageLibrary.BrowserEventType.Generic
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
         }
 
         public void PushMessages()
         {
             if ( Initialized )
-                _outCommServer.PushMessages();
+                outCommServer.PushMessages();
         }
 
         public void SendDialogResponse(bool ok, string dinput)
@@ -309,7 +230,7 @@ namespace SimpleWebBrowser
                     Type = MessageLibrary.BrowserEventType.Dialog
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
         }
 
@@ -317,11 +238,11 @@ namespace SimpleWebBrowser
         {
             if ( Initialized )
             {
-                GenericEvent ge = new GenericEvent()
+                JSEvent ge = new JSEvent()
                 {
                     Type = GenericEventType.JSQueryResponse,
                     GenericType = BrowserEventType.Generic,
-                    JsQueryResponse = response
+                    JsCode = response
                 };
 
                 EventPacket ep = new EventPacket()
@@ -330,7 +251,7 @@ namespace SimpleWebBrowser
                     Type = BrowserEventType.Generic
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
         }
 
@@ -349,7 +270,7 @@ namespace SimpleWebBrowser
                     Type = MessageLibrary.BrowserEventType.Keyboard
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
         }
 
@@ -363,16 +284,15 @@ namespace SimpleWebBrowser
                     Type = MessageLibrary.BrowserEventType.Mouse
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
-
         }
 
         public void SendExecuteJSEvent(string js)
         {
             if ( Initialized )
             {
-                GenericEvent ge = new GenericEvent()
+                JSEvent ge = new JSEvent()
                 {
                     Type = GenericEventType.ExecuteJS,
                     GenericType = BrowserEventType.Generic,
@@ -385,7 +305,7 @@ namespace SimpleWebBrowser
                     Type = BrowserEventType.Generic
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
         }
 
@@ -406,7 +326,7 @@ namespace SimpleWebBrowser
                     Type = BrowserEventType.Ping
                 };
 
-                _outCommServer.WriteMessage(ep);
+                outCommServer.WriteMessage(ep);
             }
         }
 
@@ -422,8 +342,7 @@ namespace SimpleWebBrowser
         /// <param name="js">JS code</param>
         public void RunJSOnce(string js)
         {
-            _needToRunOnce = true;
-            _runOnceJS = js;
+            runOnceJS = js;
         }
 
         #endregion
@@ -433,19 +352,19 @@ namespace SimpleWebBrowser
             {
                 UpdateInitialized();
 
-                if ( _needToRunOnce )
+                if ( !string.IsNullOrEmpty(runOnceJS) )
                 {
-                    SendExecuteJSEvent(_runOnceJS);
-                    _needToRunOnce = false;
+                    SendExecuteJSEvent(runOnceJS);
+                    runOnceJS = null;
                 }
             }
             else
             {
-                if ( _connected )
+                if ( connected )
                 {
                     try
                     {
-                        _mainTexArray = new SharedArray<byte>(_sharedFileName);
+                        srcTexBuffer = new SharedArray<byte>(sharedMemFileName);
 
                         Initialized = true;
                     }
@@ -454,10 +373,7 @@ namespace SimpleWebBrowser
                         //SharedMem and TCP exceptions
                         Debug.Log("Exception on init:" + ex.Message + ".Waiting for plugin server");
                     }
-
                 }
-
-
             }
         }
         //Receiver
@@ -468,19 +384,10 @@ namespace SimpleWebBrowser
                 try
                 {
                     // Ensure that no other threads try to use the stream at the same time.
-                    EventPacket ep = _inCommServer.GetMessage();
+                    EventPacket ep = inCommServer.GetMessage();
                     if ( ep != null )
                     {
                         //main handlers
-                        if ( ep.Type == BrowserEventType.Dialog )
-                        {
-                            DialogEvent dev = ep.Event as DialogEvent;
-                            if ( dev != null )
-                            {
-                                if ( OnJavaScriptDialog != null )
-                                    OnJavaScriptDialog(dev.Message, dev.DefaultPrompt, dev.Type);
-                            }
-                        }
                         if ( ep.Type == BrowserEventType.Generic )
                         {
                             GenericEvent ge = ep.Event as GenericEvent;
@@ -489,24 +396,27 @@ namespace SimpleWebBrowser
                                 if ( ge.Type == GenericEventType.JSQuery )
                                 {
                                     if ( OnJavaScriptQuery != null )
-                                        OnJavaScriptQuery(ge.JsQuery);
+                                        OnJavaScriptQuery(((JSEvent)ge).JsCode);
                                 }
                             }
 
                             if ( ge.Type == GenericEventType.PageLoaded )
                             {
-                                if ( OnPageLoaded != null )
-                                    OnPageLoaded(ge.NavigateUrl);
+                                NavigateEvent navigateEvent = (NavigateEvent)ge;
+                                CanGoBack = navigateEvent.CanGoBack;
+                                CanGoForward = navigateEvent.CanGoForward;
+
+                                if ( OnPageLoaded != null )                                
+                                    OnPageLoaded(navigateEvent.NavigateUrl);
                             }
                             else if ( ge.Type == GenericEventType.PageLoadedError )
                             {
+                                ErrorEvent errorEvent = (ErrorEvent)ge;
                                 if ( OnPageLoadedError != null )
-                                    OnPageLoadedError((Xilium.CefGlue.CefErrorCode)ge.ErrorCode, ge.ErrorText, ge.ErrorFailedUrl);
+                                    OnPageLoadedError((Xilium.CefGlue.CefErrorCode)errorEvent.ErrorCode, errorEvent.ErrorText, errorEvent.ErrorFailedUrl);
                             }
-
                         }
                     }
-
                 }
                 catch ( Exception e )
                 {
@@ -525,22 +435,19 @@ namespace SimpleWebBrowser
             {
                 SendPing();
 
-                if ( _bufferBytes == null )
+                if ( dstTexBuffer == null )
                 {
-                    long arraySize = _mainTexArray.Length;
-                    _bufferBytes = new byte[arraySize];
+                    long arraySize = srcTexBuffer.Length;
+                    dstTexBuffer = new byte[arraySize];
                 }
-                _mainTexArray.CopyTo(_bufferBytes, 0);
+                srcTexBuffer.CopyTo(dstTexBuffer, 0);
 
-                lock ( sPixelLock )
+                lock ( pixelLock )
                 {
-
-                    BrowserTexture.LoadRawTextureData(_bufferBytes);
+                    BrowserTexture.LoadRawTextureData(dstTexBuffer);
                     BrowserTexture.Apply();
-
                 }
             }
         }
     }
-
 }

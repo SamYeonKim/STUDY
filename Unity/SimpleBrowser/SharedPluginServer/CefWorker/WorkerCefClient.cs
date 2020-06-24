@@ -231,6 +231,14 @@ namespace SharedPluginServer
             if (_lifespanHandler.MainBrowser.CanGoForward)
                 _lifespanHandler.MainBrowser.GoForward();
         }
+        public bool CanGoBack()
+        {
+            return _lifespanHandler.MainBrowser.CanGoBack;
+        }
+        public bool CanGoForward()
+        {
+            return _lifespanHandler.MainBrowser.CanGoForward;
+        }
 
 
         #endregion
