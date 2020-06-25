@@ -1,37 +1,31 @@
-2020-06-25 10:24:40,189 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-06-25 10:24:40,219 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1124,height:632,url:https://google.com,memfile:db6d6965-57a6-40fe-852d-f4e887b83937,inMem:b41b8d3d-141a-407e-b624-d1a4fd96fc89,outMem:93ca2ed7-f07c-438e-83de-730a1dc91d1b, Transparent:False, UserAgent:Hello
-2020-06-25 10:24:41,066 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:25:03,693 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-06-25 10:30:16,402 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-06-25 10:30:16,432 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1124,height:632,url:https://google.com,memfile:9f722014-67f9-444c-9715-ba205a700e36,inMem:e9a06ace-02af-42a4-95ae-eaadac63ca2c,outMem:6844a0ce-3c7c-48cf-8625-2d5b488dfa31, Transparent:False, UserAgent:'Hello
-2020-06-25 10:30:17,281 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:30:19,150 [4] INFO  SharedPluginServer.App [(null)] - _mainWorker_OnPageLoaded :False , False
-2020-06-25 10:30:19,160 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:30:19,177 [4] INFO  SharedPluginServer.CefWorker [(null)] - Handler_OnBrowserQuery : 'Hello
-2020-06-25 10:30:48,981 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-06-25 10:31:11,684 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-06-25 10:31:11,712 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1124,height:632,url:https://google.com,memfile:76a5416d-019d-4916-b79a-704dc42e1ad1,inMem:a4075f25-78e9-4178-83d8-8bb211a5fbf2,outMem:d0da755f-8e9d-408d-8fed-7187d0ec8af7, Transparent:False, UserAgent:Hello World
-2020-06-25 10:31:12,550 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:31:14,469 [4] INFO  SharedPluginServer.App [(null)] - _mainWorker_OnPageLoaded :False , False
-2020-06-25 10:31:14,478 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:31:14,494 [4] INFO  SharedPluginServer.CefWorker [(null)] - Handler_OnBrowserQuery : Hello World
-2020-06-25 10:31:31,548 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-06-25 10:32:23,843 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-06-25 10:32:23,871 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1124,height:632,url:https://google.com,memfile:eb00c958-0b27-4e45-96bf-9f9778b132dc,inMem:a6d33ac1-0e47-4908-ad6f-bdd853777e00,outMem:c6c78da7-ed7f-4c5f-8bc8-b58f6c8e3c04, Transparent:False, UserAgent:Hello World
-2020-06-25 10:32:24,705 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:32:26,613 [4] INFO  SharedPluginServer.App [(null)] - _mainWorker_OnPageLoaded :False , False
-2020-06-25 10:32:26,617 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:32:26,638 [4] INFO  SharedPluginServer.CefWorker [(null)] - Handler_OnBrowserQuery : Hello World
-2020-06-25 10:32:36,057 [4] INFO  SharedPluginServer.App [(null)] - _mainWorker_OnPageLoaded :False , False
-2020-06-25 10:32:36,074 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:32:36,075 [4] INFO  SharedPluginServer.CefWorker [(null)] - Handler_OnBrowserQuery : Hello World
-2020-06-25 10:32:37,443 [4] INFO  SharedPluginServer.App [(null)] - _mainWorker_OnPageLoaded :True , False
-2020-06-25 10:32:37,450 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:36:15,354 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
-2020-06-25 10:37:19,750 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
-2020-06-25 10:37:19,778 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1060,height:596,url:https://google.com,memfile:06255785-54ec-446e-a8b7-b3009882d149,inMem:792e3930-9113-4fe9-bb52-53c5c4541c78,outMem:6fdb4ea8-3565-4442-ad76-f98646c0e729, Transparent:False, UserAgent:Hello World
-2020-06-25 10:37:20,610 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:37:22,561 [4] INFO  SharedPluginServer.App [(null)] - _mainWorker_OnPageLoaded :False , False
-2020-06-25 10:37:22,571 [1] INFO  SharedPluginServer.WorkerCefClient [(null)] - ExecuteJavaScript : Xilium.CefGlue.CefFrame
-2020-06-25 10:37:22,586 [4] INFO  SharedPluginServer.CefWorker [(null)] - Handler_OnBrowserQuery : Hello World
-2020-06-25 10:38:37,258 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========
+2020-06-25 18:06:24,208 [1] INFO  SharedPluginServer.Program [(null)] - ===============START================
+2020-06-25 18:06:24,238 [1] INFO  SharedPluginServer.Program [(null)] - Starting plugin, settings:width:1060,height:596,url:dummy:,memfile:33fa9e73-0e4b-41ff-a581-72878655bf67,inMem:b187e9d2-b06a-476d-987e-8da3dc2c19c9,outMem:559929e8-d218-4728-84c5-9f5322268e9d, Transparent:False, UserAgent:Hello World, html:<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>
+2020-06-25 18:06:24,306 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnAfterCreated
+2020-06-25 18:06:26,870 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : Explicit , data:text/html;base64,PCFET0NUWVBFIGh0bWw%2BPGh0bWw%2BPGJvZHk%2BPGgxPk15IEZpcnN0IEhlYWRpbmc8L2gxPjxwPk15IGZpcnN0IHBhcmFncmFwaC48L3A%2BPC9ib2R5PjwvaHRtbD4%3D
+2020-06-25 18:06:26,889 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , data:text/html;base64,PCFET0NUWVBFIGh0bWw%2BPGh0bWw%2BPGJvZHk%2BPGgxPk15IEZpcnN0IEhlYWRpbmc8L2gxPjxwPk15IGZpcnN0IHBhcmFncmFwaC48L3A%2BPC9ib2R5PjwvaHRtbD4%3D
+2020-06-25 18:06:26,926 [4] INFO  SharedPluginServer.CefWorker [(null)] - Handler_OnBrowserQuery : Hello World
+2020-06-25 18:06:29,582 [1] ERROR SharedPluginServer.Interprocess.SharedCommServer [(null)] - Serialization exception,length=10000:지정한 코드 페이지의 12 인덱스에서 바이트 [FF]을(를) 유니코드로 변환할 수 없습니다.
+2020-06-25 18:06:29,614 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : Explicit , data:text/html;base64,PCFET0NUWVBFIGh0bWw%2BPGh0bWw%2BPGJvZHk%2BPGgxPk15IFNlY29uZCBIZWFkaW5nPC9oMT48cD5NeSBzZWNvbmQgcGFyYWdyYXBoLjwvcD48L2JvZHk%2BPC9odG1sPg%3D%3D
+2020-06-25 18:06:29,615 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , data:text/html;base64,PCFET0NUWVBFIGh0bWw%2BPGh0bWw%2BPGJvZHk%2BPGgxPk15IFNlY29uZCBIZWFkaW5nPC9oMT48cD5NeSBzZWNvbmQgcGFyYWdyYXBoLjwvcD48L2JvZHk%2BPC9odG1sPg%3D%3D
+2020-06-25 18:06:30,800 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : Explicit, ForwardBackFlag , data:text/html;base64,PCFET0NUWVBFIGh0bWw%2BPGh0bWw%2BPGJvZHk%2BPGgxPk15IEZpcnN0IEhlYWRpbmc8L2gxPjxwPk15IGZpcnN0IHBhcmFncmFwaC48L3A%2BPC9ib2R5PjwvaHRtbD4%3D
+2020-06-25 18:06:30,800 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , data:text/html;base64,PCFET0NUWVBFIGh0bWw%2BPGh0bWw%2BPGJvZHk%2BPGgxPk15IEZpcnN0IEhlYWRpbmc8L2gxPjxwPk15IGZpcnN0IHBhcmFncmFwaC48L3A%2BPC9ib2R5PjwvaHRtbD4%3D
+2020-06-25 18:06:37,741 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadError : NameNotResolved , data:text/html;base64,PCFET0NUWVBFIGh0bWw%2BPGh0bWw%2BPGJvZHk%2BPGgxPk15IEZpcnN0IEhlYWRpbmc8L2gxPjxwPk15IGZpcnN0IHBhcmFncmFwaC48L3A%2BPC9ib2R5PjwvaHRtbD4%3D
+2020-06-25 18:06:37,742 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : Explicit , http://html/
+2020-06-25 18:06:37,742 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , data:text/html,chromewebdata
+2020-06-25 18:06:42,047 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : Explicit , https://www.naver.com/
+2020-06-25 18:06:42,084 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : AutoSubframe , about:blank
+2020-06-25 18:06:42,084 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 0 , about:blank
+2020-06-25 18:06:42,343 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : AutoSubframe , https://nv.veta.naver.com/fxshow?su=SU10601&nrefreshx=0
+2020-06-25 18:06:42,343 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : AutoSubframe , https://nv.veta.naver.com/fxshow?su=SU10641&nrefreshx=0
+2020-06-25 18:06:42,344 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : AutoSubframe , https://nv.veta.naver.com/fxshow?su=SU10599&nrefreshx=0
+2020-06-25 18:06:42,345 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : AutoSubframe , https://nv.veta.naver.com/fxshow?su=SU10640&nrefreshx=0
+2020-06-25 18:06:42,345 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : AutoSubframe , https://nv.veta.naver.com/fxshow?su=SU10642&nrefreshx=0
+2020-06-25 18:06:42,345 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadStart : AutoSubframe , https://castbox.shopping.naver.com/sb/main.nhn
+2020-06-25 18:06:42,370 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , https://nv.veta.naver.com/fxshow?su=SU10641&nrefreshx=0
+2020-06-25 18:06:42,372 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , https://nv.veta.naver.com/fxshow?su=SU10640&nrefreshx=0
+2020-06-25 18:06:42,374 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , https://nv.veta.naver.com/fxshow?su=SU10642&nrefreshx=0
+2020-06-25 18:06:42,381 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , https://nv.veta.naver.com/fxshow?su=SU10601&nrefreshx=0
+2020-06-25 18:06:42,454 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , https://castbox.shopping.naver.com/sb/main.nhn
+2020-06-25 18:06:42,475 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , https://nv.veta.naver.com/fxshow?su=SU10599&nrefreshx=0
+2020-06-25 18:06:42,478 [4] INFO  SharedPluginServer.CefWorker [(null)] - OnLoadEnd : 200 , https://www.naver.com/
+2020-06-25 18:06:51,724 [1] INFO  SharedPluginServer.App [(null)] - ==============SHUTTING DOWN==========

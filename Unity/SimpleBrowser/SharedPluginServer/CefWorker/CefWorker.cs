@@ -26,8 +26,8 @@ namespace SharedPluginServer
         private WorkerCefMessageRouterHandler _queryHandler;
 
         private bool canGoBack;
-        private bool canGoForward;        
-
+        private bool canGoForward;
+        
         #region Status
 
         public delegate void PageLoaded(string url, int status);
@@ -42,15 +42,19 @@ namespace SharedPluginServer
         //나중에 OnLoadingStateChange 에서 OnPageLoaded를 호출 하도록 한다.
         private CefFrame lastLoadedFrame;
         private int lastLoadedStatus;
+        private bool checkedLoaded;
+
         public void InvokePageLoaded(CefFrame frame, string url, int status)
         {
             lastLoadedFrame = frame;
             lastLoadedStatus = status;
+            checkedLoaded = true;
             //OnPageLoaded?.Invoke(url,status);
         }
         public void InvokePageLoadedError(CefErrorCode errorCode, string errorText, string failedUrl)
         {
             lastLoadedFrame = null;
+            checkedLoaded = false;
             OnPageLoadedError?.Invoke(errorCode, errorText, failedUrl);
         }
         #endregion
@@ -108,7 +112,7 @@ namespace SharedPluginServer
         /// <param name="width">Browser rect width</param>
         /// <param name="height">Browser rect height</param>
         /// <param name="starturl"></param>
-        public void Init(int width,int height,string starturl, bool transparent = false)
+        public void Init(int width,int height,string starturl, bool transparent = false, string startHtml = "")
         {
             RegisterMessageRouter();
 
@@ -128,8 +132,15 @@ namespace SharedPluginServer
             
             string url = "http://www.yandex.ru/";
             if (starturl != "")
+            {
                 url = starturl;
-                    CefBrowserHost.CreateBrowser(cefWindowInfo, _client, cefBrowserSettings, url);
+            }
+
+            if ( !string.IsNullOrEmpty(startHtml) )
+            {
+                url = GetUrlFromHtmlString(startHtml);                
+            }
+            CefBrowserHost.CreateBrowser(cefWindowInfo, _client, cefBrowserSettings, url);
 
             _initialized = true;
         }
@@ -138,16 +149,22 @@ namespace SharedPluginServer
             this.canGoBack = canGoBack;
             this.canGoForward = canGoForward;
 
-            if ( lastLoadedFrame != null )
+            if ( checkedLoaded && lastLoadedFrame != null )
             {
-                OnPageLoaded?.Invoke(lastLoadedFrame.Url, lastLoadedStatus);
+                checkedLoaded = false;
+                OnPageLoaded?.Invoke(lastLoadedFrame.Url, lastLoadedStatus);                
             }
+            
         }
         public void SetMemServer(SharedMemServer memServer)
         {
             _client.SetMemServer(memServer);
         }
 
+        private string GetUrlFromHtmlString(string html)
+        {
+            return "data:text/html;base64," + CefRuntime.UriEncode(CefRuntime.Base64Encode(System.Text.Encoding.UTF8.GetBytes(html)), false);
+        }
         #region Queries
 
         private void RegisterMessageRouter()
@@ -229,6 +246,12 @@ namespace SharedPluginServer
         public void Navigate(string url)
         {
             _client.Navigate(url);
+        }
+        public void LoadHtml(string html)
+        {
+            string new_url = GetUrlFromHtmlString(html);
+
+            _client.Navigate(new_url);
         }
         public void GoBack()
         {

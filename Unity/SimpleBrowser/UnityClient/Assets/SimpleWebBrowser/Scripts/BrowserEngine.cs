@@ -40,8 +40,9 @@ namespace SimpleWebBrowser
         private string initialUrl;
         private bool enableTransparent;
         private string customUserAgent;
+        private string initialHtml;
 
-        public IEnumerator InitPlugin(int width, int height, string sharedfilename, string initialURL, bool transparent = false, string userAgent = "")
+        public IEnumerator InitPlugin(int width, int height, string sharedfilename, string initialURL, bool transparent = false, string userAgent = "", string html = "")
         {
             //Initialization (for now) requires a predefined path to PluginServer,
             //so change this section if you move the folder
@@ -79,6 +80,7 @@ namespace SimpleWebBrowser
             initialUrl = initialURL;
             enableTransparent = transparent;
             customUserAgent = userAgent;
+            initialHtml = html;
 
             if ( BrowserTexture == null )
             {
@@ -161,6 +163,8 @@ namespace SimpleWebBrowser
             
             ret = ret + "\"" + customUserAgent + "\"" + " ";
 
+            ret = ret + "\"" + initialHtml + "\"" + " ";
+
             return ret;
         }
 
@@ -180,6 +184,27 @@ namespace SimpleWebBrowser
                     ge.Type = GenericEventType.GoBack;
                 else if ( forward )
                     ge.Type = GenericEventType.GoForward;
+
+                EventPacket ep = new EventPacket()
+                {
+                    Event = ge,
+                    Type = MessageLibrary.BrowserEventType.Generic
+                };
+
+                outCommServer.WriteMessage(ep);
+            }
+        }
+
+        public void SendNavigateEventForLoadHtml(string html)
+        {
+            if ( Initialized )
+            {
+                NavigateEvent ge = new NavigateEvent()
+                {
+                    Type = GenericEventType.Navigate,
+                    GenericType = MessageLibrary.BrowserEventType.Generic,
+                    NavigateHtml = html,
+                };
 
                 EventPacket ep = new EventPacket()
                 {

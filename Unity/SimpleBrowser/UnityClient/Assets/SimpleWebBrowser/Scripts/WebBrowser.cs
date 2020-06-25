@@ -93,7 +93,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if ( !mainEngine.Initialized )
         {
-            StartCoroutine(ShowWebViewUrl(url));
+            StartCoroutine(CoLoadUrl(url));
         }
         else
         {
@@ -101,10 +101,23 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             this.url = url;
         }
     }
-    public void LoadHtml(string fileName)
+    public void LoadHtml(string htmlContent, string baseUrl = "html")
     {
-        string url = "file://" + System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
-        LoadUrl(url);
+        if ( mainEngine == null )
+        {
+            Debug.Log("MainEngine is NULL");
+            return;
+        }
+
+        if ( !mainEngine.Initialized )
+        {
+            StartCoroutine(CoLoadHtml(htmlContent, baseUrl));
+        }
+        else
+        {
+            mainEngine.SendNavigateEventForLoadHtml(htmlContent);
+            this.url = baseUrl;
+        }
     }
     public void SetMargin(int left, int top, int right, int bottom)
     {
@@ -194,13 +207,22 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
         Debug.Log("OnJavaScriptQuery : " + message);
     }
-    private IEnumerator ShowWebViewUrl(string url)
+    private IEnumerator CoLoadUrl(string url)
     {       
         yield return mainEngine.InitPlugin(width, height, memoryFile, url, backgroundTransparent, userAgent);
         rawImage.texture = mainEngine.BrowserTexture;
         rawImage.uvRect = new Rect(0f, 0f, 1f, -1f);
 
         this.url = url;
+    }
+
+    private IEnumerator CoLoadHtml(string html, string baseUrl)
+    {
+        yield return mainEngine.InitPlugin(width, height, memoryFile, baseUrl, backgroundTransparent, userAgent, html);
+        rawImage.texture = mainEngine.BrowserTexture;
+        rawImage.uvRect = new Rect(0f, 0f, 1f, -1f);
+
+        this.url = baseUrl;
     }
 
 #region UGUI Mouse Event
@@ -441,19 +463,14 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if ( string.IsNullOrEmpty(url) )
             return;
 
-        if ( url.EndsWith(".html") )
+        if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadURL") )
         {
-            if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadHTML") )
-            {
-                LoadHtml(url);
-            }
+            LoadUrl(url);
         }
-        else
+        
+        if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.2f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadHTML") )
         {
-            if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadURL") )
-            {
-                LoadUrl(url);
-            }
+            LoadHtml("<!DOCTYPE html><html><body><h1>My Second Heading</h1><p>My second paragraph.</p></body></html>");
         }
 
         if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.3f, Screen.width * 0.05f, Screen.height * 0.1f), "SetMargin") )

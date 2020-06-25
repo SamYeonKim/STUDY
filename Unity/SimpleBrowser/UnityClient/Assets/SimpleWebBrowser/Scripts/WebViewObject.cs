@@ -445,6 +445,8 @@ public class WebViewObject : MonoBehaviour
         if (webView == null)
             return;
         webView.Call("LoadHTML", html, baseUrl);
+#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+        webView.LoadHtml(html, baseUrl);
 #endif
     }
 

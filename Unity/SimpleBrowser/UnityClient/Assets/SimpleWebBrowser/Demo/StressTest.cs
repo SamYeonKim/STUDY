@@ -87,7 +87,9 @@ public class StressTest : MonoBehaviour
                 var webBrowser = webViewObject.GetComponent<WebBrowser>();
 
                 newBrowserGo.SetActive(true);
-                webViewObject.LoadURL(urlVariation[i%urlVariation.Length]);
+                // webViewObject.LoadURL(urlVariation[i%urlVariation.Length]);
+                // webViewObject.LoadURL("about:blank");
+                webViewObject.LoadHTML("<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>", "dummy:");
                 webViewObject.SetVisibility(true);
 
                 createdBrowser.Add(webBrowser);

@@ -57,6 +57,7 @@ namespace MessageLibrary
     public class NavigateEvent : GenericEvent
     {
         public string NavigateUrl;
+        public string NavigateHtml;
         public bool CanGoForward;
         public bool CanGoBack;
     }

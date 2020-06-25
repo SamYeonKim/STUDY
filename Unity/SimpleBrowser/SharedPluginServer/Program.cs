@@ -86,8 +86,6 @@ namespace SharedPluginServer
                 Type = GenericEventType.PageLoaded
             };
 
-            log.Info("_mainWorker_OnPageLoaded :" + msg.CanGoBack + " , " + msg.CanGoForward);
-
             EventPacket ep = new EventPacket
             {
                 Event = msg,
@@ -242,7 +240,15 @@ namespace SharedPluginServer
                                 break;
                             }
                             case GenericEventType.Navigate:
-                                _mainWorker.Navigate(((NavigateEvent)genericEvent).NavigateUrl);
+                                var navigateEvent = (NavigateEvent)genericEvent;
+                                if ( !string.IsNullOrEmpty(navigateEvent.NavigateHtml) )
+                                {
+                                    _mainWorker.LoadHtml(navigateEvent.NavigateHtml);
+                                }
+                                else
+                                {
+                                    _mainWorker.Navigate(navigateEvent.NavigateUrl);
+                                }                                
                                 break;
 
                             case GenericEventType.GoBack:
@@ -373,6 +379,7 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
             string defInFileName = "InSharedMem";
             string defOutFileName = "OutSharedMem";
             string defUserAgent = "";
+            string defHtml = "";
 
             bool useTransparent = false;
 
@@ -396,10 +403,12 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                         useTransparent = true;
                 if ( args.Length > 7 )
                     defUserAgent = args[7];
+                if ( args.Length > 8 )
+                    defHtml = args[8];
             }
 
-            log.InfoFormat("Starting plugin, settings:width:{0},height:{1},url:{2},memfile:{3},inMem:{4},outMem:{5}, Transparent:{6}, UserAgent:{7}",
-                defWidth, defHeight, defUrl, defFileName, defInFileName, defOutFileName, useTransparent, defUserAgent);
+            log.InfoFormat("Starting plugin, settings:width:{0},height:{1},url:{2},memfile:{3},inMem:{4},outMem:{5}, Transparent:{6}, UserAgent:{7}, html:{8}",
+                defWidth, defHeight, defUrl, defFileName, defInFileName, defOutFileName, useTransparent, defUserAgent, defHtml);
 
             try
             {
@@ -443,7 +452,7 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
             }
 
             CefWorker worker = new CefWorker();
-            worker.Init(defWidth, defHeight, defUrl, useTransparent);
+            worker.Init(defWidth, defHeight, defUrl, useTransparent, defHtml);
 
             SharedMemServer server = new SharedMemServer();
             server.Init(defWidth * defHeight * 4, defFileName);

@@ -207,6 +207,11 @@ namespace SharedPluginServer
             _lifespanHandler.MainBrowser.GetMainFrame().LoadUrl(url);
         }
 
+        public void LoadHtml(string html, string baseUrl)
+        {
+            _lifespanHandler.MainBrowser.GetMainFrame().LoadString(html, baseUrl);
+        }
+
         public void GoBack()
         {
             if(_lifespanHandler.MainBrowser.CanGoBack)
@@ -235,7 +240,6 @@ namespace SharedPluginServer
         {
             CefFrame frame = _lifespanHandler.MainBrowser.GetMainFrame();
             
-            log.Info("ExecuteJavaScript : " + frame.ToString());
             frame.ExecuteJavaScript(jscode,frame.Url,0);            
         }
 
