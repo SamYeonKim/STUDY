@@ -248,7 +248,7 @@ namespace SharedPluginServer
                                 else
                                 {
                                     _mainWorker.Navigate(navigateEvent.NavigateUrl);
-                                }                                
+                                }
                                 break;
 
                             case GenericEventType.GoBack:

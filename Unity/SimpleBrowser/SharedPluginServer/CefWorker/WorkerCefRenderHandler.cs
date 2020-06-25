@@ -6,50 +6,40 @@ namespace SharedPluginServer
 {
     class WorkerCefRenderHandler : CefRenderHandler
     {
-        
         private readonly int _windowHeight;
         private readonly int _windowWidth;
-
         private int _copysize = 0;
 
         public byte[] MainBitmap = null;
-
-        public int CurrentWidth=0;
+        public int CurrentWidth = 0;
         public int CurrentHeight = 0;
-
         public SharedMemServer _memServer = null;
-
-
+        
         /// <summary>
         /// 
         /// </summary>
         /// <param name="windowWidth"></param>
         /// <param name="windowHeight"></param>
         /// 
-       protected override void OnImeCompositionRangeChanged(CefBrowser browser, CefRange selectedRange, CefRectangle[] characterBounds)
+        protected override void OnImeCompositionRangeChanged(CefBrowser browser, CefRange selectedRange, CefRectangle[] characterBounds)
         {
 
         }
-
         public WorkerCefRenderHandler(int windowWidth, int windowHeight)
         {
-            
             _windowWidth = windowWidth;
             _windowHeight = windowHeight;
         }
-
         protected override bool GetRootScreenRect(CefBrowser browser, ref CefRectangle rect)
         {
             return GetViewRect(browser, ref rect);
         }
-
         protected override bool GetScreenPoint(CefBrowser browser, int viewX, int viewY, ref int screenX, ref int screenY)
         {
             screenX = viewX;
             screenY = viewY;
             return true;
         }
-
         protected override bool GetViewRect(CefBrowser browser, ref CefRectangle rect)
         {
             //see https://www.magpcss.org/ceforum/viewtopic.php?f=6&t=12835
@@ -59,12 +49,10 @@ namespace SharedPluginServer
             rect.Height = _windowHeight;
             return true;
         }
-
         protected override bool GetScreenInfo(CefBrowser browser, CefScreenInfo screenInfo)
         {
             return false;
         }
-
         protected override void OnPopupSize(CefBrowser browser, CefRectangle rect)
         {
         }
@@ -75,34 +63,29 @@ namespace SharedPluginServer
          *  The CefBrowserSettings.animation_frame_rate value controls the rate at which this method is called.*/
         protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr buffer, int width, int height)
         {
-          
-            if (MainBitmap == null)
+
+            if ( MainBitmap == null )
             {
-                _copysize = width*height*4; 
+                _copysize = width * height * 4;
 
                 MainBitmap = new byte[_copysize];
-             }
+            }
 
             CurrentWidth = width;
             CurrentHeight = height;
             Marshal.Copy(buffer, MainBitmap, 0, _copysize);
 
 
-            if(_memServer!=null)
+            if ( _memServer != null )
                 _memServer.WriteBytes(MainBitmap);
-            
         }
-
         //TODO: use this?
-    protected override void OnCursorChange(CefBrowser browser, IntPtr cursorHandle, CefCursorType type, CefCursorInfo customCursorInfo)
+        protected override void OnCursorChange(CefBrowser browser, IntPtr cursorHandle, CefCursorType type, CefCursorInfo customCursorInfo)
         {
-            
+
         }
-        
         protected override void OnScrollOffsetChanged(CefBrowser browser, double x, double y)
         {
         }
-
-        
     }
 }

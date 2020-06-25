@@ -2,7 +2,7 @@
 
 namespace SharedPluginServer
 {
-    class WorkerCefContextMenuHandler: CefContextMenuHandler
+    class WorkerCefContextMenuHandler : CefContextMenuHandler
     {
         protected override void OnBeforeContextMenu(CefBrowser browser,
             CefFrame frame,

@@ -8,7 +8,7 @@ namespace SharedPluginServer
 
         public WorkerCefApp()
         {
-            _renderProcessHandler=new WorkerCefRenderProcessHandler();
+            _renderProcessHandler = new WorkerCefRenderProcessHandler();
         }
 
         protected override CefRenderProcessHandler GetRenderProcessHandler()
@@ -18,7 +18,7 @@ namespace SharedPluginServer
 
         protected override void OnBeforeCommandLineProcessing(string processType, CefCommandLine commandLine)
         {
-            if (string.IsNullOrEmpty(processType))
+            if ( string.IsNullOrEmpty(processType) )
             {
                 commandLine.AppendSwitch("enable-begin-frame-scheduling");
                 commandLine.AppendSwitch("disable-smooth-scrolling");

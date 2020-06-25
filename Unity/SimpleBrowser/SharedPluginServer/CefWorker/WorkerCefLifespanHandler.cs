@@ -20,23 +20,17 @@ namespace SharedPluginServer
             MainBrowserHost = browser.GetHost();
 
             //scroll
-           // CefFrame frame = MainBrowser.GetMainFrame();
-          //  frame.ExecuteJavaScript("window.ScrollTo(" + _mainWorker.ClientX + "," + _mainWorker.ClientY + ");", frame.Url, 0);
-
-            
-            
+            // CefFrame frame = MainBrowser.GetMainFrame();
+            //  frame.ExecuteJavaScript("window.ScrollTo(" + _mainWorker.ClientX + "," + _mainWorker.ClientY + ");", frame.Url, 0);
         }
-
         protected override bool DoClose(CefBrowser browser)
         {
             return false;
         }
-
         protected override void OnBeforeClose(CefBrowser browser)
         {
             _mainWorker.BrowserMessageRouter.OnBeforeClose(browser);
         }
-
         protected override bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl,
             string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture,
             CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings,

@@ -1,10 +1,9 @@
-﻿using System;
-using SharedMemory;
-
+﻿using SharedMemory;
+using System;
 
 namespace SharedPluginServer
 {
-    public class SharedMemServer:IDisposable
+    public class SharedMemServer : IDisposable
     {
         private SharedArray<byte> _sharedBuf;
 
@@ -14,16 +13,14 @@ namespace SharedPluginServer
 
         private static readonly log4net.ILog log =
    log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-                      
-
-        public void Init(int size,string filename)
+        
+        public void Init(int size, string filename)
         {
-            _sharedBuf=new SharedArray<byte>(filename,size);
+            _sharedBuf = new SharedArray<byte>(filename, size);
             _isOpen = true;
             Filename = filename;
 
         }
-
         public void Connect(string filename)
         {
             try
@@ -33,50 +30,45 @@ namespace SharedPluginServer
                 _isOpen = true;
                 log.Debug("Server connected:" + filename);
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 _isOpen = false;
             }
         }
-
         public bool GetIsOpen()
         {
             return _isOpen;
         }
-
         public void Resize(int newSize)
         {
 
 
-            if (_sharedBuf.Length != newSize)
+            if ( _sharedBuf.Length != newSize )
             {
                 _sharedBuf.Close();
                 _sharedBuf = new SharedArray<byte>(Filename, newSize);
             }
         }
-
         public void WriteBytes(byte[] bytes)
         {
-            if (_isOpen)
+            if ( _isOpen )
             {
-                if (bytes.Length > _sharedBuf.Length)
+                if ( bytes.Length > _sharedBuf.Length )
                 {
                     Resize(bytes.Length);
                 }
                 _sharedBuf.Write(bytes);
             }
         }
-
         public void Dispose()
         {
             _isOpen = false;
             _sharedBuf.Close();
         }
-    
         public byte[] ReadBytes()
         {
             byte[] ret = null;
-            if(_isOpen)
+            if ( _isOpen )
             {
                 ret = new byte[_sharedBuf.Count];
                 _sharedBuf.CopyTo(ret);
@@ -86,8 +78,5 @@ namespace SharedPluginServer
 
             return ret;
         }
-      
-
     }
-
- }
+}

@@ -16,32 +16,27 @@ namespace SharedPluginServer
         {
             MessageRouter.OnContextCreated(browser, frame, context);
         }
-
         protected override void OnContextReleased(CefBrowser browser, CefFrame frame, CefV8Context context)
         {
             MessageRouter.OnContextReleased(browser, frame, context);
         }
-
         protected override bool OnProcessMessageReceived(CefBrowser browser, CefProcessId sourceProcess,
             CefProcessMessage message)
         {
             var handled = MessageRouter.OnProcessMessageReceived(browser, sourceProcess, message);
-            if (handled) return true;
+            if ( handled )
+                return true;
 
             return false;
         }
-
         protected override void OnWebKitInitialized()
         {
-            
-        }
 
-       protected override bool OnBeforeNavigation(CefBrowser browser, CefFrame frame, CefRequest request,
-            CefNavigationType navigation_type, bool isRedirect)
+        }
+        protected override bool OnBeforeNavigation(CefBrowser browser, CefFrame frame, CefRequest request,
+             CefNavigationType navigation_type, bool isRedirect)
         {
             return false;
         }
     }
-
-
 }
