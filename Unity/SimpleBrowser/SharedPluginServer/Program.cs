@@ -40,7 +40,7 @@ namespace SharedPluginServer
         public App(CefWorker worker, SharedMemServer memServer, SharedCommServer inServer, SharedCommServer outServer)
         {
             //    _renderProcessHandler = new WorkerCefRenderProcessHandler();
-            
+
             _memServer = memServer;
             _mainWorker = worker;
             //init SharedMem comms
@@ -195,7 +195,6 @@ namespace SharedPluginServer
         /// <param name="msg">Message from client app</param>
         public void HandleMessage(EventPacket msg)
         {
-
             //reset timer
             if ( _exitTimer != null )
             {
@@ -242,7 +241,7 @@ namespace SharedPluginServer
 
                                 break;
                             }
-                            case GenericEventType.Navigate:                                
+                            case GenericEventType.Navigate:
                                 _mainWorker.Navigate(((NavigateEvent)genericEvent).NavigateUrl);
                                 break;
 
@@ -254,16 +253,12 @@ namespace SharedPluginServer
                                 _mainWorker.GoForward();
                                 break;
 
-                            case GenericEventType.ExecuteJS:                                
+                            case GenericEventType.ExecuteJS:
                                 _mainWorker.ExecuteJavaScript(((JSEvent)genericEvent).JsCode);
                                 break;
-
                             case GenericEventType.JSQueryResponse:
-                            {
                                 _mainWorker.AnswerQuery(((JSEvent)genericEvent).JsCode);
                                 break;
-                            }
-
                         }
                     }
                     break;
@@ -283,8 +278,6 @@ namespace SharedPluginServer
                 case BrowserEventType.Keyboard:
                 {
                     KeyboardEvent keyboardEvent = msg.Event as KeyboardEvent;
-
-
 
                     if ( keyboardEvent != null )
                     {
@@ -328,12 +321,7 @@ namespace SharedPluginServer
 
 
         }
-
-
     }
-
-
-
 
     static class Program
     {
@@ -382,10 +370,10 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
             int defHeight = 720;
             string defUrl = "http://test.webrtc.org";
             string defFileName = "MainSharedMem";
-
             string defInFileName = "InSharedMem";
             string defOutFileName = "OutSharedMem";
-            
+            string defUserAgent = "";
+
             bool useTransparent = false;
 
             if ( args.Length > 0 && args[0] != "--type=renderer" )
@@ -406,10 +394,12 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                 if ( args.Length > 6 )
                     if ( args[6] == "1" )
                         useTransparent = true;
+                if ( args.Length > 7 )
+                    defUserAgent = args[7];
             }
 
-            log.InfoFormat("Starting plugin, settings:width:{0},height:{1},url:{2},memfile:{3},inMem:{4},outMem:{5}, Transparent:{6}",
-                defWidth, defHeight, defUrl, defFileName, defInFileName, defOutFileName, useTransparent);
+            log.InfoFormat("Starting plugin, settings:width:{0},height:{1},url:{2},memfile:{3},inMem:{4},outMem:{5}, Transparent:{6}, UserAgent:{7}",
+                defWidth, defHeight, defUrl, defFileName, defInFileName, defOutFileName, useTransparent, defUserAgent);
 
             try
             {
@@ -431,6 +421,11 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                     WindowlessRenderingEnabled = true,
                     LogSeverity = CefLogSeverity.Info,
                 };
+
+                if ( !string.IsNullOrEmpty(defUserAgent) )
+                {
+                    cefSettings.UserAgent = defUserAgent;
+                }
 
                 try
                 {
@@ -468,7 +463,7 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                 //check incoming messages and push outcoming
                 app.CheckMessage();
             }
-            
+
             CefRuntime.Shutdown();
 
             return 0;

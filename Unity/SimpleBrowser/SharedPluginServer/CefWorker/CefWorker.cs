@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using MessageLibrary;
 using Xilium.CefGlue;
 using Xilium.CefGlue.Wrapper;
-
+using System.Collections.Generic;
 
 namespace SharedPluginServer
 {
@@ -26,7 +26,7 @@ namespace SharedPluginServer
         private WorkerCefMessageRouterHandler _queryHandler;
 
         private bool canGoBack;
-        private bool canGoForward;
+        private bool canGoForward;        
 
         #region Status
 
@@ -40,8 +40,8 @@ namespace SharedPluginServer
 
         //CanGoBack, CanGoForward가 갱신 되는 시점 보다 PageLoaded가 먼저이기 때문에, PageLoaded에서 받은 값을 변수로 저장해 놨다가.
         //나중에 OnLoadingStateChange 에서 OnPageLoaded를 호출 하도록 한다.
-        CefFrame lastLoadedFrame;
-        int lastLoadedStatus;
+        private CefFrame lastLoadedFrame;
+        private int lastLoadedStatus;
         public void InvokePageLoaded(CefFrame frame, string url, int status)
         {
             lastLoadedFrame = frame;
@@ -115,7 +115,7 @@ namespace SharedPluginServer
             CefWindowInfo cefWindowInfo = CefWindowInfo.Create();
             cefWindowInfo.SetAsWindowless(IntPtr.Zero, transparent);
             var cefBrowserSettings = new CefBrowserSettings();
-
+            
             cefBrowserSettings.JavaScript=CefState.Enabled;
             //cefBrowserSettings.CaretBrowsing=CefState.Enabled;
             cefBrowserSettings.TabToLinks=CefState.Enabled;
@@ -223,7 +223,6 @@ namespace SharedPluginServer
         public void Shutdown()
         {
             _client.Shutdown();
-          // 
         }
 
 #region Navigation and controls

@@ -13,7 +13,6 @@ namespace SharedPluginServer
 
         protected override void OnLoadStart(CefBrowser browser, CefFrame frame, CefTransitionType transitionType)
         {
-           
         }
 
         protected override void OnLoadEnd(CefBrowser browser, CefFrame frame, int httpStatusCode)

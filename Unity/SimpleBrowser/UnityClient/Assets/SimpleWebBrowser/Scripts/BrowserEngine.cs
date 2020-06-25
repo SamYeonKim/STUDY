@@ -39,8 +39,9 @@ namespace SimpleWebBrowser
         private string outCommFile;
         private string initialUrl;
         private bool enableTransparent;
+        private string customUserAgent;
 
-        public IEnumerator InitPlugin(int width, int height, string sharedfilename, string initialURL, bool transparent = false)
+        public IEnumerator InitPlugin(int width, int height, string sharedfilename, string initialURL, bool transparent = false, string userAgent = "")
         {
             //Initialization (for now) requires a predefined path to PluginServer,
             //so change this section if you move the folder
@@ -77,6 +78,7 @@ namespace SimpleWebBrowser
 
             initialUrl = initialURL;
             enableTransparent = transparent;
+            customUserAgent = userAgent;
 
             if ( BrowserTexture == null )
             {
@@ -153,9 +155,11 @@ namespace SimpleWebBrowser
             ret = ret + inCommFile + " ";
 
             if ( enableTransparent )
-                ret = ret + " 1" + " ";
+                ret = ret + "1" + " ";
             else
-                ret = ret + " 0" + " ";
+                ret = ret + "0" + " ";
+            
+            ret = ret + "\"" + customUserAgent + "\"" + " ";
 
             return ret;
         }

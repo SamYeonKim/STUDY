@@ -493,17 +493,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1387006824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cddfbf9af9fa4d745b5d173714d010dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b52328009272a049a85f8ec9e8447a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 1024
-  height: 768
-  memoryFile: MainSharedMem
-  randomMemoryFile: 1
-  backgroundTransparent: 0
-  url: 
-  jSInitializationCode: 
-  rawImage: {fileID: 0}
 --- !u!1001 &1528267657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,27 +503,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1022321740}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: InitialURL
+      value: https://naver.com
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011750038956, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1000011750038956, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011757742844, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000014167775816, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010958089028, guid: a157ba4f6c2697e45940e6c6b280da74,
-        type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 1000014167775816, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010958089028, guid: a157ba4f6c2697e45940e6c6b280da74,
-        type: 3}
-      propertyPath: InitialURL
-      value: https://naver.com
       objectReference: {fileID: 0}
     - target: {fileID: 114000013104010366, guid: a157ba4f6c2697e45940e6c6b280da74,
         type: 3}
@@ -628,8 +626,7 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114000010958089028, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a157ba4f6c2697e45940e6c6b280da74, type: 3}
 --- !u!1 &2017789520
 GameObject:

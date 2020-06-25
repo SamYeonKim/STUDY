@@ -9,14 +9,6 @@ namespace SharedPluginServer
         private static readonly log4net.ILog log =
   log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 #endif
-
-        //required:
-        //lifespan+,
-        //display? - status,console, etc
-        //render+,
-        //load+,
-        //dialog +
-
         private readonly WorkerCefLoadHandler _loadHandler;
         private readonly WorkerCefRenderHandler _renderHandler;
         private readonly WorkerCefLifespanHandler _lifespanHandler;
@@ -62,14 +54,10 @@ namespace SharedPluginServer
             return _jsDialogHandler;
         }
 
-
-
         public void SetMemServer(SharedMemServer memServer)
         {
             _renderHandler._memServer = memServer;
         }
-
-
 
         protected override CefRenderHandler GetRenderHandler()
         {
@@ -84,8 +72,7 @@ namespace SharedPluginServer
 
             return false;
         }
-
-
+        
         protected override CefLoadHandler GetLoadHandler()
         {
             return _loadHandler;
@@ -239,8 +226,6 @@ namespace SharedPluginServer
         {
             return _lifespanHandler.MainBrowser.CanGoForward;
         }
-
-
         #endregion
 
 

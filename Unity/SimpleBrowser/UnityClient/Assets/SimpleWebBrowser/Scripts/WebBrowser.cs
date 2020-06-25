@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RawImage))]
+[RequireComponent(typeof(RectTransform))]
 public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,IPointerUpHandler    
 {
+    public bool visibility { get; private set; }
     [Header("General settings")]
     public int width = 1024;
     public int height = 768;
@@ -31,6 +33,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private Action<string> callOnError;
     private Action<string> callOnLoaded;
     private Action<string> callFromJS;
+    private string userAgent;
 
     private void OnDisable()
     {
@@ -41,13 +44,19 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }        
     }
 
-    public void Init(bool transparent, Action<string> callOnError, Action<string> callOnLoad, Action<string> callFromJS)
+    public void Init(bool transparent, Action<string> callOnError, Action<string> callOnLoad, Action<string> callFromJS, string userAgent)
     {
         this.callOnError = callOnError;
         this.callOnLoaded = callOnLoad;
         this.callFromJS = callFromJS;
         
         rawImage = gameObject.GetComponent<RawImage>();
+
+        //Margin 설정을 편하게 하기 위해서, RectTransform의 Anchor 설정을 All Stretch 상태로 강제한다.
+        var rectTransform = gameObject.GetComponent<RectTransform>();
+        rectTransform.anchorMin = new Vector2(0, 0);
+        rectTransform.anchorMax = new Vector2(1, 1);
+
         backgroundTransparent = transparent;
 
         mainEngine = new SimpleWebBrowser.BrowserEngine();
@@ -66,6 +75,9 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         mainEngine.OnJavaScriptQuery += OnJavaScriptQuery;
         mainEngine.OnPageLoaded += OnPageLoaded;
         mainEngine.OnPageLoadedError += OnPageLoadedError;
+
+        this.userAgent = userAgent;
+        visibility = true;
     }
     public void RunJavaScript(string js)
     {
@@ -98,9 +110,6 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         var rectTransform = this.GetComponent<RectTransform>();
 
-        rectTransform.anchorMin = new Vector2(0, 0);
-        rectTransform.anchorMax = new Vector2(1, 1);
-
         int width = Screen.width;
         int height = Screen.height;
 
@@ -116,6 +125,14 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         rectTransform.offsetMin = new Vector2(leftResult, bottomResult);
         rectTransform.offsetMax = new Vector2(rightResult, topResult);
+    }
+    public void SetVisibility(bool visibility)
+    {
+        if ( string.IsNullOrEmpty(lastLoadedUrl) )
+            return;
+
+        this.visibility = visibility;   
+        rawImage.enabled = visibility;
     }
     public void GoBack()
     {
@@ -158,9 +175,6 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         Debug.Log("OnPageLoaded : " + url);
 
-        // JsDialog 테스트용
-        // RunJavaScript(@"alert('helloworld')");
-
         RunJavaScript(@"window.Unity.call(navigator.userAgent);");
     }
     private void OnPageLoadedError(Xilium.CefGlue.CefErrorCode errorCode, string errorText, string errorUrl)
@@ -182,7 +196,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
     private IEnumerator ShowWebViewUrl(string url)
     {       
-        yield return mainEngine.InitPlugin(width, height, memoryFile, url, backgroundTransparent);
+        yield return mainEngine.InitPlugin(width, height, memoryFile, url, backgroundTransparent, userAgent);
         rawImage.texture = mainEngine.BrowserTexture;
         rawImage.uvRect = new Rect(0f, 0f, 1f, -1f);
 
@@ -383,6 +397,9 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if ( string.IsNullOrEmpty(url) )
             return;
 
+        if ( !visibility )
+            return;
+
         mainEngine.UpdateTexture();
         mainEngine.CheckMessage();
 
@@ -421,6 +438,8 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void OnGUI()
     {
         url = GUI.TextField(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.15f, Screen.height * 0.1f), url);
+        if ( string.IsNullOrEmpty(url) )
+            return;
 
         if ( url.EndsWith(".html") )
         {
@@ -459,6 +478,11 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     GoForward();
                 }
             }
+        }
+
+        if ( GUI.Button(new Rect(Screen.width * 0.9f, Screen.height * 0.5f, Screen.width * 0.05f, Screen.height * 0.1f), "SetVisibility") )
+        {
+            SetVisibility(!visibility);
         }
     }
 }

@@ -68,17 +68,29 @@ public class StressTest : MonoBehaviour
                 // browser.InitialURL = "";
                 // #endregion
 
-                WebBrowser browserReal = newBrowserGo.GetComponent<WebBrowser>();
-                browserReal.width = width;
-                browserReal.height = height;
+                // WebBrowser browserReal = newBrowserGo.GetComponent<WebBrowser>();
+                // browserReal.width = width;
+                // browserReal.height = height;
+
+                // newBrowserGo.SetActive(true);
+
+                // browserReal.Init(false, null, null, null, "");
+
+                // browserReal.LoadUrl(urlVariation[i%urlVariation.Length]);
+
+                var webViewObject = newBrowserGo.GetComponent<WebViewObject>();
+
+                webViewObject.Init(null, false, "Hello World");
+                webViewObject.SetMargins(50, 50, 50, 50);
+
+                webViewObject.SetVisibility(false);
+                var webBrowser = webViewObject.GetComponent<WebBrowser>();
 
                 newBrowserGo.SetActive(true);
+                webViewObject.LoadURL(urlVariation[i%urlVariation.Length]);
+                webViewObject.SetVisibility(true);
 
-                browserReal.Init(false, null, null, null);
-
-                browserReal.LoadUrl(urlVariation[i%urlVariation.Length]);
-
-                createdBrowser.Add(browserReal);
+                createdBrowser.Add(webBrowser);
             }
         }
 
