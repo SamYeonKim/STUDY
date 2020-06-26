@@ -310,9 +310,7 @@ public class WebViewObject : MonoBehaviour
         webView.Call("Init", name, transparent, ua);
 #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
         webView = gameObject.AddComponent<WebBrowser>();
-        webView.width = Screen.width;
-        webView.height = Screen.height;
-        webView.Init(transparent, CallOnError, CallOnLoaded, CallFromJS, ua);
+        webView.Init(Screen.width, Screen.height, transparent, CallOnError, CallOnLoaded, CallFromJS, ua);
 #else
         Debug.LogWarning("Webview is not supported on this platform.");
 #endif

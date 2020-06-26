@@ -10,21 +10,13 @@ using UnityEngine.UI;
 public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,IPointerUpHandler    
 {
     public bool visibility { get; private set; }
-    [Header("General settings")]
-    public int width = 1024;
-    public int height = 768;
-    public string memoryFile = "MainSharedMem";
-    public bool randomMemoryFile = true;
-    public bool backgroundTransparent = false;
-    public string url;
-
-    [Multiline]
-    public string jSInitializationCode = "";
-
-    [Header("2D setup")]
-    [SerializeField]
-    public RawImage rawImage = null;
-
+    private bool backgroundTransparent = false;
+    private int width = 1024;
+    private int height = 768;
+    private string memoryFile = "MainSharedMem";
+    private string jSInitializationCode = "";
+    private RawImage rawImage = null;
+    private string requestUrl;
     private string lastLoadedUrl = "";
     private SimpleWebBrowser.BrowserEngine mainEngine;
     private bool inputFocused = false;
@@ -35,21 +27,14 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private Action<string> callFromJS;
     private string userAgent;
 
-    private void OnDisable()
-    {
-        if ( mainEngine != null )
-        {
-            Debug.Log("OnDisable");
-            mainEngine.Shutdown();
-        }        
-    }
-
-    public void Init(bool transparent, Action<string> callOnError, Action<string> callOnLoad, Action<string> callFromJS, string userAgent)
+    public void Init(int width, int height, bool transparent, Action<string> callOnError, Action<string> callOnLoad, Action<string> callFromJS, string userAgent)
     {
         this.callOnError = callOnError;
         this.callOnLoaded = callOnLoad;
         this.callFromJS = callFromJS;
-        
+        this.width = width;
+        this.height = height;
+
         rawImage = gameObject.GetComponent<RawImage>();
 
         //Margin 설정을 편하게 하기 위해서, RectTransform의 Anchor 설정을 All Stretch 상태로 강제한다.
@@ -61,11 +46,8 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         mainEngine = new SimpleWebBrowser.BrowserEngine();
 
-        if (randomMemoryFile)
-        {
-            Guid memid = Guid.NewGuid();
-            memoryFile = memid.ToString();
-        }
+        Guid memid = Guid.NewGuid();
+        memoryFile = memid.ToString();
 
         jSInitializationCode = @"window.Unity = { call: function(msg) { window.cefQuery({ request: msg, onSuccess: function(response) { console.log(response); }, onFailure: function(err,msg) { console.log(err, msg); } }); }}";
         
@@ -98,7 +80,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         else
         {
             mainEngine.SendNavigateEvent(url, false, false);
-            this.url = url;
+            this.requestUrl = url;
         }
     }
     public void LoadHtml(string htmlContent, string baseUrl = "html")
@@ -116,7 +98,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         else
         {
             mainEngine.SendNavigateEventForLoadHtml(htmlContent);
-            this.url = baseUrl;
+            this.requestUrl = baseUrl;
         }
     }
     public void SetMargin(int left, int top, int right, int bottom)
@@ -173,6 +155,14 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         return mainEngine.CanGoBack;
     }
+    
+    private void OnDisable()
+    {
+        if ( mainEngine != null )
+        {
+            mainEngine.Shutdown();
+        }        
+    }
     private void OnPageLoaded(string url)
     {
         if(callOnLoaded != null)
@@ -213,7 +203,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         rawImage.texture = mainEngine.BrowserTexture;
         rawImage.uvRect = new Rect(0f, 0f, 1f, -1f);
 
-        this.url = url;
+        this.requestUrl = url;
     }
 
     private IEnumerator CoLoadHtml(string html, string baseUrl)
@@ -222,7 +212,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         rawImage.texture = mainEngine.BrowserTexture;
         rawImage.uvRect = new Rect(0f, 0f, 1f, -1f);
 
-        this.url = baseUrl;
+        this.requestUrl = baseUrl;
     }
 
 #region UGUI Mouse Event
@@ -416,7 +406,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Update()
     {
-        if ( string.IsNullOrEmpty(url) )
+        if ( string.IsNullOrEmpty(requestUrl) )
             return;
 
         if ( !visibility )
@@ -459,13 +449,13 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     
     private void OnGUI()
     {
-        url = GUI.TextField(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.15f, Screen.height * 0.1f), url);
-        if ( string.IsNullOrEmpty(url) )
+        requestUrl = GUI.TextField(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.15f, Screen.height * 0.1f), requestUrl);
+        if ( string.IsNullOrEmpty(requestUrl) )
             return;
 
         if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.1f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadURL") )
         {
-            LoadUrl(url);
+            LoadUrl(requestUrl);
         }
         
         if ( GUI.Button(new Rect(Screen.width * 0.95f, Screen.height * 0.2f, Screen.width * 0.05f, Screen.height * 0.1f), "LoadHTML") )

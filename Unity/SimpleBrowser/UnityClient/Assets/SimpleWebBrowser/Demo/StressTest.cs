@@ -14,8 +14,8 @@ public class StressTest : MonoBehaviour
     public int deltaY = 10;
 
     string[] urlVariation = {
-        "https://google.com",
          "https://naver.com",
+        "https://google.com",
           "https://ncsoft.com",
            "https://unity.com",
             "https://bitbucket.org/vitaly_chashin/simpleunitybrowser/src/default/UnityClient/Assets/SimpleWebBrowser/PluginServer",
@@ -80,16 +80,17 @@ public class StressTest : MonoBehaviour
 
                 var webViewObject = newBrowserGo.GetComponent<WebViewObject>();
 
-                webViewObject.Init(null, false, "Hello World");
-                webViewObject.SetMargins(50, 50, 50, 50);
+                webViewObject.Init(null, true, "Hello World");
+                int index = i + 1;                
+                webViewObject.SetMargins(50 * index, 50 * index, 50, 50);
 
                 webViewObject.SetVisibility(false);
                 var webBrowser = webViewObject.GetComponent<WebBrowser>();
 
                 newBrowserGo.SetActive(true);
-                // webViewObject.LoadURL(urlVariation[i%urlVariation.Length]);
+                webViewObject.LoadURL(urlVariation[i%urlVariation.Length]);
                 // webViewObject.LoadURL("about:blank");
-                webViewObject.LoadHTML("<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>", "dummy:");
+                // webViewObject.LoadHTML("<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>", "dummy:");
                 webViewObject.SetVisibility(true);
 
                 createdBrowser.Add(webBrowser);
