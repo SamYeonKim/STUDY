@@ -85,7 +85,6 @@ namespace SimpleWebBrowser
             if ( BrowserTexture == null )
             {
                 BrowserTexture = new Texture2D(this.width, this.height, TextureFormat.BGRA32, false, true);
-                BrowserTexture.alphaIsTransparency = true;
             }
 
             pixelLock = new object();
@@ -102,34 +101,36 @@ namespace SimpleWebBrowser
             inCommServer = new SharedCommServer(false);
             outCommServer = new SharedCommServer(true);
 
-            while ( !connected )
+            try
             {
-                try
+                pluginProcess = new Process()
                 {
-                    pluginProcess = new Process()
+                    StartInfo = new ProcessStartInfo()
                     {
-                        StartInfo = new ProcessStartInfo()
-                        {
-                            WorkingDirectory = PluginServerPath,
-                            FileName = PluginServerPath + @"\SharedPluginServer.exe",
-                            Arguments = args
-                        }
-                    };
+                        WorkingDirectory = PluginServerPath,
+                        FileName = PluginServerPath + @"\SharedPluginServer.exe",
+                        Arguments = args
+                    }
+                };
 
-                    pluginProcess.Start();
-                    pluginProcess.EnableRaisingEvents = true;
-                    //_pluginProcess.WaitForInputIdle();
-                    Initialized = false;
-                }
-                catch ( Exception ex )
+                pluginProcess.Start();
+                pluginProcess.EnableRaisingEvents = true;
+                pluginProcess.Exited += (object sender, EventArgs e) =>
                 {
-                    //log the file
-                    Debug.Log("FAILED TO START SERVER FROM:" + PluginServerPath + @"\SharedPluginServer.exe");
-                    throw;
-                }
-                
-                yield return new WaitForSeconds(1.0f);
+                    Debug.Log("Exited");
+                    Initialized = false;
+                    connected = false;
+                };
+                Initialized = false;
+            }
+            catch ( Exception ex )
+            {
+                Debug.Log("FAILED TO START SERVER FROM:" + PluginServerPath + @"\SharedPluginServer.exe");
+                throw;
+            }
 
+            while ( !connected )
+            {    
                 inCommServer.Connect(inCommFile);
                 bool b1 = inCommServer.GetIsOpen();
                 outCommServer.Connect(outCommFile);
@@ -137,15 +138,10 @@ namespace SimpleWebBrowser
 
                 connected = b1 && b2;
 
-                pluginProcess.Exited += (object sender, EventArgs e) =>
-                {
-                    Debug.Log("Exited");
-                    Initialized = false;
-                    connected = false;
-                };
-
-                UpdateInitialized();
+                yield return new WaitForEndOfFrame();
             }
+
+            UpdateInitialized();
         }
 
         private string BuildParamsString()
