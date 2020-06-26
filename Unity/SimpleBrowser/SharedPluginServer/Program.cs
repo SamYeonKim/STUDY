@@ -10,7 +10,6 @@ using Xilium.CefGlue;
 
 namespace SharedPluginServer
 {
-
     //Main application
 
     public class App
@@ -233,7 +232,6 @@ namespace SharedPluginServer
                                 }
                                 catch ( Exception e )
                                 {
-
                                     log.Info("Exception on shutdown:" + e.StackTrace);
                                 }
 
@@ -333,9 +331,7 @@ namespace SharedPluginServer
     {
         private static readonly log4net.ILog log =
 log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-
-
+               
         /// <summary>
         /// The main entry point for the application.
         /// args:
@@ -415,9 +411,7 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                 CefMainArgs cefMainArgs;
                 cefMainArgs = new CefMainArgs(args);
                 var cefApp = new WorkerCefApp();
-
                 int exit_code = CefRuntime.ExecuteProcess(cefMainArgs, cefApp, IntPtr.Zero);
-
                 if ( exit_code >= 0 )
                 {
                     log.ErrorFormat("CefRuntime return " + exit_code);
@@ -428,7 +422,8 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
                     SingleProcess = false,
                     MultiThreadedMessageLoop = true,
                     WindowlessRenderingEnabled = true,
-                    LogSeverity = CefLogSeverity.Info,
+                    LogSeverity = CefLogSeverity.Error,
+                    NoSandbox = true,
                 };
 
                 if ( !string.IsNullOrEmpty(defUserAgent) )
@@ -438,7 +433,7 @@ log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Dec
 
                 try
                 {
-                    CefRuntime.Initialize(cefMainArgs, cefSettings, cefApp, IntPtr.Zero);
+                    CefRuntime.Initialize(cefMainArgs, cefSettings, cefApp, IntPtr.Zero);           
                 }
                 catch ( CefRuntimeException ex )
                 {

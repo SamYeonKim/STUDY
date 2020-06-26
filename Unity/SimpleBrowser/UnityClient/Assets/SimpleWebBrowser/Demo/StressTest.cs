@@ -89,7 +89,7 @@ public class StressTest : MonoBehaviour
 
                 newBrowserGo.SetActive(true);
                 webViewObject.LoadURL(urlVariation[i%urlVariation.Length]);
-                // webViewObject.LoadURL("about:blank");
+                // webViewObject.LoadURL("http://akimgfiles.plaync.com/file/MAP/download/20181214170210-zofWDzzbOHjS7pSv5vkq0-v4?download=false");
                 // webViewObject.LoadHTML("<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>", "dummy:");
                 webViewObject.SetVisibility(true);
 

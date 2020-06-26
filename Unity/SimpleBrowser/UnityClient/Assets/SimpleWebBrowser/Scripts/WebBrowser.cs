@@ -9,7 +9,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform))]
 public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,IPointerUpHandler    
 {
-    System.Diagnostics.Stopwatch watch;
     public bool visibility { get; private set; }
     private bool backgroundTransparent = false;
     private int width = 1024;
@@ -28,11 +27,8 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private Action<string> callFromJS;
     private string userAgent;
 
-    private double loadingTime;
-
     public void Init(int width, int height, bool transparent, Action<string> callOnError, Action<string> callOnLoad, Action<string> callFromJS, string userAgent)
     {
-        watch = new System.Diagnostics.Stopwatch();
         this.callOnError = callOnError;
         this.callOnLoaded = callOnLoad;
         this.callFromJS = callFromJS;
@@ -71,7 +67,6 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
     public void LoadUrl(string url)
     {
-        watch.Start();
         if ( mainEngine == null )
         {
             Debug.Log("MainEngine is NULL");
@@ -181,10 +176,7 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             rawImage.enabled = true;
         }
 
-        watch.Stop();
-        loadingTime = watch.Elapsed.TotalSeconds;
-        Debug.Log("OnPageLoaded : " + url + ", elapsed : " + loadingTime);
-        watch.Reset();
+        Debug.Log("OnPageLoaded : " + url);
 
         RunJavaScript(@"window.Unity.call(navigator.userAgent);");
     }
@@ -457,7 +449,6 @@ public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     
     private void OnGUI()
     {
-        GUI.Label(new Rect(Screen.width * 0.8f, 0, Screen.width * 0.2f, Screen.height * 0.1f), loadingTime.ToString());
         requestUrl = GUI.TextField(new Rect(Screen.width * 0.8f, Screen.height * 0.1f, Screen.width * 0.15f, Screen.height * 0.1f), requestUrl);
         if ( string.IsNullOrEmpty(requestUrl) )
             return;

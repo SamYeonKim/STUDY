@@ -84,7 +84,7 @@ namespace SimpleWebBrowser
 
             if ( BrowserTexture == null )
             {
-                BrowserTexture = new Texture2D(this.width, this.height, TextureFormat.BGRA32, false, true);
+                BrowserTexture = new Texture2D(this.width, this.height, TextureFormat.BGRA32, false, true);             
             }
 
             pixelLock = new object();
