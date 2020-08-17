@@ -44,7 +44,7 @@ Settings -> {App}Setting 에서 **isAdvertisingTrackingEnabled** 을 On/Off 할 
 **Privacy - Tracking Usage Description(NSUserTrackingUsageDescription)** 키를 추가 하고 값을 넣어야 한다.
 값은 사용자의 동의를 받기 위한 다이얼로의 문구로 사용된다. 만약 값을 넣지 않으면 문구가 출력 안된다.
 
-<img src="img/ios14_idfa_plist.png" width=25% height=50%>
+<img src="img/ios14_idfa_plist.png" width=60% height=50%>
 
 ## Dialogue
 
