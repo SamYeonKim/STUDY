@@ -10,9 +10,9 @@
 
  Settings -> Privacy -> Advertising에서 **isAdvertisingTrackingEnabled** 을 On/Off 할 수 있다. ( Default : On )
 
-<img src="img/prev_idfa_setting_1.png" width=25% height=50%>
-<img src="img/prev_idfa_setting_2.png" width=25% height=50%>
-<img src="img/prev_idfa_setting_3.png" width=25% height=50%>
+<img src="img/prev_idfa_setting_1.png" width=25% height=50% align="center">
+<img src="img/prev_idfa_setting_2.png" width=25% height=50% align="center">
+<img src="img/prev_idfa_setting_3.png" width=25% height=50% align="center">
 
 ## Code
 ```objectivec
