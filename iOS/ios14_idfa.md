@@ -37,15 +37,14 @@ else
 
 Settings -> {App}Setting 에서 **isAdvertisingTrackingEnabled** 을 On/Off 할 수 있다.
 
-![](img/ios14_idfa_setting_1.jpeg)
-![](img/ios14_idfa_setting_2.png)
+<img src="img/ios14_idfa_setting_1.jpeg" width=25% height=50%><img src="img/ios14_idfa_setting_2.png" width=25% height=50%>
 
 ## info.plist 수정
 
 **Privacy - Tracking Usage Description(NSUserTrackingUsageDescription)** 키를 추가 하고 값을 넣어야 한다.
 값은 사용자의 동의를 받기 위한 다이얼로의 문구로 사용된다. 만약 값을 넣지 않으면 문구가 출력 안된다.
 
-![](img/ios14_idfa_plist.png)
+<img src="img/ios14_idfa_plist.png" width=25% height=50%>
 
 ## Dialogue
 
@@ -54,7 +53,7 @@ Settings -> {App}Setting 에서 **isAdvertisingTrackingEnabled** 을 On/Off 할 
 * 만약 Dialogue를 통해 사용자에게 동의 혹은 거부를 받으면, 앱을 재설치 하기 전까진 다시 뜨지 않는다.
 * **status == ATTrackingManagerAuthorizationStatusAuthorized** 인 경우에만 IDFA를 구해 올 수 있다.
 
-![](img/ios14_idfa_dialogue.png)
+<img src="img/ios14_idfa_dialogue.png" width=25% height=50%>
 
 ## Code
 
